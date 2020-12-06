@@ -1,12 +1,13 @@
 DROP DATABASE IF EXISTS CentroInspecoes;
 CREATE DATABASE CentroInspecoes;
+USE CentroInspecoes;
 
 CREATE TABLE TipoUtilizador (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(32) NOT NULL
 );
 
-CREATE TABLE Utilizdor (
+CREATE TABLE Utilizador (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(128),
     username VARCHAR(32) NOT NULL UNIQUE,
@@ -37,7 +38,7 @@ CREATE TABLE CategoriaVeiculo (
 CREATE TABLE Veiculo (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(32) NOT NULL,
-    desc VARCHAR(256) NOT NULL,
+    descricao VARCHAR(256) NOT NULL,
     matricula VARCHAR(6) NOT NULL UNIQUE,
     idCategoria INT NOT NULL,
     CONSTRAINT TB_Veiculo_CategoriaVeiculo_FK FOREIGN KEY (idCategoria) REFERENCES CategoriaVeiculo(id)
@@ -59,8 +60,8 @@ CREATE TABLE Inspecao (
     idInspetor INT,
     idVeiculo INT NOT NULL,
     idLinha INT NOT NULL,
-    CONSTRAINT TB_Inspecao_Utilizador_Cliente_FK FOREIGN KEY (idCliente) REFERENCES Utilizdor(id),
-    CONSTRAINT TB_Inspecao_Utilizador_Inspetor_FK FOREIGN KEY (idInspetor) REFERENCES Utilizdor(id),
+    CONSTRAINT TB_Inspecao_Utilizador_Cliente_FK FOREIGN KEY (idCliente) REFERENCES Utilizador(id),
+    CONSTRAINT TB_Inspecao_Utilizador_Inspetor_FK FOREIGN KEY (idInspetor) REFERENCES Utilizador(id),
     CONSTRAINT TB_Inspecao_Veiculo_FK FOREIGN KEY (idVeiculo) REFERENCES Veiculo(id),
     CONSTRAINT TB_Inspecao_LinhaInspecao_FK FOREIGN KEY (idLinha) REFERENCES LinhaInspecao(id)
 );
@@ -68,7 +69,7 @@ CREATE TABLE Inspecao (
 INSERT INTO TipoUtilizador (nome) VALUES
     ('Administrador'), ('Inspector'), ('Cliente');
 
-INSERT INTO Utilizdor (nome, username, email, password, morada, cc, dataNasc, telemovel, telefone, estaAtivo, idTipo) VALUES
+INSERT INTO Utilizador (nome, username, email, password, morada, cc, dataNasc, telemovel, telefone, estaAtivo, idTipo) VALUES
     ('José Rodrigues', 'admin', 'admin@mail.com',
      '$2y$12$OgKQmortu0reACW6sMmwz.nbCSPztT/SUWe399O48YKkWQSoV/j5u',
      'Rua Fonseca Porta 5, 6000-201', 15086126, '1990-05-05', 912123168, NULL, TRUE, 1),
