@@ -1,19 +1,11 @@
 <?php
-    function loginWithEmail($conn, $user, $pwd) {
-        
-    }
-    function loginWithUsername($conn, $user, $pwd) {
-
-    }
-
     if (isset($_POST["loginBtn"])) {
-        include("./basedados.h");
-        include("./rules.php");
-
         if(isset($_POST["l_user"]) && isset($_POST["l_pwd"])) {
+            include("scripts/php/rules.php");
             $user = $_POST["l_user"];
             $pwd = $_POST["l_pwd"];
             if(strlen($user) >= USER_MIN_LENGTH && strlen($pwd) >= PWD_MIN_LENGTH) {
+                include("scripts/php/functions_login.php");
                 if(strpos($user, "@"))
                     loginWithEmail($conn, $user, $pwd);
                 else
@@ -43,7 +35,7 @@
                 </script>";
         }
     ?>
-    <title>Login</title>
+    <title>CI | Login</title>
 </head>
 <body>
     <nav id="navbar"></nav>
@@ -69,6 +61,10 @@
                     </div>
                     
                 </form>
+            </div>
+            <div class="lr-footer">
+                Não possui uma conta?<br>
+                <a href="register.php">Criar conta!</a>
             </div>
         </div>
     </div>
