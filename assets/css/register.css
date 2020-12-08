@@ -1,0 +1,97 @@
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.r-zone {
+    min-height: 500px;
+}
+
+.r-panel {
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: auto;
+    max-width: 350px;
+}
+
+.r-panel > h1 {
+    text-align: center;
+    border-bottom: 1px solid black;
+    margin: 0px;
+    padding: 15px;
+}
+
+.r-form {
+    width: 80%;
+    margin: auto;
+}
+
+.r-inputGroup {
+    margin: 10px 0px;
+}
+
+.r-inputGroup > input {
+    box-sizing: border-box; 
+    width: 100%;
+}
+
+.r-inputGroup > a {
+    font-size: 14px;
+}
+
+.r-inputGroup > span {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.r-inputBtn {
+    margin: 15px 0px;
+    width: 100%;
+    text-align: center;
+}
+
+.r-inputBtn > input {
+    font-size: 18px;
+    background-color: black;
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px 15px;
+    color: white;
+}
+
+.r-inputBtn > input:hover {
+    background-color: white;
+    border: 1px solid blue;
+    border-radius: 5px;
+    padding: 5px 15px;
+    color: black;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.r-footer {
+    border-top: 1px solid black;
+    text-align: center;
+    padding: 15px 0px
+}
+
+.r-warning {
+    background-color: #ff4336;
+    border-top: 1px solid red;
+    border-bottom: 1px solid red;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+    display: none;
+}

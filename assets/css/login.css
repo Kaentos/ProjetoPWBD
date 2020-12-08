@@ -1,0 +1,86 @@
+.l-zone {
+    min-height: 500px;
+}
+
+.l-panel {
+    border: 1px solid black;
+    border-radius: 5px;
+    margin: auto;
+    max-width: 350px;
+}
+
+.l-panel > h1 {
+    text-align: center;
+    border-bottom: 1px solid black;
+    margin: 0px;
+    padding: 15px;
+}
+
+.l-form {
+    width: 80%;
+    margin: auto;
+}
+
+.l-inputGroup {
+    margin: 10px 0px;
+}
+
+.l-inputGroup > input {
+    box-sizing: border-box; 
+    width: 100%;
+}
+
+.l-inputGroup > a {
+    font-size: 14px;
+}
+
+.l-inputGroup > span {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.l-inputBtn {
+    margin: 15px 0px;
+    width: 100%;
+    text-align: center;
+}
+
+.l-inputBtn > input {
+    font-size: 18px;
+    background-color: black;
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px 15px;
+    color: white;
+}
+
+.l-inputBtn > input:hover {
+    background-color: white;
+    border: 1px solid blue;
+    border-radius: 5px;
+    padding: 5px 15px;
+    color: black;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.l-footer {
+    border-top: 1px solid black;
+    text-align: center;
+    padding: 15px 0px
+}
+
+.l-warning {
+    background-color: #ff4336;
+    border-top: 1px solid red;
+    border-bottom: 1px solid red;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+    display: none;
+}

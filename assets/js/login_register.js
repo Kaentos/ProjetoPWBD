@@ -7,6 +7,10 @@ function badLogin(reason) {
     borderRed([user_input, pwd_input]);
 }
 
+function badRegister(reason) {
+
+}
+
 function borderRed(array_input) {
     for (input of array_input) {
         input.style.borderColor = "red";
