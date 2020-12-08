@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/login.css">
     <script src="assets/js/login_register.js"></script>
+    <link rel="stylesheet" href="assets/css/login_register.css">
     <?php
         if (isset($_SESSION["badLogin"])) {
             echo "<script>window.onload=function(){badLogin('".$_SESSION["badLogin"]."')}</script>";
@@ -28,7 +29,7 @@
             <h1>
                 Login
             </h1>
-            <div class="l-warning" id="badLoginWarning">
+            <div class="lr-warning" id="badWarning">
                 ERROR
             </div>
             <div class="l-form">
@@ -48,12 +49,12 @@
                         </label>
                     </div>
 
-                    <div class="l-inputBtn">
+                    <div class="lr-inputBtn">
                         <input type="submit" value="Login" name="loginBtn" id="loginBtn">
                     </div>
                 </form>
             </div>
-            <div class="l-footer">
+            <div class="lr-footer">
                 Não possui uma conta?<br>
                 <a href="registo.php">Criar conta!</a>
             </div>

@@ -35,7 +35,7 @@ input[type=number] {
 .r-form > form {
     display: flex;
     flex-wrap: wrap;
-    padding: 0px 15px
+    padding-left: 25px;
 }
 
 .r-inputGroup-of3 {
@@ -54,6 +54,9 @@ input[type=number] {
 }
 
 [class^="r-inputGroup-"] > input {
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 5px;
     box-sizing: border-box; 
     width: 100%;
 }
@@ -65,50 +68,4 @@ input[type=number] {
 [class^="r-inputGroup-"] > span {
     font-size: 12px;
     font-weight: bold;
-}
-
-.r-inputBtn {
-    margin: 15px 0px;
-    width: 100%;
-    text-align: center;
-}
-
-.r-inputBtn > input {
-    font-size: 18px;
-    background-color: black;
-    box-sizing: border-box;
-    border: 1px solid black;
-    border-radius: 5px;
-    padding: 5px 15px;
-    color: white;
-}
-
-.r-inputBtn > input:hover {
-    background-color: white;
-    border: 1px solid blue;
-    border-radius: 5px;
-    padding: 5px 15px;
-    color: black;
-    transition: 0.5s;
-    cursor: pointer;
-}
-
-.r-footer {
-    border-top: 1px solid black;
-    text-align: center;
-    padding: 15px 0px
-}
-
-.r-warning {
-    background-color: #ff4336;
-    border-top: 1px solid red;
-    border-bottom: 1px solid red;
-    box-sizing: border-box;
-    text-align: center;
-    padding: 10px;
-    margin-bottom: 20px;
-    font-size: 14px;
-    color: white;
-    font-weight: bold;
-    display: none;
 }

@@ -12,6 +12,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/register.css">
+    <link rel="stylesheet" href="assets/css/login_register.css">
     <script src="assets/js/login_register.js"></script>
     <?php
         if (isset($_SESSION["badRegister"])) {
@@ -28,7 +29,7 @@
             <h1>
                 Registar
             </h1>
-            <div class="r-warning" id="badLoginWarning">
+            <div class="lr-warning" id="badWarning">
                 ERROR
             </div>
             <div class="r-form">
@@ -82,12 +83,12 @@
                         <span>Tamanho: 9 digitos.</span>
                     </div>
 
-                    <div class="r-inputBtn">
+                    <div class="lr-inputBtn">
                         <input type="submit" value="Registar" name="registerBtn" id="registerBtn">
                     </div>
                 </form>
             </div>
-            <div class="r-footer">
+            <div class="lr-footer">
                 Já possuir conta?<br>
                 <a href="login.php">Efetuar login!</a>
             </div>

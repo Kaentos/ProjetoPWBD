@@ -1,0 +1,45 @@
+.lr-warning {
+    background-color: #ff4336;
+    border-top: 1px solid red;
+    border-bottom: 1px solid red;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 14px;
+    color: white;
+    font-weight: bold;
+    display: none;
+}
+
+.lr-inputBtn {
+    margin: 15px 0px;
+    width: 100%;
+    text-align: center;
+}
+
+.lr-inputBtn > input {
+    font-size: 18px;
+    background-color: black;
+    box-sizing: border-box;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 5px 15px;
+    color: white;
+}
+
+.lr-inputBtn > input:hover {
+    background-color: white;
+    border: 1px solid blue;
+    border-radius: 5px;
+    padding: 5px 15px;
+    color: black;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.lr-footer {
+    border-top: 1px solid black;
+    text-align: center;
+    padding: 15px 0px
+}
