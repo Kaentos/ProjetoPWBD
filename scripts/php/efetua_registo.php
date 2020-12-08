@@ -17,16 +17,32 @@
             "cc" => trim($_POST["r_cc"]),
             "date" => trim($_POST["r_date"]),
             "mobile" => trim($_POST["r_mobile"]),
-            "tel" => isset($_POST["r_tel"]) && strlen(trim($_POST)) == 9 ? trim($_POST["r_tel"]) : null,
+            "tel" => isset($_POST["r_tel"]) && strlen(trim($_POST)) == 9 ? trim($_POST["r_tel"]) : "null",
         ];
-        define("FINAL_USER", $user);
+        
         if (FINAL_USER["pwd"] != FINAL_USER["pwd2"]) {
             $badRegister = ["As palavras passes devem ser iguais", $user];
             header("../../registo.php");
             die();
         }
-        $query = "INSERT INTO Utilizador VALUE ()";
-        mysqli_query($conn, $query);
+        $user["pwd"] = password_hash($user["pwd"], PASSWORD_BCRYPT, ["cost" => 12]);
+        define("FINAL_USER", $user);
+        $query = "INSERT INTO Utilizador (nome, username, email, password, morada, cc, dataNasc, telemovel, telefone, idTipo)
+            VALUE ('".FINAL_USER["name"]."',
+            '".FINAL_USER["name"]."',
+            '".FINAL_USER["email"]."',
+            '".FINAL_USER["pwd"]."',
+            '".FINAL_USER["address"]."',
+            ".FINAL_USER["cc"].",
+            '".FINAL_USER["date"]."',
+            ".FINAL_USER["mobile"].",
+            ".FINAL_USER["tel"].", 3)";
+        $result = mysqli_query($conn, $query);
+        if ($result) {
+            echo "yes";
+        } else {
+            echo "fuck " . $query . mysqli_error($result);
+        }
         
 
     } else {
