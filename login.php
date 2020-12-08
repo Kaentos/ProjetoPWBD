@@ -16,6 +16,7 @@
     <?php
         if (isset($_SESSION["badLogin"])) {
             echo "<script>window.onload=function(){badLogin('".$_SESSION["badLogin"]."')}</script>";
+            unset($_SESSION["badLogin"]);
         }
     ?>
     <title>CI | Login</title>
