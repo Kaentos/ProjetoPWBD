@@ -17,7 +17,7 @@ input[type=number] {
     border: 1px solid black;
     border-radius: 5px;
     margin: auto;
-    max-width: 350px;
+    max-width: 800px;
 }
 
 .r-panel > h1 {
@@ -28,24 +28,41 @@ input[type=number] {
 }
 
 .r-form {
-    width: 80%;
+    width: 100%;
     margin: auto;
 }
 
-.r-inputGroup {
-    margin: 10px 0px;
+.r-form > form {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0px 15px
 }
 
-.r-inputGroup > input {
+.r-inputGroup-of3 {
+    margin: 10px auto 0px 0px;
+    width: 30%;
+}
+
+.r-inputGroup-of2 {
+    margin: 10px auto 0px 0px;
+    width: 63.5%;
+}
+
+.r-inputGroup-of1 {
+    margin: 10px auto 0px 0px;
+    width: 96.6%;
+}
+
+[class^="r-inputGroup-"] > input {
     box-sizing: border-box; 
     width: 100%;
 }
 
-.r-inputGroup > a {
+[class^="r-inputGroup-"] > a {
     font-size: 14px;
 }
 
-.r-inputGroup > span {
+[class^="r-inputGroup-"] > span {
     font-size: 12px;
     font-weight: bold;
 }
