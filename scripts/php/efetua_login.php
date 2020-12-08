@@ -1,6 +1,6 @@
 <?php
     session_start();
-
+    unset($_SESSION["badLogin"]);
     if(isset($_POST["l_user"]) && isset($_POST["l_pwd"])) {
         include("basedados.h");
         include("rules.php");
@@ -19,9 +19,9 @@
             if ($result && mysqli_num_rows($result) == 1) {
                 $row = mysqli_fetch_assoc($result);
                 if ($row["isActive"] == FALSE) {
-                    echo "Um administrador precisa de validar a sua conta! Por favor aguarde.";
+                    $_SESSION["badLogin"] = "Por favor aguarde que a sua conta seja validada.";
                 } else if ($row["isDeleted"]) {
-                    echo "Esta conta já não existe no sistema.";
+                    $_SESSION["badLogin"] = "Esta conta encontra-se eliminada.";
                 } else {
                     if (password_verify($pwd, $row["password"])) {
                         $login_user = [
@@ -44,10 +44,14 @@
                 echo "Bad login WARN ADMIN";
             }
         }
+        if (!isset($_SESSION["badLogin"])) {
+            $_SESSION["badLogin"] = "Dados incorretos.";
+        }
         mysqli_close($conn);
         header("location: ../../login.php");
         die();
     } else {
+        $_SESSION["badLogin"] = "Dados incorretos.";
         header("location: ../../login.php");
         die();
     }

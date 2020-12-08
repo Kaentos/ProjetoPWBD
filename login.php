@@ -12,6 +12,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/login_register.css">
+    <script src="assets/js/login_register.js"></script>
+    <?php
+        if (isset($_SESSION["badLogin"])) {
+            echo "<script>window.onload=function(){badLogin('".$_SESSION["badLogin"]."')}</script>";
+        }
+    ?>
     <title>CI | Login</title>
 </head>
 <body>
@@ -21,6 +27,9 @@
             <h1>
                 Login
             </h1>
+            <div class="lr-warning" id="badLoginWarning">
+                ERROR
+            </div>
             <div class="lr-form">
                 <form action="scripts/php/efetua_login.php" method="POST">
                     <div class="lr-inputGroup">
