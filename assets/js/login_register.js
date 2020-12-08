@@ -9,6 +9,8 @@ function badLogin(reason) {
 
 function badRegister(reason) {
     let warningArea = document.getElementById("badWarning");
+    warningArea.style.display = "block";
+    warningArea.innerHTML = reason;
 }
 
 function borderRed(array_input) {

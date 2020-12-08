@@ -33,14 +33,15 @@
                 ERROR
             </div>
             <div class="r-form">
-                <form action="scripts/php/efetua_login.php" method="POST">
+                <form action="scripts/php/efetua_registo.php" method="POST">
                     <div class="r-inputGroup-of2">
                         <label for="r_name">Primeiro e último nome: *</label>
                         <input type="text" name="r_name" id="r_name" required>
+                        <span>Tamanho: 6-64 caracteres.</span>
                     </div>
                     <div class="r-inputGroup-of3">
-                        <label for="r_user">Username: *</label>
-                        <input type="text" name="r_user" id="r_user" required>
+                        <label for="r_username">Username: *</label>
+                        <input type="text" name="r_username" id="r_username" required>
                         <span>Tamanho: 6-16 caracteres.</span>
                     </div>
                     <div class="r-inputGroup-of3">
