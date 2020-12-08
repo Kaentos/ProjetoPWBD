@@ -19,7 +19,8 @@ CREATE TABLE Utilizador (
     telemovel INT NOT NULL,
     telefone INT,
     dataCriacao DATETIME DEFAULT NOW() NOT NULL,
-    estaAtivo BOOLEAN DEFAULT FALSE NOT NULL,
+    isActive BOOLEAN DEFAULT FALSE NOT NULL,
+    isDeleted BOOLEAN DEFAULT FALSE NOT NULL,
     idTipo INT NOT NULL,
     CONSTRAINT TB_Utilizador_TipoUtilizador_FK FOREIGN KEY (idTipo) REFERENCES TipoUtilizador(id)
     /* USELESS AF FAZER TRIGGERS
@@ -69,7 +70,7 @@ CREATE TABLE Inspecao (
 INSERT INTO TipoUtilizador (nome) VALUES
     ('Administrador'), ('Inspector'), ('Cliente');
 
-INSERT INTO Utilizador (nome, username, email, password, morada, cc, dataNasc, telemovel, telefone, estaAtivo, idTipo) VALUES
+INSERT INTO Utilizador (nome, username, email, password, morada, cc, dataNasc, telemovel, telefone, isActive, idTipo) VALUES
     ('José Rodrigues', 'admin', 'admin@mail.com',
      '$2y$12$OgKQmortu0reACW6sMmwz.nbCSPztT/SUWe399O48YKkWQSoV/j5u',
      'Rua Fonseca Porta 5, 6000-201', 15086126, '1990-05-05', 912123168, NULL, TRUE, 1),

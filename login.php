@@ -1,23 +1,7 @@
 <?php
-    if (isset($_POST["loginBtn"])) {
-        if(isset($_POST["l_user"]) && isset($_POST["l_pwd"])) {
-            include("scripts/php/rules.php");
-            $user = $_POST["l_user"];
-            $pwd = $_POST["l_pwd"];
-            if(strlen($user) >= USER_MIN_LENGTH && strlen($pwd) >= PWD_MIN_LENGTH) {
-                include("scripts/php/functions_login.php");
-                if(strpos($user, "@"))
-                    loginWithEmail($conn, $user, $pwd);
-                else
-                    loginWithUsername($conn, $user, $pwd);
-            } else {
-                incorrectData($user);
-            }
-        } else {
-            incorrectData("");
-        }
-
-        mysqli_close($conn);
+    session_start();
+    if (isset($_SESSION["login"]) || $_COOKIE["login"]) {
+        header("location: ./");
     }
 ?>
 
@@ -27,14 +11,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/login_register.css">
-    <?php 
-        function incorrectData($user) {
-            echo "<script src='./Assets/JS/login.js'></script>";
-            echo "<script>
-                    window.onload = function(){incorrectData('$user');}
-                </script>";
-        }
-    ?>
     <title>CI | Login</title>
 </head>
 <body>
@@ -45,7 +21,7 @@
                 Login
             </h1>
             <div class="lr-form">
-                <form action="" method="POST">
+                <form action="scripts/php/efetua_login.php" method="POST">
                     <div class="lr-inputGroup">
                         <label for="l_user">Username/Email:</label>
                         <input type="text" name="l_user" id="l_user">
@@ -55,11 +31,15 @@
                         <input type="password" name="l_pwd" id="l_pwd">
                         <a href="">Esqueci-me da password.</a>
                     </div>
-                    
+                    <div class="lr-inputGroup">
+                        <label for="l_keepLogin">Manter-me logado:
+                           <input type="checkbox" name="l_keepLogin" id="l_keepLogin" value="keep">
+                        </label>
+                    </div>
+
                     <div class="lr-inputBtn">
                         <input type="submit" value="Login" name="loginBtn" id="loginBtn">
                     </div>
-                    
                 </form>
             </div>
             <div class="lr-footer">
