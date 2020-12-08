@@ -35,9 +35,9 @@
                         } else {
                             $_SESSION["login"] = $login_user;
                         }
-                        // Não está a func
-                        /*mysqli_close($conn);
-                        header("location: ../../index.php");*/
+                        mysqli_close($conn);
+                        header("location: ../../index.php");
+                        die();
                     }
                 }
             } else if ($result && mysqli_num_rows($result) > 1) {
@@ -46,7 +46,9 @@
         }
         mysqli_close($conn);
         header("location: ../../login.php");
+        die();
     } else {
         header("location: ../../login.php");
+        die();
     }
 ?>
