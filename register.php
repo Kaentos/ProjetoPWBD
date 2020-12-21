@@ -13,6 +13,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/register.css">
     <link rel="stylesheet" href="assets/css/login_register.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
     <script src="assets/js/login_register.js"></script>
     <?php
         if (isset($_SESSION["badRegister"])) {
@@ -23,7 +24,9 @@
     <title>CI | Registar</title>
 </head>
 <body>
-    <nav id="navbar"></nav>
+    <?php
+        include("navbar.php");
+    ?>
     <div class="r-zone">
         <div class="r-panel">
             <h1>

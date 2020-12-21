@@ -19,27 +19,35 @@
 }
 
 .lr-inputBtn > input {
-    font-size: 18px;
-    background-color: black;
+    font-size: 1.3rem;
+    font-weight: bold;
+    background-color: #667292;
     box-sizing: border-box;
-    border: 1px solid black;
+    border: 1px solid #626262;
     border-radius: 5px;
     padding: 5px 15px;
     color: white;
 }
 
 .lr-inputBtn > input:hover {
-    background-color: white;
-    border: 1px solid blue;
+    /*background-color: #5d6391;*/
+    background-color: #4c4d8c;
+    border: 1px solid white;
     border-radius: 5px;
     padding: 5px 15px;
-    color: black;
+    color: white;
     transition: 0.5s;
     cursor: pointer;
 }
 
 .lr-footer {
-    border-top: 1px solid black;
+    border-top: 1px solid #626262;
     text-align: center;
-    padding: 15px 0px
+    padding: 15px 0px;
+    font-size: 1.3rem;
+}
+
+.lr-footer > a {
+    color: white;
+
 }

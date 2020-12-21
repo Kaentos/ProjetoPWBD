@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="assets/css/login.css">
     <script src="assets/js/login_register.js"></script>
     <link rel="stylesheet" href="assets/css/login_register.css">
+    <link rel="stylesheet" href="assets/css/navbar.css">
     <?php
         if (isset($_SESSION["badLogin"])) {
             echo "<script>window.onload=function(){badLogin('".$_SESSION["badLogin"]."')}</script>";
@@ -23,7 +24,10 @@
     <title>CI | Login</title>
 </head>
 <body>
-    <nav id="navbar"></nav>
+    <?php
+        include("navbar.php");
+    ?>
+
     <div class="l-zone">
         <div class="l-panel">
             <h1>
@@ -36,16 +40,16 @@
                 <form action="scripts/php/efetua_login.php" method="POST">
                     <div class="l-inputGroup">
                         <label for="l_user">Username/Email:</label>
-                        <input type="text" name="l_user" id="l_user">
+                        <input type="text" name="l_user" id="l_user" placeholder="Username ou Email">
                     </div>
                     <div class="l-inputGroup">
                         <label for="l_pwd">Password:</label>
-                        <input type="password" name="l_pwd" id="l_pwd">
-                        <a href="">Esqueci-me da password.</a>
+                        <input type="password" name="l_pwd" id="l_pwd" placeholder="Password">
+                        <a href="">Esqueci-me da password</a>
                     </div>
                     <div class="l-inputGroup">
                         <label for="l_keepLogin">Manter-me logado:
-                           <input type="checkbox" name="l_keepLogin" id="l_keepLogin" value="keep">
+                           <input class="custom-checkbox" type="checkbox" name="l_keepLogin" id="l_keepLogin" value="keep">
                         </label>
                     </div>
 
