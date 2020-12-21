@@ -37,64 +37,108 @@
             </div>
             <div class="r-form">
                 <form action="scripts/php/efetua_registo.php" method="POST">
-                    <div class="r-inputGroup-of2">
-                        <label for="r_name">Primeiro e último nome: *</label>
-                        <input type="text" name="r_name" id="r_name" required>
-                        <span>Tamanho: 6-64 caracteres.</span>
+                    <div class="r-form-category">
+                        Informação da conta
                     </div>
-                    <div class="r-inputGroup-of3">
-                        <label for="r_username">Nome de utilizador: *</label>
-                        <input type="text" name="r_username" id="r_username" required>
-                        <span>Tamanho: 6-16 caracteres.</span>
+                    <div class="r-inputGroup">
+                        <label for="r_username">
+                            Nome de Utilizador: *
+                        </label>
+                        <div class="r-inputGroup-input">
+                            <input type="text" name="r_username" id="r_username" required>
+                            <span>Tamanho: 6-16 caracteres.</span>
+                        </div>
                     </div>
-                    <div class="r-inputGroup-of1">
+                    <div class="r-inputGroup">
                         <label for="r_email">Email: *</label>
-                        <input type="email" name="r_email" id="r_email" required>
-                        <span>Tamanho: 6-128 caracteres.</span>
+                        <div class="r-inputGroup-input">
+                            <input type="email" name="r_email" id="r_email" required>
+                            <span>Tamanho: 6-128 caracteres.</span>
+                        </div>
                     </div>
-                    <div class="r-inputGroup-of3">
-                        <label for="r_pwd">Palavra-passe: *</label>
-                        <input type="password" name="r_pwd" id="r_pwd" required>
-                        <span>Tamanho: 6-64 caracteres.</span>
+
+                    <div class="r-inputGroup">
+                        <label for="r_pwd">
+                            Palavra-passe: *
+                        </label>
+                        <div class="r-inputGroup-input">
+                            <input type="password" name="r_pwd" id="r_pwd" required>
+                            <span>Tamanho: 6-64 caracteres.</span>
+                        </div>
                     </div>
-                    <div class="r-inputGroup-of2">
-                        <label for="r_pwd2">Confirmar palavra-passe: *</label>
-                        <input type="password" name="r_pwd2" id="r_pwd2" required>
+                    <div class="r-inputGroup">
+                        <label for="r_pwd2">
+                            Confirmar palavra-passe: *
+                        </label>
+                        <div class="r-inputGroup-input">
+                            <input type="password" name="r_pwd2" id="r_pwd2" required>
+                        </div>
                     </div>
-                    <div class="r-inputGroup-of1">
-                        <label for="r_address">Morada: *</label>
-                        <input type="text" name="r_address" id="r_address" required>
-                        <span>Tamanho: 6-128 caracteres.</span>
+                    
+
+
+                    <div class="r-form-category">
+                        Dados pessoais:
                     </div>
-                    <div class="r-inputGroup-of3">
-                        <label for="r_cc">Nº cartão cidadão / BI: *</label>
-                        <input type="number" name="r_cc" id="r_cc" required>
-                        <span>Tamanho: 8 digitos.</span>
+                    <div class="r-inputGroup">
+                        <label for="r_name">
+                            Primeiro e último nome: *
+                        </label>
+                        <div class="r-inputGroup-input">
+                            <input type="text" name="r_name" id="r_name" required>
+                            <span>Tamanho: 6-64 caracteres.</span>
+                        </div>
                     </div>
-                    <div class="r-inputGroup-of3">
-                        <label for="r_date">Data Nascimento: *</label>
-                        <input type="date" name="r_date" id="r_date" required>
-                        <span>Precisa de ter 18 anos.</span>
+                    <div class="r-inputGroup">
+                        <label for="r_address">
+                            Morada: *
+                        </label>
+                        <div class="r-inputGroup-input">
+                            <input type="text" name="r_address" id="r_address" required>
+                            <span>Tamanho: 6-128 caracteres.</span>
+                        </div>
                     </div>
-                    <div class="r-inputGroup-of3">
-                        <label for="r_mobile">Nº telemóvel: *</label>
-                        <input type="number" name="r_mobile" id="r_mobile" required>
-                        <span>Tamanho: 9 digitos.</span>
+                    <div class="r-inputGroup">
+                        <label for="r_cc">
+                            Nº cartão cidadão / BI: *
+                        </label>
+                        <div class="r-inputGroup-input">
+                            <input type="number" name="r_cc" id="r_cc" required>
+                            <span>Tamanho: 8 digitos.</span>
+                        </div>
                     </div>
-                    <div class="r-inputGroup-of3">
-                        <label for="r_tel">Nº telefone:</label>
-                        <input type="number" name="r_tel" id="r_tel">
-                        <span>Tamanho: 9 digitos.</span>
+                    <div class="r-inputGroup">
+                        <label for="r_date">
+                            Data Nascimento: *
+                        </label>
+                        <div class="r-inputGroup-input">
+                            <input type="date" name="r_date" id="r_date" required>
+                            <span>Precisa de ser maior de idade (+18 anos).</span>
+                        </div>
+                    </div>
+                    <div class="r-inputGroup">
+                        <label for="r_mobile">
+                            Nº telemóvel: *
+                        </label>
+                        <div class="r-inputGroup-input">
+                            <input type="number" name="r_mobile" id="r_mobile" required>
+                            <span>Tamanho: 9 digitos.</span>
+                        </div>
+                    </div>
+                    <div class="r-inputGroup">
+                        <label for="r_tel">
+                            Nº telefone:
+                        </label>
+                        <div class="r-inputGroup-input">
+                            <input type="number" name="r_tel" id="r_tel">
+                            <span>Tamanho: 9 digitos.</span>
+                        </div>
                     </div>
 
                     <div class="lr-inputBtn">
                         <input type="submit" value="Registar" name="registerBtn" id="registerBtn">
                     </div>
                 </form>
-            </div>
-            <div class="lr-footer">
-                Já possuir conta?<br>
-                <a href="login.php">Efetuar login!</a>
             </div>
         </div>
     </div>

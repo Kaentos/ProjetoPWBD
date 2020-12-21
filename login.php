@@ -58,10 +58,6 @@
                     </div>
                 </form>
             </div>
-            <div class="lr-footer">
-                Não possui uma conta?<br>
-                <a href="registo.php">Criar conta!</a>
-            </div>
         </div>
     </div>
     

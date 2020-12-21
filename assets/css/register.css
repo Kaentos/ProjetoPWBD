@@ -38,7 +38,47 @@ input[type=number] {
 .r-form > form {
     display: flex;
     flex-wrap: wrap;
-    padding-left: 25px;
+    padding: 0px 25px;
+}
+
+.r-form-category {
+    width: 100%;
+    font-size: 1.4rem;
+    margin-top: 10px;
+    border-bottom: 1px solid white;
+    font-weight: bold;
+}
+
+.r-inputGroup {
+    font-size: 1.3rem;
+    margin-top: 10px;
+    width: 100%;
+    display: flex;
+    align-items: space-between;
+}
+
+.r-inputGroup > label {
+    white-space: nowrap;
+    min-width: 32%;
+    text-align: right;
+}
+
+.r-inputGroup-input {
+    width: 100%;
+    padding-left: 5px;
+}
+
+.r-inputGroup-input > input {
+    border: 1px solid white;
+    padding: 5px;
+    border-radius: 2px;
+    box-sizing: border-box; 
+    font-size: 1.3rem;
+}
+
+.r-inputGroup-input > span {
+    font-size: 1rem !important;
+    align-self: right;
 }
 
 .r-inputGroup-of3 {
