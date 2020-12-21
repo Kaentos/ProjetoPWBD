@@ -43,22 +43,22 @@
                         <span>Tamanho: 6-64 caracteres.</span>
                     </div>
                     <div class="r-inputGroup-of3">
-                        <label for="r_username">Username: *</label>
+                        <label for="r_username">Nome de utilizador: *</label>
                         <input type="text" name="r_username" id="r_username" required>
                         <span>Tamanho: 6-16 caracteres.</span>
                     </div>
-                    <div class="r-inputGroup-of3">
+                    <div class="r-inputGroup-of1">
                         <label for="r_email">Email: *</label>
                         <input type="email" name="r_email" id="r_email" required>
                         <span>Tamanho: 6-128 caracteres.</span>
                     </div>
                     <div class="r-inputGroup-of3">
-                        <label for="r_pwd">Password: *</label>
+                        <label for="r_pwd">Palavra-passe: *</label>
                         <input type="password" name="r_pwd" id="r_pwd" required>
                         <span>Tamanho: 6-64 caracteres.</span>
                     </div>
-                    <div class="r-inputGroup-of3">
-                        <label for="r_pwd2">Confirmar password: *</label>
+                    <div class="r-inputGroup-of2">
+                        <label for="r_pwd2">Confirmar palavra-passe: *</label>
                         <input type="password" name="r_pwd2" id="r_pwd2" required>
                     </div>
                     <div class="r-inputGroup-of1">

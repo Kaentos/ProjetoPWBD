@@ -14,17 +14,20 @@ input[type=number] {
 }
 
 .r-panel {
-    border: 1px solid black;
-    border-radius: 5px;
-    margin: auto;
-    max-width: 800px;
+    background-color: #3B3B3B;
+    border: 1px solid #626262;
+    color: white;
+    border-radius: 2px;
+    margin: 50px auto;
+    max-width: 900px;
 }
 
 .r-panel > h1 {
     text-align: center;
-    border-bottom: 1px solid black;
+    border-bottom: 1px solid #626262;
     margin: 0px;
     padding: 15px;
+    font-size: 2rem;
 }
 
 .r-form {
@@ -53,19 +56,20 @@ input[type=number] {
     width: 96.6%;
 }
 
-[class^="r-inputGroup-"] > input {
-    border: 1px solid black;
-    padding: 5px;
-    border-radius: 5px;
-    box-sizing: border-box; 
-    width: 100%;
+[class^="r-inputGroup-"] > label {
+    font-size: 1.3rem;
 }
 
-[class^="r-inputGroup-"] > a {
-    font-size: 14px;
+[class^="r-inputGroup-"] > input {
+    border: 1px solid white;
+    padding: 5px;
+    border-radius: 2px;
+    box-sizing: border-box; 
+    width: 100%;
+    font-size: 1.3rem;
 }
 
 [class^="r-inputGroup-"] > span {
-    font-size: 12px;
+    font-size: 1rem;
     font-weight: bold;
 }
