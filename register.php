@@ -46,7 +46,7 @@
                         </label>
                         <div class="r-inputGroup-input">
                             <input type="text" name="r_username" id="r_username" required>
-                            <span>Tamanho: 6-16 caracteres.</span>
+                            <span>Tamanho: 4-16 caracteres.</span>
                         </div>
                     </div>
                     <div class="r-inputGroup">
