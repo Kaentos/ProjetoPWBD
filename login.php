@@ -39,13 +39,13 @@
             <div class="l-form">
                 <form action="scripts/php/efetua_login.php" method="POST">
                     <div class="l-inputGroup">
-                        <label for="l_user">Username/Email:</label>
-                        <input type="text" name="l_user" id="l_user">
+                        <label for="l_user">Nome de utilizador ou Email:</label>
+                        <input type="text" name="l_user" id="l_user" placeholder="mail@dominio.pt">
                     </div>
                     <div class="l-inputGroup">
-                        <label for="l_pwd">Password:</label>
+                        <label for="l_pwd">Palavra-passe:</label>
                         <input type="password" name="l_pwd" id="l_pwd">
-                        <a href="">Esqueci-me da password</a>
+                        <a href="">Esqueci-me da palavra-passe</a>
                     </div>
                     <div class="l-inputGroup">
                         <label for="l_keepLogin">Manter-me logado:
@@ -54,7 +54,7 @@
                     </div>
 
                     <div class="lr-inputBtn">
-                        <input type="submit" value="Login" name="loginBtn" id="loginBtn">
+                        <input type="submit" value="Entrar" name="loginBtn" id="loginBtn">
                     </div>
                 </form>
             </div>

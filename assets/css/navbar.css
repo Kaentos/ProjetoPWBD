@@ -44,7 +44,7 @@ body {
     font-weight: bold;
     text-decoration: none;
     color: white;
-    border-radius: 5px;
+    border-radius: 2px;
 }
 
 .navbar-links > a:hover {
