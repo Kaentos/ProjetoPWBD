@@ -1,4 +1,12 @@
+@font-face {
+    font-family: "Multi";
+    src: url("../font/muli/Muli.ttf") format("truetype");
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
+    font-family: "Multi";
     margin: 0;
     padding: 0;
     background-color: #515151;
@@ -22,7 +30,7 @@ body {
 
 .navbar-title {
     font-weight: bold;
-    font-size: 1.2rem;
+    font-size: 1.1rem;
     color: white;
 }
 
