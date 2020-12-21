@@ -24,8 +24,8 @@
     background-color: #667292;
     box-sizing: border-box;
     border: 1px solid #626262;
-    border-radius: 5px;
-    padding: 5px 15px;
+    border-radius: 2px;
+    padding: 10px 30px;
     color: white;
 }
 
@@ -33,8 +33,6 @@
     /*background-color: #5d6391;*/
     background-color: #4c4d8c;
     border: 1px solid white;
-    border-radius: 5px;
-    padding: 5px 15px;
     color: white;
     transition: 0.5s;
     cursor: pointer;

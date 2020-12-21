@@ -40,11 +40,11 @@
                 <form action="scripts/php/efetua_login.php" method="POST">
                     <div class="l-inputGroup">
                         <label for="l_user">Username/Email:</label>
-                        <input type="text" name="l_user" id="l_user" placeholder="Username ou Email">
+                        <input type="text" name="l_user" id="l_user">
                     </div>
                     <div class="l-inputGroup">
                         <label for="l_pwd">Password:</label>
-                        <input type="password" name="l_pwd" id="l_pwd" placeholder="Password">
+                        <input type="password" name="l_pwd" id="l_pwd">
                         <a href="">Esqueci-me da password</a>
                     </div>
                     <div class="l-inputGroup">
