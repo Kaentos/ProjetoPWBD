@@ -25,8 +25,8 @@ function badLogin(reason) {
 
 /* REGISTER */
 function activateLiveCheckRegister() {
-    document.getElementById("registerBtn").disabled = true;
     document.getElementById("r_username").addEventListener("keyup", this.checkUsername);
+    document.getElementById("r_email").addEventListener("keyup", this.checkEmail);
     document.getElementById("r_pwd").addEventListener("keyup", this.checkPasswords);
     document.getElementById("r_pwd2").addEventListener("keyup", this.checkPasswords);
     document.getElementById("r_name").addEventListener("keyup", this.checkName);
@@ -44,6 +44,19 @@ function checkUsername() {
     } else {
         input_username.classList.add("invalid");
         input_username.classList.remove("valid");
+    };
+}
+
+function checkEmail() {
+    const regex = new RegExp("^[a-zA-Z1-9_.-]{1,64}@{1}[a-z-]{1,32}.{1}[a-z]{2,6}$");
+    let input_email = document.getElementById("r_email");
+    let email = input_email.value;
+    if (regex.test(email)){
+        input_email.classList.add("valid");
+        input_email.classList.remove("invalid");
+    } else {
+        input_email.classList.add("invalid");
+        input_email.classList.remove("valid");
     };
 }
 
