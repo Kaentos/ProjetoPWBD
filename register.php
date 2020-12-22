@@ -51,14 +51,14 @@
                             Nome de Utilizador: *
                         </label>
                         <div class="r-inputGroup-input">
-                            <input type="text" name="r_username" id="r_username" >
+                            <input type="text" name="r_username" id="r_username" required>
                             <span>Tamanho: 4-16 caracteres.</span>
                         </div>
                     </div>
                     <div class="r-inputGroup">
                         <label for="r_email">Email: *</label>
                         <div class="r-inputGroup-input">
-                            <input type="email" name="r_email" id="r_email" >
+                            <input type="email" name="r_email" id="r_email" required>
                             <span>Tamanho: 6-128 caracteres.</span>
                         </div>
                     </div>
@@ -68,7 +68,7 @@
                             Palavra-passe: *
                         </label>
                         <div class="r-inputGroup-input">
-                            <input type="password" name="r_pwd" id="r_pwd" >
+                            <input type="password" name="r_pwd" id="r_pwd" required>
                             <span>Regras: 6-64 caracteres, 1 caracter maiúsculo, 1 caracter minúsculo, 1 número.</span>
                         </div>
                     </div>
@@ -77,7 +77,7 @@
                             Confirmar palavra-passe: *
                         </label>
                         <div class="r-inputGroup-input">
-                            <input type="password" name="r_pwd2" id="r_pwd2" >
+                            <input type="password" name="r_pwd2" id="r_pwd2" required>
                         </div>
                     </div>
                     
@@ -91,7 +91,7 @@
                             Primeiro e último nome: *
                         </label>
                         <div class="r-inputGroup-input">
-                            <input type="text" name="r_name" id="r_name" >
+                            <input type="text" name="r_name" id="r_name" required>
                             <span>Tamanho: 6-64 caracteres.</span>
                         </div>
                     </div>
@@ -103,13 +103,13 @@
                             <input type="text" name="r_address" id="r_address" required>
                             <span>Tamanho: 6-128 caracteres.</span>
                         </div>
-                    </div> -->
+                    </div>
                     <div class="r-inputGroup">
                         <label for="r_cc">
                             Nº cartão cidadão / BI: *
                         </label>
                         <div class="r-inputGroup-input">
-                            <input type="number" name="r_cc" id="r_cc" >
+                            <input type="number" name="r_cc" id="r_cc" required>
                             <span>Tamanho: 8 digitos.</span>
                         </div>
                     </div>
@@ -118,16 +118,16 @@
                             Data Nascimento: *
                         </label>
                         <div class="r-inputGroup-input">
-                            <input type="date" name="r_date" id="r_date" >
+                            <input type="date" name="r_date" id="r_date" required>
                             <span>Precisa de ser maior de idade (+18 anos).</span>
                         </div>
-                    </div>
+                    </div>-->
                     <div class="r-inputGroup">
                         <label for="r_mobile">
                             Nº telemóvel: *
                         </label>
                         <div class="r-inputGroup-input">
-                            <input type="number" name="r_mobile" id="r_mobile" >
+                            <input type="number" name="r_mobile" id="r_mobile" required>
                             <span>Tamanho: 9 digitos.</span>
                         </div>
                     </div>

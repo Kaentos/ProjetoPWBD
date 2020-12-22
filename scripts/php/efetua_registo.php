@@ -2,8 +2,8 @@
     session_start();
     unset($_SESSION["badRegister"]);
     if(isset($_POST["r_name"]) && isset($_POST["r_username"]) && isset($_POST["r_email"])
-     && isset($_POST["r_pwd"]) && isset($_POST["r_pwd2"]) /*&& isset($_POST["r_address"])*/
-      && isset($_POST["r_cc"]) && isset($_POST["r_date"]) && isset($_POST["r_mobile"])) {
+     && isset($_POST["r_pwd"]) && isset($_POST["r_pwd2"]) /*&& isset($_POST["r_address"])
+      && isset($_POST["r_cc"]) && isset($_POST["r_date"])*/ && isset($_POST["r_mobile"])) {
         include("basedados.h");
         include("rules.php");
 
@@ -34,7 +34,7 @@
         if (!preg_match(REGEX_NAME, $user["name"])) {
             gotoRegisterWithError("Nome inválido",$user);
         }
-        if (!preg_match(REGEX_CC, $user["cc"])) {
+        /*if (!preg_match(REGEX_CC, $user["cc"])) {
             gotoRegisterWithError("Número de cartão de cidadão inválido",$user);
         }
         if (!validateDate($user["date"])) {
@@ -42,7 +42,7 @@
         }
         if (!(time() < strtotime('+18 years', strtotime($user["date"])))) {
             gotoRegisterWithError("Precisa de ter 18 anos!", $user);
-        }
+        }*/
         if (!preg_match(REGEX_CONTACTNUMBER, $user["mobile"])) {
             gotoRegisterWithError("Número de telemóvel inválido",$user);
         }
