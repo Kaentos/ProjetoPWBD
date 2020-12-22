@@ -84,9 +84,9 @@
                             <input type="password" name="r_pwd2" id="r_pwd2" required>
                         </div>
                     </div>
+
+
                     
-
-
                     <div class="r-form-category">
                         Dados pessoais:
                     </div>
@@ -99,33 +99,6 @@
                             <span>Tamanho: 6-64 caracteres.</span>
                         </div>
                     </div>
-                    <!-- <div class="r-inputGroup">
-                        <label for="r_address">
-                            Morada: *
-                        </label>
-                        <div class="r-inputGroup-input">
-                            <input type="text" name="r_address" id="r_address" required>
-                            <span>Tamanho: 6-128 caracteres.</span>
-                        </div>
-                    </div>
-                    <div class="r-inputGroup">
-                        <label for="r_cc">
-                            Nº cartão cidadão / BI: *
-                        </label>
-                        <div class="r-inputGroup-input">
-                            <input type="number" name="r_cc" id="r_cc" required>
-                            <span>Tamanho: 8 digitos.</span>
-                        </div>
-                    </div>
-                    <div class="r-inputGroup">
-                        <label for="r_date">
-                            Data Nascimento: *
-                        </label>
-                        <div class="r-inputGroup-input">
-                            <input type="date" name="r_date" id="r_date" required>
-                            <span>Precisa de ser maior de idade (+18 anos).</span>
-                        </div>
-                    </div>-->
                     <div class="r-inputGroup">
                         <label for="r_mobile">
                             Nº telemóvel<sup>*</sup>

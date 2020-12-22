@@ -13,6 +13,15 @@
     height: 50px;
 }
 
+.disabled {
+    background-color: #ff5e5e !important;
+}
+.disabled:hover {
+    cursor: initial !important;
+    background-color: #ff5e5e !important;
+    border: 2px solid #626262 !important;
+}
+
 .valid {
     border-color: #68a000 !important;
 }
@@ -39,7 +48,6 @@
 }
 
 .lr-inputBtn > input:hover {
-    /*background-color: #5d6391;*/
     background-color: #4c4d8c;
     border: 2px solid white;
     color: white;
@@ -56,5 +64,4 @@
 
 .lr-footer > a {
     color: white;
-
 }

@@ -24,7 +24,16 @@ function badLogin(reason) {
 
 
 /* REGISTER */
+var input_validations = {
+    "username": false,
+    "email": false,
+    "pwd": false,
+    "mobile": false,
+    "tel": true
+};
 function activateLiveCheckRegister() {
+    document.getElementById("registerBtn").classList.add("disabled");
+    document.getElementById("registerBtn").disabled = true;
     document.getElementById("r_username").addEventListener("keyup", this.checkUsername);
     document.getElementById("r_email").addEventListener("keyup", this.checkEmail);
     document.getElementById("r_pwd").addEventListener("keyup", this.checkPasswords);
@@ -34,17 +43,32 @@ function activateLiveCheckRegister() {
     document.getElementById("r_tel").addEventListener("keyup", function() { checkContact("tel") });
 }
 
+function checkRegisterButton() {
+    for (let input in input_validations) {
+        if (!input_validations[input]) {
+            document.getElementById("registerBtn").classList.add("disabled");
+            document.getElementById("registerBtn").disabled = true;
+            return;
+        }
+    }
+    document.getElementById("registerBtn").classList.remove("disabled");
+    document.getElementById("registerBtn").disabled = false;
+}
+
 function checkUsername() {
     const regex = new RegExp("^[a-zA-Z1-9_]{4,16}$");
     let input_username = document.getElementById("r_username");
     let username = input_username.value;
     if (regex.test(username)){
+        input_validations["username"] = true;
         input_username.classList.add("valid");
         input_username.classList.remove("invalid");
     } else {
+        input_validations["username"] = false;
         input_username.classList.add("invalid");
         input_username.classList.remove("valid");
     };
+    checkRegisterButton();
 }
 
 function checkEmail() {
@@ -52,12 +76,15 @@ function checkEmail() {
     let input_email = document.getElementById("r_email");
     let email = input_email.value;
     if (regex.test(email)){
+        input_validations["email"] = true;
         input_email.classList.add("valid");
         input_email.classList.remove("invalid");
     } else {
+        input_validations["email"] = false;
         input_email.classList.add("invalid");
         input_email.classList.remove("valid");
     };
+    checkRegisterButton();
 }
 
 function checkPasswords() {
@@ -65,23 +92,27 @@ function checkPasswords() {
     let input_pwd = document.getElementById("r_pwd");
     let input_pwd2 = document.getElementById("r_pwd2");
     let pwd = input_pwd.value;
-    let pwd2 = input_pwd2.getElementById("r_pwd2").value;
+    let pwd2 = input_pwd2.value;
     if (regex.test(pwd)) {
         input_pwd.classList.add("valid");
         input_pwd.classList.remove("invalid");
         if (pwd !== pwd2) {
+            input_validations["pwd"] = false;
             input_pwd2.classList.add("invalid");
             input_pwd2.classList.remove("valid");
         } else {
+            input_validations["pwd"] = true;
             input_pwd.classList.add("valid");
             input_pwd2.classList.add("valid");
             input_pwd.classList.remove("invalid");
             input_pwd2.classList.remove("invalid");
         }
     } else {
+        input_validations["pwd"] = false;
         input_pwd.classList.add("invalid");
         input_pwd.classList.remove("valid");
     }
+    checkRegisterButton();
 }
 
 function checkName() {
@@ -89,12 +120,15 @@ function checkName() {
     let input_name = document.getElementById("r_name");
     let name = input_name.value;
     if (regex.test(name)){
+        input_validations["name"] = true;
         input_name.classList.add("valid");
         input_name.classList.remove("invalid");
     } else {
+        input_validations["name"] = false;
         input_name.classList.add("invalid");
         input_name.classList.remove("valid");
     };
+    checkRegisterButton();
 }
 
 function checkContact(type) {
@@ -102,19 +136,23 @@ function checkContact(type) {
     let input_contact = document.getElementById("r_"+type);
     let contact = input_contact.value;
     if (type === "tel" && contact === "") {
+        input_validations[type] = true;
         input_contact.classList.remove("valid");
         input_contact.classList.remove("invalid");
+        checkRegisterButton();
         return;
     }
     if (regex.test(contact)){
+        input_validations[type] = true;
         input_contact.classList.add("valid");
         input_contact.classList.remove("invalid");
     } else {
+        input_validations[type] = false;
         input_contact.classList.add("invalid");
         input_contact.classList.remove("valid");
     };
+    checkRegisterButton();
 }
-
 
 function badRegister(reason, code) {
     let warningArea = document.getElementById("badWarning");
