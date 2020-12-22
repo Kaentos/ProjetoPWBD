@@ -70,16 +70,16 @@ CREATE TABLE Inspecao (
 INSERT INTO TipoUtilizador (nome) VALUES
     ('Administrador'), ('Inspector'), ('Cliente');
 
-INSERT INTO Utilizador (nome, username, email, password, morada, cc, dataNasc, telemovel, telefone, isActive, idTipo) VALUES
+INSERT INTO Utilizador (nome, username, email, password, /*morada,*/ cc, dataNasc, telemovel, telefone, isActive, idTipo) VALUES
     ('José Rodrigues', 'admin', 'admin@mail.com',
      '$2y$12$OgKQmortu0reACW6sMmwz.nbCSPztT/SUWe399O48YKkWQSoV/j5u',
-     'Rua Fonseca Porta 5, 6000-201', 15086126, '1990-05-05', 912123168, NULL, TRUE, 1),
+     /*'Rua Fonseca Porta 5, 6000-201',*/ 15086126, '1990-05-05', 912123168, NULL, TRUE, 1),
     ('Rodrigo Rafael', 'inspector', 'inspector@mail.com',
      '$2y$12$aWR7iVWNKAp12DQhSavGpOH9305vIUcH3NXyUlj8hMaTCX/r7uhX6',
-     'Rua Liberdade Lote 123 3ºDireito, 6000-201', 15192310, '1981-07-27', 925102312, NULL, TRUE, 2),
+     /*'Rua Liberdade Lote 123 3ºDireito, 6000-201',*/ 15192310, '1981-07-27', 925102312, NULL, TRUE, 2),
     ('Ricardo Pereira', 'cliente', 'cliente@mail.com',
      '$2y$12$5kqtya37Wf1ecQuDZybkSuxOaU.OxKb198L2wOH4ji8XFCrBZty3.',
-     'Rua Fonseca Porta 10, 6000-201', 19212132, '2000-02-20', 912323123, NULL, TRUE, 3);
+     /*'Rua Fonseca Porta 10, 6000-201',*/ 19212132, '2000-02-20', 912323123, NULL, TRUE, 3);
 
 INSERT INTO CategoriaVeiculo (nome, duracao) VALUES
     ('Ligeiro de passageiros', 30), ('Motociclo', 30), ('Pesado de mercadorias', 60);
