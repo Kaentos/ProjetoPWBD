@@ -45,13 +45,13 @@
             }
         }
         if (!isset($_SESSION["badLogin"])) {
-            $_SESSION["badLogin"] = "Dados incorretos.";
+            $_SESSION["badLogin"] = "Dados incorretos";
         }
         mysqli_close($conn);
         header("location: ../../login.php");
         die();
     } else {
-        $_SESSION["badLogin"] = "Dados incorretos.";
+        $_SESSION["badLogin"] = "Dados incorretos";
         header("location: ../../login.php");
         die();
     }

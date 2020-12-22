@@ -1,3 +1,7 @@
+.lr-warning {
+    width: 450px;
+}
+
 .l-zone {
     min-height: 500px;
 }
@@ -7,7 +11,7 @@
     border: 1px solid #626262;
     color: white;
     border-radius: 2px;
-    margin: 75px auto;
+    margin: auto;
     max-width: 450px;
 }
 

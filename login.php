@@ -29,13 +29,14 @@
     ?>
 
     <div class="l-zone">
+        <div class="lr-warning" id="badWarning">
+            
+        </div>
         <div class="l-panel">
             <h1>
                 Login
             </h1>
-            <div class="lr-warning" id="badWarning">
-                ERROR
-            </div>
+            
             <div class="l-form">
                 <form action="scripts/php/efetua_login.php" method="POST">
                     <div class="l-inputGroup">

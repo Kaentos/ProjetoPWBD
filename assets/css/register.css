@@ -9,6 +9,10 @@ input[type=number] {
   -moz-appearance: textfield;
 }
 
+.lr-warning {
+    width: 900px;
+}
+
 .r-zone {
     min-height: 500px;
 }
@@ -44,14 +48,14 @@ input[type=number] {
 .r-form-category {
     width: 100%;
     font-size: 1.4rem;
-    margin-top: 10px;
+    margin-top: 30px;
     border-bottom: 1px solid white;
     font-weight: bold;
 }
 
 .r-inputGroup {
     font-size: 1.3rem;
-    margin-top: 10px;
+    margin-top: 25px;
     width: 100%;
     display: flex;
     align-items: space-between;
@@ -74,42 +78,11 @@ input[type=number] {
     border-radius: 2px;
     box-sizing: border-box; 
     font-size: 1.3rem;
+    width: 100%;
 }
 
 .r-inputGroup-input > span {
-    font-size: 1rem !important;
-    align-self: right;
-}
-
-.r-inputGroup-of3 {
-    margin: 10px auto 0px 0px;
-    width: 30%;
-}
-
-.r-inputGroup-of2 {
-    margin: 10px auto 0px 0px;
-    width: 63.5%;
-}
-
-.r-inputGroup-of1 {
-    margin: 10px auto 0px 0px;
-    width: 96.6%;
-}
-
-[class^="r-inputGroup-"] > label {
-    font-size: 1.3rem;
-}
-
-[class^="r-inputGroup-"] > input {
-    border: 1px solid white;
-    padding: 5px;
-    border-radius: 2px;
-    box-sizing: border-box; 
-    width: 100%;
-    font-size: 1.3rem;
-}
-
-[class^="r-inputGroup-"] > span {
-    font-size: 1rem;
-    font-weight: bold;
+    font-size: 0.8rem !important;
+    font-weight: normal !important;
+    display: block;
 }

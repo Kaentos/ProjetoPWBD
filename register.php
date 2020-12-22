@@ -35,13 +35,13 @@
         include("navbar.php");
     ?>
     <div class="r-zone">
+        <div class="lr-warning" id="badWarning">
+            ERROR
+        </div>
         <div class="r-panel">
             <h1>
                 Registar
             </h1>
-            <div class="lr-warning" id="badWarning">
-                ERROR
-            </div>
             <div class="r-form">
                 <form action="scripts/php/efetua_registo.php" method="POST">
                     <div class="r-form-category">
@@ -49,24 +49,26 @@
                     </div>
                     <div class="r-inputGroup">
                         <label for="r_username">
-                            Nome de Utilizador: *
+                            Nome de Utilizador<sup>*</sup>
                         </label>
                         <div class="r-inputGroup-input">
                             <input type="text" name="r_username" id="r_username" required>
-                            <span>Tamanho: 4-16 caracteres.</span>
+                            <span>Tamanho: 4-16 caracteres</span>
                         </div>
                     </div>
                     <div class="r-inputGroup">
-                        <label for="r_email">Email: *</label>
+                        <label for="r_email">
+                            Email<sup>*</sup>
+                        </label>
                         <div class="r-inputGroup-input">
                             <input type="email" name="r_email" id="r_email" required>
-                            <span>Tamanho: 6-128 caracteres.</span>
+                            <span>Tamanho: 6-128 caracteres</span>
                         </div>
                     </div>
 
                     <div class="r-inputGroup">
                         <label for="r_pwd">
-                            Palavra-passe: *
+                            Palavra-passe<sup>*</sup>
                         </label>
                         <div class="r-inputGroup-input">
                             <input type="password" name="r_pwd" id="r_pwd" required>
@@ -75,7 +77,7 @@
                     </div>
                     <div class="r-inputGroup">
                         <label for="r_pwd2">
-                            Confirmar palavra-passe: *
+                            Confirmar palavra-passe<sup>*</sup>
                         </label>
                         <div class="r-inputGroup-input">
                             <input type="password" name="r_pwd2" id="r_pwd2" required>
@@ -89,7 +91,7 @@
                     </div>
                     <div class="r-inputGroup">
                         <label for="r_name">
-                            Primeiro e último nome: *
+                            Primeiro e último nome<sup>*</sup>
                         </label>
                         <div class="r-inputGroup-input">
                             <input type="text" name="r_name" id="r_name" required>
@@ -125,7 +127,7 @@
                     </div>-->
                     <div class="r-inputGroup">
                         <label for="r_mobile">
-                            Nº telemóvel: *
+                            Nº telemóvel<sup>*</sup>
                         </label>
                         <div class="r-inputGroup-input">
                             <input type="number" name="r_mobile" id="r_mobile" required>
@@ -134,7 +136,7 @@
                     </div>
                     <div class="r-inputGroup">
                         <label for="r_tel">
-                            Nº telefone:
+                            Nº telefone
                         </label>
                         <div class="r-inputGroup-input">
                             <input type="number" name="r_tel" id="r_tel">

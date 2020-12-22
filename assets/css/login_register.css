@@ -1,14 +1,16 @@
 .lr-warning {
     background-color: #ff4336;
-    border-top: 1px solid red;
-    border-bottom: 1px solid red;
+    border: 2px solid #ff3021;
+    border-radius: 2px;
     box-sizing: border-box;
     text-align: center;
     padding: 10px;
     font-size: 1.3rem;
     color: white;
     font-weight: bold;
-    display: none;
+    visibility: hidden;
+    margin: 25px auto;
+    height: 50px;
 }
 
 .lr-inputBtn {
