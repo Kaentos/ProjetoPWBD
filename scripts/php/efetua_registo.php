@@ -14,8 +14,8 @@
             "pwd" => $_POST["r_pwd"],
             "pwd2" => $_POST["r_pwd2"],
             /*"address" => trim($_POST["r_address"]),*/
-            "cc" => trim($_POST["r_cc"]),
-            "date" => trim($_POST["r_date"]),
+            /*"cc" => trim($_POST["r_cc"]),
+            "date" => trim($_POST["r_date"]),*/
             "mobile" => trim($_POST["r_mobile"]),
             "tel" => isset($_POST["r_tel"]) && strlen(trim($_POST)) == 9 ? trim($_POST["r_tel"]) : "null",
         ];
