@@ -13,13 +13,29 @@
             "pwd" => $_POST["r_pwd"],
             "pwd2" => $_POST["r_pwd2"],
             "mobile" => trim($_POST["r_mobile"]),
-            "tel" => isset($_POST["r_tel"]) && strlen(trim($_POST)) == 9 ? trim($_POST["r_tel"]) : "null",
+            "tel" => isset($_POST["r_tel"]) && strlen(trim($_POST)) == 9 ? trim($_POST["r_tel"]) : null,
         ];
         if (!preg_match(REGEX_USERNAME, $user["username"])) {
             gotoRegisterWithError("Nome de utilizador inválido", $user, 1);
+        } else {
+            $query = "SELECT id FROM Utilizador WHERE username = :username";
+            $stmt = $dbo -> prepare($query);
+            $stmt -> bindParam(":username", $user["username"]);
+            $stmt -> execute();
+            if ($stmt -> rowCount() == 1) {
+                gotoRegisterWithError("Nome de utilizador já em uso", $user, 1);
+            }
         }
         if (!preg_match(REGEX_EMAIL, $user["email"])) {
             gotoRegisterWithError("Email inválido",$user, 2);
+        } else {
+            $query = "SELECT id FROM Utilizador WHERE email = :email";
+            $stmt = $dbo -> prepare($query);
+            $stmt -> bindParam(":email", $user["email"]);
+            $stmt -> execute();
+            if ($stmt -> rowCount() == 1) {
+                gotoRegisterWithError("Email já em uso", $user, 2);
+            }
         }
         if (!preg_match(REGEX_PWD, $user["pwd"])) {
             gotoRegisterWithError("Palavra-passe inválida", $user , 3);
@@ -33,33 +49,29 @@
         if (!preg_match(REGEX_CONTACTNUMBER, $user["mobile"])) {
             gotoRegisterWithError("Número de telemóvel inválido", $user, 6);
         }
-        if ($user["tel"] !== "null" && !preg_match(REGEX_CONTACTNUMBER, $user["tel"])) {
+        if ($user["tel"] !== null && !preg_match(REGEX_CONTACTNUMBER, $user["tel"])) {
             gotoRegisterWithError("Número de telefone inválido", $user, 7);
         }
-        die();
-        
         $user["pwd"] = password_hash($user["pwd"], PASSWORD_BCRYPT, ["cost" => 12]);
-        define("FINAL_USER", $user);
-
         $query = "INSERT INTO Utilizador (nome, username, email, password, telemovel, telefone, idTipo)
-            VALUE ('".FINAL_USER["name"]."',
-            '".FINAL_USER["name"]."',
-            '".FINAL_USER["email"]."',
-            '".FINAL_USER["pwd"]."',
-            ".FINAL_USER["mobile"].",
-            ".FINAL_USER["tel"].", 3)";
-        $result = mysqli_query($conn, $query);
-        if ($result) {
-            echo "yes";
+            VALUE (:name, :username, :email, :pwd, :mobile, :tel, 1);";
+        $stmt =  $dbo -> prepare($query);
+        $stmt -> bindParam(":name", $user["name"]);
+        $stmt -> bindParam(":username", $user["username"]);
+        $stmt -> bindParam(":email", $user["email"]);
+        $stmt -> bindParam(":pwd", $user["pwd"]);
+        $stmt -> bindParam(":mobile", $user["mobile"]);
+        $stmt -> bindParam(":tel", $user["tel"]);
+        
+        if ($stmt -> execute()) {
+            gotoIndex();
         } else {
-            echo "fuck " . $query . mysqli_error($result);
+            gotoRegisterWithError("Contact admin.", $user, 0);
         }
         
 
     } else {
-        $_SESSION["badRegister"] = ["Dados incorretos.",0];
-        header("location: ../../register.php");
-        die();
+        gotoRegisterWithError("error", $user, 0);
     }
 
     function cleanData($input) {
@@ -74,6 +86,11 @@
     }
     function gotoRegister() {
         header("location: ../../register.php");
+        die();
+    }
+
+    function gotoIndex() {
+        header("location: ../../index.php");
         die();
     }
 ?>

@@ -72,7 +72,7 @@
                         </label>
                         <div class="r-inputGroup-input">
                             <input type="password" name="r_pwd" id="r_pwd" required>
-                            <span>Regras: 6-64 caracteres, 1 caracter maiúsculo, 1 caracter minúsculo, 1 número.</span>
+                            <span>Regras: 4-64 caracteres, 1 caracter maiúsculo, 1 caracter minúsculo, 1 número.</span>
                         </div>
                     </div>
                     <div class="r-inputGroup">

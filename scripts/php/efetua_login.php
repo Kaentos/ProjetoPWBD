@@ -21,9 +21,9 @@
             if ($stmt -> rowCount() == 1) {
                 $result = $stmt -> fetch();
                 if ($result["isActive"] == FALSE) {
-                    $_SESSION["badLogin"] = "Por favor aguarde que a sua conta seja validada.";
+                    gotoLoginWithError("Aguarde que a sua conta seja validada.");
                 } else if ($result["isDeleted"]) {
-                    $_SESSION["badLogin"] = "Esta conta encontra-se eliminada.";
+                    gotoLoginWithError("Esta conta encontra-se eliminada.");
                 } else {
                     if (password_verify($pwd, $result["password"])) {
                         $login_user = [

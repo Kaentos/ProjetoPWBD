@@ -26,7 +26,6 @@ function checkLoginButton() {
         if (!login_input_validations[input]) {
             document.getElementById("loginBtn").classList.add("disabled");
             document.getElementById("loginBtn").disabled = true;
-            console.log(""+login_input_validations[input]);
             return;
         }
     }
@@ -52,7 +51,7 @@ function checkUser() {
 function checkPassword() {
     let input_pwd = document.getElementById("l_pwd");
     let pwd = input_pwd.value;
-    if (pwd.length >= 6 && pwd.length <= 64) {
+    if (pwd.length >= 4 && pwd.length <= 64) {
         login_input_validations["pwd"] = true;
         input_pwd.classList.add("valid");
         input_pwd.classList.remove("invalid");
@@ -144,7 +143,7 @@ function checkEmail() {
 }
 
 function checkPasswords() {
-    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d+!?#$%&_\-.,;]{6,64}$/;
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d+!?#$%&_\-.,;]{4,64}$/;
     let input_pwd = document.getElementById("r_pwd");
     let input_pwd2 = document.getElementById("r_pwd2");
     let pwd = input_pwd.value;
@@ -219,9 +218,9 @@ function badRegister(reason, code) {
         case 2: toRedInputs = [document.getElementById("r_email")]; break;
         case 3: toRedInputs = [document.getElementById("r_pwd"), document.getElementById("r_pwd2")]; break;
         case 5: toRedInputs = [document.getElementById("r_name")]; break;
-        case 6: toRedInputs = [document.getElementById("r_mobile")]; break;
-        case 7: toRedInputs = [document.getElementById("r_tel")]; break;
-        default: console.log("ERROR CODE");
+        case 6: toRedInputs = [document.getElementsByName("r_mobile")]; break;
+        case 7: toRedInputs = [document.getElementsByName("r_tel")]; break;
+        default: return;
     }
     borderRed(toRedInputs);
 }
@@ -230,6 +229,6 @@ function addValuesToRegister(user) {
     document.getElementById("r_name").value = user["name"];
     document.getElementById("r_username").value = user["username"];
     document.getElementById("r_email").value = user["email"];
-    document.getElementById("r_mobile").value = user["mobile"];
-    document.getElementById("r_tel").value = user["tel"] !== "null" ? user["tel"] : "";
+    document.getElementsByName("r_mobile").value = user["mobile"];
+    document.getElementsByName("r_tel").value = user["tel"] !== "null" ? user["tel"] : "";
 }
