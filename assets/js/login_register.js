@@ -24,9 +24,88 @@ function badLogin(reason) {
 
 
 /* REGISTER */
+function activateLiveCheckRegister() {
+    document.getElementById("registerBtn").disabled = true;
+    document.getElementById("r_username").addEventListener("keyup", this.checkUsername);
+    document.getElementById("r_pwd").addEventListener("keyup", this.checkPasswords);
+    document.getElementById("r_pwd2").addEventListener("keyup", this.checkPasswords);
+    document.getElementById("r_name").addEventListener("keyup", this.checkName);
+    document.getElementById("r_mobile").addEventListener("keyup", function() { checkContact("mobile") });
+    document.getElementById("r_tel").addEventListener("keyup", function() { checkContact("tel") });
+}
+
+function checkUsername() {
+    const regex = new RegExp("^[a-zA-Z1-9_]{4,16}$");
+    let input_username = document.getElementById("r_username");
+    let username = input_username.value;
+    if (regex.test(username)){
+        input_username.classList.add("valid");
+        input_username.classList.remove("invalid");
+    } else {
+        input_username.classList.add("invalid");
+        input_username.classList.remove("valid");
+    };
+}
+
+function checkPasswords() {
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d+!?#$%&_\-.,;]{6,64}$/;
+    let input_pwd = document.getElementById("r_pwd");
+    let input_pwd2 = document.getElementById("r_pwd2");
+    let pwd = input_pwd.value;
+    let pwd2 = input_pwd2.getElementById("r_pwd2").value;
+    if (regex.test(pwd)) {
+        input_pwd.classList.add("valid");
+        input_pwd.classList.remove("invalid");
+        if (pwd !== pwd2) {
+            input_pwd2.classList.add("invalid");
+            input_pwd2.classList.remove("valid");
+        } else {
+            input_pwd.classList.add("valid");
+            input_pwd2.classList.add("valid");
+            input_pwd.classList.remove("invalid");
+            input_pwd2.classList.remove("invalid");
+        }
+    } else {
+        input_pwd.classList.add("invalid");
+        input_pwd.classList.remove("valid");
+    }
+}
+
+function checkName() {
+    const regex = new RegExp("^[a-zA-Z]{2,32} {1}[a-zA-Z]{2,32}$");
+    let input_name = document.getElementById("r_name");
+    let name = input_name.value;
+    if (regex.test(name)){
+        input_name.classList.add("valid");
+        input_name.classList.remove("invalid");
+    } else {
+        input_name.classList.add("invalid");
+        input_name.classList.remove("valid");
+    };
+}
+
+function checkContact(type) {
+    const regex = new RegExp("^[1-9]{9}$");
+    let input_contact = document.getElementById("r_"+type);
+    let contact = input_contact.value;
+    if (type === "tel" && contact === "") {
+        input_contact.classList.remove("valid");
+        input_contact.classList.remove("invalid");
+        return;
+    }
+    if (regex.test(contact)){
+        input_contact.classList.add("valid");
+        input_contact.classList.remove("invalid");
+    } else {
+        input_contact.classList.add("invalid");
+        input_contact.classList.remove("valid");
+    };
+}
+
+
 function badRegister(reason, code) {
     let warningArea = document.getElementById("badWarning");
-    warningArea.style.display = "block";
+    warningArea.style.visibility = "visible";
     warningArea.innerHTML = reason;
     var toRedInputs = undefined;
     switch(code) {

@@ -73,7 +73,7 @@ input[type=number] {
 }
 
 .r-inputGroup-input > input {
-    border: 1px solid white;
+    border: 2px solid white;
     padding: 5px;
     border-radius: 2px;
     box-sizing: border-box; 

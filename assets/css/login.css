@@ -37,7 +37,7 @@
 }
 
 .l-inputGroup > input {
-    border: 1px solid white;
+    border: 2px solid white;
     padding: 5px;
     border-radius: 2px;
     box-sizing: border-box; 
@@ -46,8 +46,10 @@
 }
 
 .l-inputGroup > a {
-    font-size: 1.1rem;
+    margin-top: 25px;
+    font-size: 1.3rem;
     color: white;
+    display: block;
 }
 
 .custom-checkbox {

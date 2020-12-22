@@ -16,7 +16,7 @@
     /* https://regex101.com/ */
     define("REGEX_USERNAME", "/^[a-zA-Z1-9_]{4,16}$/");
     define("REGEX_EMAIL", "/^[a-zA-Z1-9_.-]{1,64}@{1}[a-z-]{1,32}.{1}[a-z]{2,6}$/");
-    define("REGEX_NAME", "/^[a-zA-Z ]{6,64}$/");
+    define("REGEX_NAME", "/^[a-zA-Z]{2,32} {1}[a-zA-Z]{2,32}$/");
     //define("REGEX_CC", "/^[1-9]{8}$/");
     define("REGEX_CONTACTNUMBER", "/^[1-9]{9}$/");
     // https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a

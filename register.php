@@ -19,6 +19,7 @@
     <script>
         window.onload = function() {
             //setDataNascLimits();
+            activateLiveCheckRegister();
             <?php
                 if (isset($_SESSION["badRegister"])) {
                     echo "badRegister('".$_SESSION["badRegister"]["error"]."', ".$_SESSION["badRegister"]["code"].");";
@@ -36,7 +37,7 @@
     ?>
     <div class="r-zone">
         <div class="lr-warning" id="badWarning">
-            ERROR
+            
         </div>
         <div class="r-panel">
             <h1>
