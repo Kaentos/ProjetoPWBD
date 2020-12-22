@@ -13,7 +13,7 @@
             "email" => trim($_POST["r_email"]),
             "pwd" => $_POST["r_pwd"],
             "pwd2" => $_POST["r_pwd2"],
-            "address" => trim($_POST["r_address"]),
+            /*"address" => trim($_POST["r_address"]),*/
             "cc" => trim($_POST["r_cc"]),
             "date" => trim($_POST["r_date"]),
             "mobile" => trim($_POST["r_mobile"]),

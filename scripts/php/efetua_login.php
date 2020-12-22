@@ -9,12 +9,12 @@
         $pwd = $_POST["l_pwd"];
 
         if(strlen($user) >= USER_MIN_LENGTH && strlen($pwd) >= PWD_MIN_LENGTH) {
-            if(strpos($user, "@"))
-                define("SQL_USER_COLUMN", "email");
+            if(filter_var($user, FILTER_VALIDATE_EMAIL))
+                define("SQL_COLUMN", "email");
             else
-                define("SQL_USER_COLUMN", "username");
+                define("SQL_COLUMN", "username");
 
-            $query = "SELECT * FROM Utilizador WHERE ". SQL_USER_COLUMN ."='$user';";
+            $query = "SELECT * FROM Utilizador WHERE ". SQL_COLUMN ."='$user';";
             $result = mysqli_query($conn, $query);
             if ($result && mysqli_num_rows($result) == 1) {
                 $row = mysqli_fetch_assoc($result);

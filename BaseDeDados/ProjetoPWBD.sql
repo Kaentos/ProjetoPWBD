@@ -10,10 +10,10 @@ CREATE TABLE TipoUtilizador (
 CREATE TABLE Utilizador (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(128),
-    username VARCHAR(32) NOT NULL UNIQUE,
+    username VARCHAR(16) NOT NULL UNIQUE,
     email VARCHAR(128) NOT NULL UNIQUE,
-    password VARCHAR(60) NOT NULL,
-    morada VARCHAR(256),
+    password VARCHAR(64) NOT NULL,
+    /*morada VARCHAR(256),*/
     cc INT NOT NULL UNIQUE,
     dataNasc DATE NOT NULL,
     telemovel INT NOT NULL,

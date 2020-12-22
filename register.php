@@ -89,7 +89,7 @@
                             <span>Tamanho: 6-64 caracteres.</span>
                         </div>
                     </div>
-                    <div class="r-inputGroup">
+                    <!-- <div class="r-inputGroup">
                         <label for="r_address">
                             Morada: *
                         </label>
@@ -97,7 +97,7 @@
                             <input type="text" name="r_address" id="r_address" required>
                             <span>Tamanho: 6-128 caracteres.</span>
                         </div>
-                    </div>
+                    </div> -->
                     <div class="r-inputGroup">
                         <label for="r_cc">
                             Nº cartão cidadão / BI: *
