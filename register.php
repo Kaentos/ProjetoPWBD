@@ -18,11 +18,12 @@
     
     <script>
         window.onload = function() {
-            setDataNascLimits();
+            //setDataNascLimits();
             <?php
                 if (isset($_SESSION["badRegister"])) {
-                    echo "badRegister('".$_SESSION["badRegister"][0]."')";
-                    unset($_SESSION["badRegister"]);
+                    echo "badRegister('".$_SESSION["badRegister"]["error"]."', ".$_SESSION["badRegister"]["code"].");";
+                    echo "addValuesToRegister(".json_encode($_SESSION["badRegister"]["user"]).");";
+                    unset($_SESSION["badRegister"]);    
                 }
             ?>
         }

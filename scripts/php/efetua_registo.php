@@ -20,19 +20,19 @@
             "tel" => isset($_POST["r_tel"]) && strlen(trim($_POST)) == 9 ? trim($_POST["r_tel"]) : "null",
         ];
         if (!preg_match(REGEX_USERNAME, $user["username"])) {
-            gotoRegisterWithError("Nome de utilizador inválido",$user);
+            gotoRegisterWithError("Nome de utilizador inválido", $user, 1);
         }
         if (!preg_match(REGEX_EMAIL, $user["email"])) {
-            gotoRegisterWithError("Email inválido",$user);
+            gotoRegisterWithError("Email inválido",$user, 2);
         }
         if (!preg_match(REGEX_PWD, $user["pwd"])) {
-            gotoRegisterWithError("Palavra-passe inválida",$user);
+            gotoRegisterWithError("Palavra-passe inválida", $user , 3);
         }
         if ($user["pwd"] !== $user["pwd2"]) {
-            gotoRegisterWithError("Palavras-passes não correspondem",$user);
+            gotoRegisterWithError("Palavras-passes não correspondem", $user, 3);
         }
         if (!preg_match(REGEX_NAME, $user["name"])) {
-            gotoRegisterWithError("Nome inválido",$user);
+            gotoRegisterWithError("Nome inválido",$user, 5);
         }
         /*if (!preg_match(REGEX_CC, $user["cc"])) {
             gotoRegisterWithError("Número de cartão de cidadão inválido",$user);
@@ -44,10 +44,10 @@
             gotoRegisterWithError("Precisa de ter 18 anos!", $user);
         }*/
         if (!preg_match(REGEX_CONTACTNUMBER, $user["mobile"])) {
-            gotoRegisterWithError("Número de telemóvel inválido",$user);
+            gotoRegisterWithError("Número de telemóvel inválido", $user, 6);
         }
         if ($user["tel"] !== "null" && !preg_match(REGEX_CONTACTNUMBER, $user["tel"])) {
-            gotoRegisterWithError("Número de telefone inválido",$user);
+            gotoRegisterWithError("Número de telefone inválido", $user, 7);
         }
         die();
         
@@ -72,7 +72,7 @@
         
 
     } else {
-        $_SESSION["badRegister"] = "Dados incorretos.";
+        $_SESSION["badRegister"] = ["Dados incorretos.",0];
         header("location: ../../register.php");
         die();
     }
@@ -81,8 +81,10 @@
         $input = trim($input);
     }
 
-    function gotoRegisterWithError($error, $user) {
-        $_SESSION["badRegister"] = [$error, $user];
+    function gotoRegisterWithError($error, $user, $code) {
+        unset($user["pwd"]);
+        unset($user["pwd2"]);
+        $_SESSION["badRegister"] = ["error" => $error, "user" => $user, "code" => $code];
         gotoRegister();
     }
     function gotoRegister() {
