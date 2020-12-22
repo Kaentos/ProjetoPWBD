@@ -15,12 +15,18 @@
     <link rel="stylesheet" href="assets/css/login_register.css">
     <link rel="stylesheet" href="assets/css/navbar.css">
     <script src="assets/js/login_register.js"></script>
-    <?php
-        if (isset($_SESSION["badRegister"])) {
-            echo "<script>window.onload=function(){badRegister('".$_SESSION["badRegister"]."')}</script>";
-            unset($_SESSION["badRegister"]);
+    
+    <script>
+        window.onload = function() {
+            setDataNascLimits();
+            <?php
+                if (isset($_SESSION["badRegister"])) {
+                    echo "badRegister('".$_SESSION["badRegister"][0]."')";
+                    unset($_SESSION["badRegister"]);
+                }
+            ?>
         }
-    ?>
+    </script>
     <title>CI | Registar</title>
 </head>
 <body>
@@ -45,14 +51,14 @@
                             Nome de Utilizador: *
                         </label>
                         <div class="r-inputGroup-input">
-                            <input type="text" name="r_username" id="r_username" required>
+                            <input type="text" name="r_username" id="r_username" >
                             <span>Tamanho: 4-16 caracteres.</span>
                         </div>
                     </div>
                     <div class="r-inputGroup">
                         <label for="r_email">Email: *</label>
                         <div class="r-inputGroup-input">
-                            <input type="email" name="r_email" id="r_email" required>
+                            <input type="email" name="r_email" id="r_email" >
                             <span>Tamanho: 6-128 caracteres.</span>
                         </div>
                     </div>
@@ -62,8 +68,8 @@
                             Palavra-passe: *
                         </label>
                         <div class="r-inputGroup-input">
-                            <input type="password" name="r_pwd" id="r_pwd" required>
-                            <span>Tamanho: 6-64 caracteres.</span>
+                            <input type="password" name="r_pwd" id="r_pwd" >
+                            <span>Regras: 6-64 caracteres, 1 caracter maiúsculo, 1 caracter minúsculo, 1 número.</span>
                         </div>
                     </div>
                     <div class="r-inputGroup">
@@ -71,7 +77,7 @@
                             Confirmar palavra-passe: *
                         </label>
                         <div class="r-inputGroup-input">
-                            <input type="password" name="r_pwd2" id="r_pwd2" required>
+                            <input type="password" name="r_pwd2" id="r_pwd2" >
                         </div>
                     </div>
                     
@@ -85,7 +91,7 @@
                             Primeiro e último nome: *
                         </label>
                         <div class="r-inputGroup-input">
-                            <input type="text" name="r_name" id="r_name" required>
+                            <input type="text" name="r_name" id="r_name" >
                             <span>Tamanho: 6-64 caracteres.</span>
                         </div>
                     </div>
@@ -103,7 +109,7 @@
                             Nº cartão cidadão / BI: *
                         </label>
                         <div class="r-inputGroup-input">
-                            <input type="number" name="r_cc" id="r_cc" required>
+                            <input type="number" name="r_cc" id="r_cc" >
                             <span>Tamanho: 8 digitos.</span>
                         </div>
                     </div>
@@ -112,7 +118,7 @@
                             Data Nascimento: *
                         </label>
                         <div class="r-inputGroup-input">
-                            <input type="date" name="r_date" id="r_date" required>
+                            <input type="date" name="r_date" id="r_date" >
                             <span>Precisa de ser maior de idade (+18 anos).</span>
                         </div>
                     </div>
@@ -121,7 +127,7 @@
                             Nº telemóvel: *
                         </label>
                         <div class="r-inputGroup-input">
-                            <input type="number" name="r_mobile" id="r_mobile" required>
+                            <input type="number" name="r_mobile" id="r_mobile" >
                             <span>Tamanho: 9 digitos.</span>
                         </div>
                     </div>
