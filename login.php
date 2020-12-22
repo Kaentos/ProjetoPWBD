@@ -15,12 +15,18 @@
     <script src="assets/js/login_register.js"></script>
     <link rel="stylesheet" href="assets/css/login_register.css">
     <link rel="stylesheet" href="assets/css/navbar.css">
-    <?php
-        if (isset($_SESSION["badLogin"])) {
-            echo "<script>window.onload=function(){badLogin('".$_SESSION["badLogin"]."')}</script>";
-            unset($_SESSION["badLogin"]);
+    <script>
+        window.onload = function() {
+            activateLiveCheckLogin();
+            <?php
+                if (isset($_SESSION["badLogin"])) {
+                    echo "badLogin('".$_SESSION["badLogin"]."')";
+                    unset($_SESSION["badLogin"]);
+                }
+            ?>
         }
-    ?>
+    </script>
+    
     <title>CI | Login</title>
 </head>
 <body>

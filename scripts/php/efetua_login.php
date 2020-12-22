@@ -37,23 +37,31 @@
                         } else {
                             $_SESSION["login"] = $login_user;
                         }
-                        header("location: ../../index.php");
-                        die();
+                        gotoIndex();
                     }
                 }
             } else if ($stmt -> rowCount() > 1) {
                 echo "Bad login WARN ADMIN";
+                die();
             }
         }
-        if (!isset($_SESSION["badLogin"])) {
-            $_SESSION["badLogin"] = "Dados incorretos";
-        }
-        mysqli_close($conn);
+        gotoLoginWithError("Dados incorretos");
+    } else {
+        gotoLoginWithError("Dados incorretos");
+    }
+
+    function gotoLoginWithError($error) {
+        $_SESSION["badLogin"] = $error;
+        gotoLogin();
+    }
+
+    function gotoLogin() {
         header("location: ../../login.php");
         die();
-    } else {
-        $_SESSION["badLogin"] = "Dados incorretos";
-        header("location: ../../login.php");
+    }
+
+    function gotoIndex() {
+        header("location: ../../index.php");
         die();
     }
 ?>

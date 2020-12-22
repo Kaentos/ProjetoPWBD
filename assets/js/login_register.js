@@ -10,6 +10,61 @@ function borderRed(array_input) {
 
 
 /* LOGIN */
+var login_input_validations = {
+    "user" : false,
+    "pwd" : false,
+};
+function activateLiveCheckLogin() {
+    document.getElementById("loginBtn").classList.add("disabled");
+    document.getElementById("loginBtn").disabled = true;
+    document.getElementById("l_user").addEventListener("keyup", this.checkUser);
+    document.getElementById("l_pwd").addEventListener("keyup", this.checkPassword);
+}
+
+function checkLoginButton() {
+    for (let input in login_input_validations) {
+        if (!login_input_validations[input]) {
+            document.getElementById("loginBtn").classList.add("disabled");
+            document.getElementById("loginBtn").disabled = true;
+            console.log(""+login_input_validations[input]);
+            return;
+        }
+    }
+    document.getElementById("loginBtn").classList.remove("disabled");
+    document.getElementById("loginBtn").disabled = false;
+}
+
+function checkUser() {
+    let input_user = document.getElementById("l_user");
+    let user = input_user.value;
+    if (user.length >= 4 && user.length <= 128) {
+        login_input_validations["user"] = true;
+        input_user.classList.add("valid");
+        input_user.classList.remove("invalid");
+    } else {
+        login_input_validations["user"] = false;
+        input_user.classList.add("invalid");
+        input_user.classList.remove("valid");
+    }
+    checkLoginButton();
+}
+
+function checkPassword() {
+    let input_pwd = document.getElementById("l_pwd");
+    let pwd = input_pwd.value;
+    if (pwd.length >= 6 && pwd.length <= 64) {
+        login_input_validations["pwd"] = true;
+        input_pwd.classList.add("valid");
+        input_pwd.classList.remove("invalid");
+    } else {
+        login_input_validations["pwd"] = false;
+        input_pwd.classList.add("invalid");
+        input_pwd.classList.remove("valid");
+    }
+    checkLoginButton();
+}
+
+
 function badLogin(reason) {
     let user_input = document.getElementById("l_user");
     let pwd_input = document.getElementById("l_pwd");
@@ -24,13 +79,14 @@ function badLogin(reason) {
 
 
 /* REGISTER */
-var input_validations = {
+var register_input_validations = {
     "username": false,
     "email": false,
     "pwd": false,
     "mobile": false,
     "tel": true
 };
+
 function activateLiveCheckRegister() {
     document.getElementById("registerBtn").classList.add("disabled");
     document.getElementById("registerBtn").disabled = true;
@@ -39,13 +95,13 @@ function activateLiveCheckRegister() {
     document.getElementById("r_pwd").addEventListener("keyup", this.checkPasswords);
     document.getElementById("r_pwd2").addEventListener("keyup", this.checkPasswords);
     document.getElementById("r_name").addEventListener("keyup", this.checkName);
-    document.getElementById("r_mobile").addEventListener("keyup", function() { checkContact("mobile") });
-    document.getElementById("r_tel").addEventListener("keyup", function() { checkContact("tel") });
+    const input_contacts = document.querySelectorAll("#r_contact");
+    input_contacts.forEach(node => node.addEventListener("keyup", this.checkContact));
 }
 
 function checkRegisterButton() {
-    for (let input in input_validations) {
-        if (!input_validations[input]) {
+    for (let input in register_input_validations) {
+        if (!register_input_validations[input]) {
             document.getElementById("registerBtn").classList.add("disabled");
             document.getElementById("registerBtn").disabled = true;
             return;
@@ -60,11 +116,11 @@ function checkUsername() {
     let input_username = document.getElementById("r_username");
     let username = input_username.value;
     if (regex.test(username)){
-        input_validations["username"] = true;
+        register_input_validations["username"] = true;
         input_username.classList.add("valid");
         input_username.classList.remove("invalid");
     } else {
-        input_validations["username"] = false;
+        register_input_validations["username"] = false;
         input_username.classList.add("invalid");
         input_username.classList.remove("valid");
     };
@@ -76,11 +132,11 @@ function checkEmail() {
     let input_email = document.getElementById("r_email");
     let email = input_email.value;
     if (regex.test(email)){
-        input_validations["email"] = true;
+        register_input_validations["email"] = true;
         input_email.classList.add("valid");
         input_email.classList.remove("invalid");
     } else {
-        input_validations["email"] = false;
+        register_input_validations["email"] = false;
         input_email.classList.add("invalid");
         input_email.classList.remove("valid");
     };
@@ -97,18 +153,18 @@ function checkPasswords() {
         input_pwd.classList.add("valid");
         input_pwd.classList.remove("invalid");
         if (pwd !== pwd2) {
-            input_validations["pwd"] = false;
+            register_input_validations["pwd"] = false;
             input_pwd2.classList.add("invalid");
             input_pwd2.classList.remove("valid");
         } else {
-            input_validations["pwd"] = true;
+            register_input_validations["pwd"] = true;
             input_pwd.classList.add("valid");
             input_pwd2.classList.add("valid");
             input_pwd.classList.remove("invalid");
             input_pwd2.classList.remove("invalid");
         }
     } else {
-        input_validations["pwd"] = false;
+        register_input_validations["pwd"] = false;
         input_pwd.classList.add("invalid");
         input_pwd.classList.remove("valid");
     }
@@ -120,36 +176,35 @@ function checkName() {
     let input_name = document.getElementById("r_name");
     let name = input_name.value;
     if (regex.test(name)){
-        input_validations["name"] = true;
+        register_input_validations["name"] = true;
         input_name.classList.add("valid");
         input_name.classList.remove("invalid");
     } else {
-        input_validations["name"] = false;
+        register_input_validations["name"] = false;
         input_name.classList.add("invalid");
         input_name.classList.remove("valid");
     };
     checkRegisterButton();
 }
 
-function checkContact(type) {
+function checkContact(event) {
     const regex = new RegExp("^[1-9]{9}$");
-    let input_contact = document.getElementById("r_"+type);
-    let contact = input_contact.value;
-    if (type === "tel" && contact === "") {
-        input_validations[type] = true;
-        input_contact.classList.remove("valid");
-        input_contact.classList.remove("invalid");
+    let {value : contact, dataset} = event.target;
+    if (dataset.type === "tel" && contact === "") {
+        register_input_validations[dataset.type] = true;
+        event.target.classList.remove("valid");
+        event.target.classList.remove("invalid");
         checkRegisterButton();
         return;
     }
     if (regex.test(contact)){
-        input_validations[type] = true;
-        input_contact.classList.add("valid");
-        input_contact.classList.remove("invalid");
+        register_input_validations[dataset.type] = true;
+        event.target.classList.add("valid");
+        event.target.classList.remove("invalid");
     } else {
-        input_validations[type] = false;
-        input_contact.classList.add("invalid");
-        input_contact.classList.remove("valid");
+        register_input_validations[dataset.type] = false;
+        event.target.classList.add("invalid");
+        event.target.classList.remove("valid");
     };
     checkRegisterButton();
 }
@@ -169,23 +224,6 @@ function badRegister(reason, code) {
         default: console.log("ERROR CODE");
     }
     borderRed(toRedInputs);
-}
-
-function setDataNascLimits() {
-    let today = new Date();
-    let day = today.getDate();
-    let month = today.getMonth()+1;
-    let year = today.getFullYear();
-    if (day < 10) {
-        day = "0" + day;
-    }
-    if (month < 10) {
-        month = "0" + month;
-    }
-    let min = year - 100 + "-" + month + "-" + day;
-    let max = year - 18 + "-" + month + "-" + day;
-    document.getElementById("r_date").setAttribute("max", max);
-    document.getElementById("r_date").setAttribute("min", min);
 }
 
 function addValuesToRegister(user) {

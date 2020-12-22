@@ -18,7 +18,6 @@
     
     <script>
         window.onload = function() {
-            //setDataNascLimits();
             activateLiveCheckRegister();
             <?php
                 if (isset($_SESSION["badRegister"])) {
@@ -86,7 +85,7 @@
                     </div>
 
 
-                    
+
                     <div class="r-form-category">
                         Dados pessoais:
                     </div>
@@ -104,7 +103,7 @@
                             Nº telemóvel<sup>*</sup>
                         </label>
                         <div class="r-inputGroup-input">
-                            <input type="number" name="r_mobile" id="r_mobile" required>
+                            <input type="number" name="r_mobile" id="r_contact" data-type="mobile" required>
                             <span>Tamanho: 9 digitos.</span>
                         </div>
                     </div>
@@ -113,7 +112,7 @@
                             Nº telefone
                         </label>
                         <div class="r-inputGroup-input">
-                            <input type="number" name="r_tel" id="r_tel">
+                            <input type="number" name="r_tel" data-type="tel" id="r_contact">
                             <span>Tamanho: 9 digitos.</span>
                         </div>
                     </div>
