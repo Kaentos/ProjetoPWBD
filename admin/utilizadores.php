@@ -4,6 +4,14 @@
         header("location: ../");
         die();
     }
+
+    include("../scripts/php/basedados.h");
+    include("../scripts/php/rules.php");
+    $query = "SELECT Utilizador.id, Utilizador.nome, username, email, telemovel, telefone, dataCriacao, isActive, isDeleted, TipoUtilizador.nome as nomeTipo FROM Utilizador INNER JOIN TipoUtilizador ON idTipo = TipoUtilizador.id";
+    $stmt = $dbo -> prepare($query);
+    $stmt -> execute();
+    $result = $stmt -> fetchAll();
+    define("ALL_USERS", $result);
 ?>
 
 <!DOCTYPE html>
@@ -77,6 +85,58 @@
                 </thead>
 
                 <tbody>
+                    <?php
+                        foreach(ALL_USERS as $user) {
+                            echo "
+                                <tr>
+                                    <th class='u-table-width-50'>
+                                        ".$user["id"]."
+                                    </th>
+                                    <th class='u-table-width-150'>
+                                        ".$user["nome"]."
+                                    </th>
+                                    <th class='u-table-width-100'>
+                                        ".$user["username"]."
+                                    </th>
+                                    <th class='u-table-width-200'>
+                                        ".$user["email"]."
+                                    </th>
+                                    <th class='u-table-width-125'>
+                                        ".$user["telemovel"]."
+                                    </th>
+                                    <th class='u-table-width-125'>
+                                        ".($user["telefone"] === null ? "NÃO TEM" : $user["telefone"])."
+                                    </th>
+                                    <th class='canWrap u-table-width-125'>
+                                        ".$user["dataCriacao"]."
+                                    </th>
+                                    <th class='u-table-width-50'>
+                                        ".($user["isActive"] ? "SIM" : "NÃO")."
+                                    </th>
+                                    <th class='u-table-width-50'>
+                                        ".($user["isDeleted"] ? "SIM" : "NÃO")."
+                                    </th>
+                                    <th class='u-table-width-100'>
+                                        ".$user["nomeTipo"]."
+                                    </th>
+                                    <th class='u-table-width-100'>
+                                        <div class='u-table-all-icons'>
+                                            <a href='/'>
+                                                <img class='u-table-icon' src='../assets/img/icons/x-times.png' alt='Tirar acesso' srcset=''>
+                                            </a>
+                                            <a href='/'>
+                                                <img class='u-table-icon' src='../assets/img/icons/pencil.png' alt='Editar' srcset=''>
+                                            </a>
+                                            <a href='/'>
+                                                <img class='u-table-icon' src='../assets/img/icons/garbage.png' alt='Apagar' srcset=''>
+                                            </a>
+                                        </div>
+                                    </th>
+                                </tr>
+                            ";
+                        }
+                    ?>
+
                     <tr>
                         <th class="u-table-width-50">
                             1233
