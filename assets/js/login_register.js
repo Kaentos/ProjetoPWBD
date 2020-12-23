@@ -167,10 +167,10 @@ function checkPasswords() {
 }
 
 function badRegister(reason, code) {
-    let warningArea = document.getElementById("badWarning");
+    const warningArea = document.getElementById("badWarning");
     warningArea.style.visibility = "visible";
     warningArea.innerHTML = reason;
-    var toRedInputs = undefined;
+    let toRedInputs = undefined;
     switch(code) {
         case 1: toRedInputs = [document.getElementById("r_username")]; break;
         case 2: toRedInputs = [document.getElementById("r_email")]; break;
@@ -187,6 +187,6 @@ function addValuesToRegister(user) {
     document.getElementById("r_name").value = user["name"];
     document.getElementById("r_username").value = user["username"];
     document.getElementById("r_email").value = user["email"];
-    document.getElementsByName("r_mobile").value = user["mobile"];
+    document.getElementById("r_mobile").setAttribute("value", user["mobile"]);
     document.getElementsByName("r_tel").value = user["tel"] !== "null" ? user["tel"] : "";
 }

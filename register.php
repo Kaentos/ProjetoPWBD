@@ -103,7 +103,7 @@
                             Nº telemóvel<sup>*</sup>
                         </label>
                         <div class="r-inputGroup-input">
-                            <input class="type-input" type="number" name="r_mobile" id="r_mobile" data-type="mobile" required>
+                            <input class="type-input" type="number" name="r_mobile" id="r_mobile" required>
                             <span>Tamanho: 9 digitos.</span>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                             Nº telefone
                         </label>
                         <div class="r-inputGroup-input">
-                            <input class="type-input" type="number" name="r_tel" data-type="tel" id="r_tel">
+                            <input class="type-input" type="number" name="r_tel" id="r_tel">
                             <span>Tamanho: 9 digitos.</span>
                         </div>
                     </div>
