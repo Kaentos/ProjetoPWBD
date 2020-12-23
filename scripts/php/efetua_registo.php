@@ -13,7 +13,7 @@
             "pwd" => $_POST["r_pwd"],
             "pwd2" => $_POST["r_pwd2"],
             "mobile" => trim($_POST["r_mobile"]),
-            "tel" => isset($_POST["r_tel"]) && strlen(trim($_POST)) == 9 ? trim($_POST["r_tel"]) : null,
+            "tel" => isset($_POST["r_tel"]) && strlen(trim($_POST["r_tel"])) == 9 ? trim($_POST["r_tel"]) : null,
         ];
         if (!preg_match(REGEX_USERNAME, $user["username"])) {
             gotoRegisterWithError("Nome de utilizador inválido", $user, 1);

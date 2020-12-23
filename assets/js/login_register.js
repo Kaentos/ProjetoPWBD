@@ -188,5 +188,7 @@ function addValuesToRegister(user) {
     document.getElementById("r_username").value = user["username"];
     document.getElementById("r_email").value = user["email"];
     document.getElementById("r_mobile").setAttribute("value", user["mobile"]);
-    document.getElementsByName("r_tel").value = user["tel"] !== "null" ? user["tel"] : "";
+    console.log(user["tel"]);
+    if (user["tel"] !== "null")
+        document.getElementById("r_tel").setAttribute("value", user["tel"]);
 }
