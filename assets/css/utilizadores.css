@@ -1,0 +1,104 @@
+.u-zone {
+    min-height: 700px;
+    width: 100%;
+    margin-top: 25px;
+}
+
+.u-panel {
+    margin: auto;
+    color: white;
+    background-color: #3B3B3B;
+    border: 1px solid #626262;
+    border-radius: 2px;
+    max-width: 80%;
+}
+
+.u-title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    border-bottom: 1px solid #626262;
+    width: 100%;
+    padding: 10px 0px;
+}
+
+.u-table {
+    width: 100%;
+}
+
+.u-table > thead > tr > th {
+    border: 1px solid #626262;
+    padding: 0px 5px;
+}
+
+.u-table > tbody > tr:nth-child(odd) {
+    background-color: #667292;
+    
+}
+
+.u-table > tbody > tr:nth-child(even) {
+    background-color: #4c4d8c;
+}
+
+
+.u-table > tbody > tr > th {
+    border: 1px solid #626262;
+    font-weight: normal !important;
+    padding: 0px 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.u-table-icon {
+    height: 24px;
+    width: 24px;
+}
+
+.u-table-all-icons {
+    display: flex;
+}
+
+.u-table-all-icons > a {
+    padding: 5px;
+    border-radius: 2px;
+}
+.u-table-all-icons > a:hover {
+    background-color: white;
+    transition: 0.5s;
+}
+
+.u-table-width-50 {
+    width: 50px;
+    max-width: 50px;
+    min-width: 50px;
+}
+.u-table-width-100 {
+    width: 100px;
+    max-width: 100px;
+    min-width: 100px;
+}
+.u-table-width-125 {
+    width: 125px;
+    max-width: 125px;
+    min-width: 125px;
+}
+.u-table-width-150 {
+    width: 150px;
+    max-width: 150px;
+    min-width: 150px;
+}
+.u-table-width-200 {
+    width: 200px;
+    max-width: 200px;
+    min-width: 200px;
+}
+.u-table-width-250 {
+    width: 250px;
+    max-width: 250px;
+    min-width: 250px;
+}
+
+.canWrap {
+    white-space: normal !important;
+}

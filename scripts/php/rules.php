@@ -22,7 +22,7 @@
     // https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
     define("REGEX_PWD", "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d+!?#$%&_\-.,;]{4,64}$/");
     
-
+    define("TYPE_ADMIN", 3);
     /* https://stackoverflow.com/questions/19271381/correctly-determine-if-date-string-is-a-valid-date-in-that-format/19271434
     function validateDate($date, $format = "Y-m-d") {
         $d = DateTime::createFromFormat($format, $date);

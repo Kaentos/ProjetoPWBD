@@ -6,6 +6,15 @@
         <div class="navbar-links">
             <a href="/">Main Page</a>
             <a href="/">Dados</a>
+            <?php
+                if (isset($_COOKIE["login"])) {
+                    $user = json_decode($_COOKIE["login"]);
+                    if ($user["type"] !== 3) {
+                        
+                    }
+                }
+                if ($_SESSION["login"]["type"] === 3)
+            ?>
         </div>
     </div>
     <div>
