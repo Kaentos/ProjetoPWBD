@@ -71,7 +71,7 @@
                             Palavra-passe<sup>*</sup>
                         </label>
                         <div class="r-inputGroup-input">
-                            <input type="password" name="r_pwd" id="r_pwd" required>
+                            <input class="pwd" type="password" name="r_pwd" id="r_pwd" required>
                             <span>Regras: 4-64 caracteres, 1 caracter maiúsculo, 1 caracter minúsculo, 1 número.</span>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                             Confirmar palavra-passe<sup>*</sup>
                         </label>
                         <div class="r-inputGroup-input">
-                            <input type="password" name="r_pwd2" id="r_pwd2" required>
+                            <input class="pwd" type="password" name="r_pwd2" id="r_pwd2" required>
                         </div>
                     </div>
 
@@ -103,7 +103,7 @@
                             Nº telemóvel<sup>*</sup>
                         </label>
                         <div class="r-inputGroup-input">
-                            <input type="number" name="r_mobile" id="r_contact" data-type="mobile" required>
+                            <input class="contact" type="number" name="r_mobile" id="r_mobile" data-type="mobile" required>
                             <span>Tamanho: 9 digitos.</span>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                             Nº telefone
                         </label>
                         <div class="r-inputGroup-input">
-                            <input type="number" name="r_tel" data-type="tel" id="r_contact">
+                            <input class="contact" type="number" name="r_tel" data-type="tel" id="r_tel">
                             <span>Tamanho: 9 digitos.</span>
                         </div>
                     </div>

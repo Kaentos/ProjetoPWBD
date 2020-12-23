@@ -14,7 +14,7 @@
     define("EMAIL_MAX_LENGTH", 128);
 
     /* https://regex101.com/ */
-    define("REGEX_USERNAME", "/^[a-zA-Z1-9_]{4,16}$/");
+    define("REGEX_USERNAME", "/^(?=.+[a-zA-Z])[a-zA-Z1-9_]{4,16}$/");
     define("REGEX_EMAIL", "/^[a-zA-Z1-9_.-]{1,64}@{1}[a-z-]{1,32}.{1}[a-z]{2,6}$/");
     define("REGEX_NAME", "/^[a-zA-Z]{2,32} {1}[a-zA-Z]{2,32}$/");
     //define("REGEX_CC", "/^[1-9]{8}$/");

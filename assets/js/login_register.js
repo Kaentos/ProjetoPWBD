@@ -1,6 +1,8 @@
+"use strict";
+
 /* BOTH */
 function borderRed(array_input) {
-    for (input of array_input) {
+    for (const input of array_input) {
         input.style.border = "2px solid red";
     }
 }
@@ -10,20 +12,28 @@ function borderRed(array_input) {
 
 
 /* LOGIN */
-var login_input_validations = {
-    "user" : false,
-    "pwd" : false,
+const loginInputValidations = {
+    "l_user" : {
+        isValid: false,
+        minLength: 4,
+        maxLength: 128
+    },
+    "l_pwd" : {
+        isValid: false,
+        minLength: 4,
+        maxLength: 64
+    },
 };
 function activateLiveCheckLogin() {
     document.getElementById("loginBtn").classList.add("disabled");
     document.getElementById("loginBtn").disabled = true;
-    document.getElementById("l_user").addEventListener("keyup", this.checkUser);
-    document.getElementById("l_pwd").addEventListener("keyup", this.checkPassword);
+    document.getElementById("l_user").addEventListener("keyup", checkLoginInput);
+    document.getElementById("l_pwd").addEventListener("keyup", checkLoginInput);
 }
 
 function checkLoginButton() {
-    for (let input in login_input_validations) {
-        if (!login_input_validations[input]) {
+    for (const id in loginInputValidations) {
+        if (!loginInputValidations[id].isValid) {
             document.getElementById("loginBtn").classList.add("disabled");
             document.getElementById("loginBtn").disabled = true;
             return;
@@ -33,44 +43,28 @@ function checkLoginButton() {
     document.getElementById("loginBtn").disabled = false;
 }
 
-function checkUser() {
-    let input_user = document.getElementById("l_user");
-    let user = input_user.value;
-    if (user.length >= 4 && user.length <= 128) {
-        login_input_validations["user"] = true;
-        input_user.classList.add("valid");
-        input_user.classList.remove("invalid");
+function checkLoginInput(event) {
+    const {id, value} = event.target;
+    if (value.length >= loginInputValidations[id].minLength && value.length <= loginInputValidations[id].maxLength) {
+        loginInputValidations[id].isValid = true;
+        event.target.classList.add("valid");
+        event.target.classList.remove("invalid");
     } else {
-        login_input_validations["user"] = false;
-        input_user.classList.add("invalid");
-        input_user.classList.remove("valid");
-    }
-    checkLoginButton();
-}
-
-function checkPassword() {
-    let input_pwd = document.getElementById("l_pwd");
-    let pwd = input_pwd.value;
-    if (pwd.length >= 4 && pwd.length <= 64) {
-        login_input_validations["pwd"] = true;
-        input_pwd.classList.add("valid");
-        input_pwd.classList.remove("invalid");
-    } else {
-        login_input_validations["pwd"] = false;
-        input_pwd.classList.add("invalid");
-        input_pwd.classList.remove("valid");
+        loginInputValidations[id].isValid = false;
+        event.target.classList.add("invalid");
+        event.target.classList.remove("valid");
     }
     checkLoginButton();
 }
 
 
 function badLogin(reason) {
-    let user_input = document.getElementById("l_user");
-    let pwd_input = document.getElementById("l_pwd");
-    let warningArea = document.getElementById("badWarning");
+    const userInput = document.getElementById("l_user");
+    const pwdInput = document.getElementById("l_pwd");
+    const warningArea = document.getElementById("badWarning");
     warningArea.style.visibility = "visible";
     warningArea.innerHTML = reason;
-    borderRed([user_input, pwd_input]);
+    borderRed([userInput, pwdInput]);
 }
 
 
@@ -78,29 +72,48 @@ function badLogin(reason) {
 
 
 /* REGISTER */
-var register_input_validations = {
-    "username": false,
-    "email": false,
-    "pwd": false,
-    "mobile": false,
-    "tel": true
+const registerInputValidations = {
+    "r_username": {
+        isValid: false,
+        regex: new RegExp("^(?=.+[a-zA-Z])[a-zA-Z1-9_]{4,16}$")
+    },
+    "r_email": {
+        isValid: false,
+        regex: new RegExp("^[a-zA-Z1-9_.-]{1,64}@{1}[a-z-]{1,32}.{1}[a-z]{2,6}$")
+    },
+    "r_pwd": {
+        isValid: false,
+        regex: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d+!?#$%&_\-.,;]{4,64}$/
+    },
+    "r_name": {
+        isValid: false,
+        regex: new RegExp("^[a-zA-Z]{2,32} {1}[a-zA-Z]{2,32}$")
+    },
+    "r_mobile": {
+        isValid: false,
+        regex: new RegExp("^[1-9]{9}$")
+    },
+    "r_tel": {
+        isValid: true,
+        regex: new RegExp("^[1-9]{9}$")
+    },
 };
 
 function activateLiveCheckRegister() {
     document.getElementById("registerBtn").classList.add("disabled");
     document.getElementById("registerBtn").disabled = true;
-    document.getElementById("r_username").addEventListener("keyup", this.checkUsername);
-    document.getElementById("r_email").addEventListener("keyup", this.checkEmail);
-    document.getElementById("r_pwd").addEventListener("keyup", this.checkPasswords);
-    document.getElementById("r_pwd2").addEventListener("keyup", this.checkPasswords);
-    document.getElementById("r_name").addEventListener("keyup", this.checkName);
-    const input_contacts = document.querySelectorAll("#r_contact");
-    input_contacts.forEach(node => node.addEventListener("keyup", this.checkContact));
+    document.getElementById("r_username").addEventListener("keyup", checkRegisterInput);
+    document.getElementById("r_email").addEventListener("keyup", checkRegisterInput);
+    document.getElementById("r_pwd").addEventListener("keyup", checkRegisterInput);
+    document.getElementById("r_pwd2").addEventListener("keyup", checkRegisterInput);
+    document.getElementById("r_name").addEventListener("keyup", checkRegisterInput);
+    const inputContacts = document.querySelectorAll(".contact");
+    inputContacts.forEach(node => node.addEventListener("keyup", checkRegisterInput));
 }
 
 function checkRegisterButton() {
-    for (let input in register_input_validations) {
-        if (!register_input_validations[input]) {
+    for (const input in registerInputValidations) {
+        if (!registerInputValidations[input].isValid) {
             document.getElementById("registerBtn").classList.add("disabled");
             document.getElementById("registerBtn").disabled = true;
             return;
@@ -110,102 +123,52 @@ function checkRegisterButton() {
     document.getElementById("registerBtn").disabled = false;
 }
 
-function checkUsername() {
-    const regex = new RegExp("^[a-zA-Z1-9_]{4,16}$");
-    let input_username = document.getElementById("r_username");
-    let username = input_username.value;
-    if (regex.test(username)){
-        register_input_validations["username"] = true;
-        input_username.classList.add("valid");
-        input_username.classList.remove("invalid");
-    } else {
-        register_input_validations["username"] = false;
-        input_username.classList.add("invalid");
-        input_username.classList.remove("valid");
-    };
-    checkRegisterButton();
-}
-
-function checkEmail() {
-    const regex = new RegExp("^[a-zA-Z1-9_.-]{1,64}@{1}[a-z-]{1,32}.{1}[a-z]{2,6}$");
-    let input_email = document.getElementById("r_email");
-    let email = input_email.value;
-    if (regex.test(email)){
-        register_input_validations["email"] = true;
-        input_email.classList.add("valid");
-        input_email.classList.remove("invalid");
-    } else {
-        register_input_validations["email"] = false;
-        input_email.classList.add("invalid");
-        input_email.classList.remove("valid");
-    };
-    checkRegisterButton();
-}
-
-function checkPasswords() {
-    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d+!?#$%&_\-.,;]{4,64}$/;
-    let input_pwd = document.getElementById("r_pwd");
-    let input_pwd2 = document.getElementById("r_pwd2");
-    let pwd = input_pwd.value;
-    let pwd2 = input_pwd2.value;
-    if (regex.test(pwd)) {
-        input_pwd.classList.add("valid");
-        input_pwd.classList.remove("invalid");
-        if (pwd !== pwd2) {
-            register_input_validations["pwd"] = false;
-            input_pwd2.classList.add("invalid");
-            input_pwd2.classList.remove("valid");
-        } else {
-            register_input_validations["pwd"] = true;
-            input_pwd.classList.add("valid");
-            input_pwd2.classList.add("valid");
-            input_pwd.classList.remove("invalid");
-            input_pwd2.classList.remove("invalid");
-        }
-    } else {
-        register_input_validations["pwd"] = false;
-        input_pwd.classList.add("invalid");
-        input_pwd.classList.remove("valid");
-    }
-    checkRegisterButton();
-}
-
-function checkName() {
-    const regex = new RegExp("^[a-zA-Z]{2,32} {1}[a-zA-Z]{2,32}$");
-    let input_name = document.getElementById("r_name");
-    let name = input_name.value;
-    if (regex.test(name)){
-        register_input_validations["name"] = true;
-        input_name.classList.add("valid");
-        input_name.classList.remove("invalid");
-    } else {
-        register_input_validations["name"] = false;
-        input_name.classList.add("invalid");
-        input_name.classList.remove("valid");
-    };
-    checkRegisterButton();
-}
-
-function checkContact(event) {
-    const regex = new RegExp("^[1-9]{9}$");
-    let {value : contact, dataset} = event.target;
-    if (dataset.type === "tel" && contact === "") {
-        register_input_validations[dataset.type] = true;
+function checkRegisterInput(event) {
+    const {id, value} = event.target;
+    if (id === "r_tel" && value === "") {
+        registerInputValidations[id].isValid = true;
         event.target.classList.remove("valid");
         event.target.classList.remove("invalid");
         checkRegisterButton();
         return;
     }
-    if (regex.test(contact)){
-        register_input_validations[dataset.type] = true;
+    if (id === "r_pwd2" || id === "r_pwd") {
+        checkPasswords();
+        checkRegisterButton();
+        return;
+    }
+    if (registerInputValidations[id].regex.test(value)) {
+        registerInputValidations[id].isValid = true;
         event.target.classList.add("valid");
         event.target.classList.remove("invalid");
     } else {
-        register_input_validations[dataset.type] = false;
+        registerInputValidations[id].isValid = false;
         event.target.classList.add("invalid");
         event.target.classList.remove("valid");
-    };
+    }
     checkRegisterButton();
+}
+
+function checkPasswords() {
+    const inputPwd = document.getElementById("r_pwd");
+    const inputPwd2 = document.getElementById("r_pwd2");
+    if (registerInputValidations["r_pwd"].regex.test(inputPwd.value)) {
+        inputPwd.classList.add("valid");
+        inputPwd.classList.remove("invalid");
+        if (inputPwd.value === inputPwd2.value) {
+            registerInputValidations["r_pwd"].isValid = true;
+            inputPwd2.classList.add("valid");
+            inputPwd2.classList.remove("invalid");
+        } else {
+            registerInputValidations["r_pwd"].isValid = false;
+            inputPwd2.classList.add("invalid");
+            inputPwd2.classList.remove("valid");
+        }
+    } else {
+        registerInputValidations["r_pwd"].isValid = false;
+        inputPwd.classList.add("invalid");
+        inputPwd.classList.remove("valid");
+    }
 }
 
 function badRegister(reason, code) {
