@@ -27,8 +27,8 @@ const loginInputValidations = {
 function activateLiveCheckLogin() {
     document.getElementById("loginBtn").classList.add("disabled");
     document.getElementById("loginBtn").disabled = true;
-    document.getElementById("l_user").addEventListener("keyup", checkLoginInput);
-    document.getElementById("l_pwd").addEventListener("keyup", checkLoginInput);
+    const inputs = document.querySelectorAll(".type-input");
+    inputs.forEach(node => node.addEventListener("keyup", checkLoginInput));
 }
 
 function checkLoginButton() {
@@ -102,13 +102,8 @@ const registerInputValidations = {
 function activateLiveCheckRegister() {
     document.getElementById("registerBtn").classList.add("disabled");
     document.getElementById("registerBtn").disabled = true;
-    document.getElementById("r_username").addEventListener("keyup", checkRegisterInput);
-    document.getElementById("r_email").addEventListener("keyup", checkRegisterInput);
-    document.getElementById("r_pwd").addEventListener("keyup", checkRegisterInput);
-    document.getElementById("r_pwd2").addEventListener("keyup", checkRegisterInput);
-    document.getElementById("r_name").addEventListener("keyup", checkRegisterInput);
-    const inputContacts = document.querySelectorAll(".contact");
-    inputContacts.forEach(node => node.addEventListener("keyup", checkRegisterInput));
+    const inputs = document.querySelectorAll(".type-input");
+    inputs.forEach(node => node.addEventListener("keyup", checkRegisterInput));
 }
 
 function checkRegisterButton() {

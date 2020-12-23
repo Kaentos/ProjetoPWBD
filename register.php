@@ -52,7 +52,7 @@
                             Nome de Utilizador<sup>*</sup>
                         </label>
                         <div class="r-inputGroup-input">
-                            <input type="text" name="r_username" id="r_username" required>
+                            <input class="type-input" type="text" name="r_username" id="r_username" required>
                             <span>Tamanho: 4-16 caracteres</span>
                         </div>
                     </div>
@@ -61,7 +61,7 @@
                             Email<sup>*</sup>
                         </label>
                         <div class="r-inputGroup-input">
-                            <input type="email" name="r_email" id="r_email" required>
+                            <input class="type-input" type="email" name="r_email" id="r_email" required>
                             <span>Tamanho: 6-128 caracteres</span>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                             Palavra-passe<sup>*</sup>
                         </label>
                         <div class="r-inputGroup-input">
-                            <input class="pwd" type="password" name="r_pwd" id="r_pwd" required>
+                            <input class="type-input" type="password" name="r_pwd" id="r_pwd" required>
                             <span>Regras: 4-64 caracteres, 1 caracter maiúsculo, 1 caracter minúsculo, 1 número.</span>
                         </div>
                     </div>
@@ -80,7 +80,7 @@
                             Confirmar palavra-passe<sup>*</sup>
                         </label>
                         <div class="r-inputGroup-input">
-                            <input class="pwd" type="password" name="r_pwd2" id="r_pwd2" required>
+                            <input class="type-input" type="password" name="r_pwd2" id="r_pwd2" required>
                         </div>
                     </div>
 
@@ -94,7 +94,7 @@
                             Primeiro e último nome<sup>*</sup>
                         </label>
                         <div class="r-inputGroup-input">
-                            <input type="text" name="r_name" id="r_name" required>
+                            <input class="type-input" type="text" name="r_name" id="r_name" required>
                             <span>Tamanho: 6-64 caracteres.</span>
                         </div>
                     </div>
@@ -103,7 +103,7 @@
                             Nº telemóvel<sup>*</sup>
                         </label>
                         <div class="r-inputGroup-input">
-                            <input class="contact" type="number" name="r_mobile" id="r_mobile" data-type="mobile" required>
+                            <input class="type-input" type="number" name="r_mobile" id="r_mobile" data-type="mobile" required>
                             <span>Tamanho: 9 digitos.</span>
                         </div>
                     </div>
@@ -112,7 +112,7 @@
                             Nº telefone
                         </label>
                         <div class="r-inputGroup-input">
-                            <input class="contact" type="number" name="r_tel" data-type="tel" id="r_tel">
+                            <input class="type-input" type="number" name="r_tel" data-type="tel" id="r_tel">
                             <span>Tamanho: 9 digitos.</span>
                         </div>
                     </div>
