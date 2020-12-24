@@ -30,6 +30,7 @@
             if (checkIfLogged()) {
                 echo "
                     <div class='navbar-links'>
+                        <span>Olá, ".LOGIN_DATA["username"]."!</span>
                         <a class='navbar-myData navbar-LR' href='/'>Meus dados</a>
                         <a class='navbar-logout navbar-LR' href='/ProjetoPWBD/logout.php'>Logout</a>
                     </div>
