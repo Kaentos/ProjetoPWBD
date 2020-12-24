@@ -11,17 +11,17 @@ CREATE TABLE Utilizador (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(128),
     username VARCHAR(16) NOT NULL UNIQUE,
-    email VARCHAR(128) NOT NULL UNIQUE,
-    password VARCHAR(64) NOT NULL,
+    email VARCHAR(128) UNIQUE,
+    password VARCHAR(64),
     /*morada VARCHAR(256),*/
     /*cc INT NOT NULL UNIQUE,
     dataNasc DATE NOT NULL,*/
-    telemovel INT NOT NULL,
+    telemovel INT,
     telefone INT,
     dataCriacao DATETIME DEFAULT NOW() NOT NULL,
     isActive BOOLEAN DEFAULT FALSE NOT NULL,
     isDeleted BOOLEAN DEFAULT FALSE NOT NULL,
-    idTipo INT NOT NULL,
+    idTipo INT,
     CONSTRAINT TB_Utilizador_TipoUtilizador_FK FOREIGN KEY (idTipo) REFERENCES TipoUtilizador(id)
     /* USELESS AF FAZER TRIGGERS
     CONSTRAINT TB_Utilizador_dataNasc_CHECK CHECK(YEAR(dataNasc) >= (YEAR(NOW()) - 100) AND YEAR(dataNasc) <= (YEAR(NOW()) - 18))

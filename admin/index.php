@@ -1,9 +1,8 @@
 <?php
-    session_start();
-    if (!isset($_SESSION["login"]) && !$_COOKIE["login"]) {
-        header("location: ../");
-        die();
-    }
+    include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/scripts/php/major_functions.php");
+    
+    define("LOGIN_DATA", getLoginData());
+    checkIfAdminWithGoto();
 ?>
 
 <!DOCTYPE html>
@@ -16,9 +15,9 @@
 </head>
 <body>
     <?php
-        include($_SERVER['DOCUMENT_ROOT']."/ProjetoPWBD/navbar.php");
+        include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/navbar.php");
     ?>
-    <a href="utilizadores.php">Utilizadores</a>
+    <a href="users.php">Utilizadores</a>
     <footer id="footer"></footer>
 </body>
 </html>

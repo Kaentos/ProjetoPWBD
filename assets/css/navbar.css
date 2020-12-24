@@ -28,10 +28,13 @@ body {
     padding: 20px;
 }
 
-.navbar-title {
-    font-weight: bold;
+.navbar-title > a {
+    padding: 10px 15px;
     font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
     color: white;
+    text-decoration: none;
 }
 
 .navbar-links {
@@ -56,7 +59,7 @@ body {
 .navbar-login {
     background-color: #667292;
 }
-.navbar-register {
+.navbar-register, .navbar-myData, .navbar-logout {
     border: 1px solid white;
     box-shadow: none;
 }

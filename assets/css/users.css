@@ -10,7 +10,7 @@
     background-color: #3B3B3B;
     border: 1px solid #626262;
     border-radius: 2px;
-    max-width: 100%;
+    max-width: 95%;
 }
 
 .u-title {
@@ -57,6 +57,7 @@
 
 .u-table-all-icons {
     display: flex;
+    justify-content: space-between;
 }
 
 .u-table-all-icons > a {
@@ -64,7 +65,7 @@
     border-radius: 2px;
 }
 .u-table-all-icons > a:hover {
-    background-color: white;
+    background-color: #ffffff;
     transition: 0.5s;
 }
 

@@ -1,9 +1,6 @@
 <?php
-    session_start();
-    if (isset($_SESSION["login"]) || $_COOKIE["login"]) {
-        header("location: ./");
-        die();
-    }
+    include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/scripts/php/major_functions.php");
+    checkIfLoggedWithGoto();
 ?>
 
 <!DOCTYPE html>
