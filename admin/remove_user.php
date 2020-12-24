@@ -2,6 +2,16 @@
     include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/scripts/php/major_functions.php");
     checkIfAdminWithGoto();
 
+    /* Functions */ 
+    function showMessage($isError, $msg) {
+        $_SESSION["message"] = [
+            "isError" => $isError,
+            "msg" => $msg
+        ];
+        gotoListUsers();
+    }
+    /* END of Functions */
+
     if(!isset($_GET["id"]) || $_GET["id"] == LOGIN_DATA["id"]) {
         gotoIndex();
     }
@@ -13,8 +23,7 @@
     $stmt -> bindParam(":id", $_GET["id"]);
     $stmt -> execute();
     if ($stmt -> rowCount() != 1) {
-        echo "Utilizador não encontrado!";
-        die();
+        showMessage(true, "Utilizador não encontrado!");
     }
 
     if (isset($_GET["perma"]) && $_GET["perma"] == "true") {
@@ -25,18 +34,13 @@
             SET nome=null, password=null, telemovel=null, telefone=null, isActive=0, isDeleted=1, idTipo=0
             WHERE id = :id;
         ";
-        showPerma();
     }
     $stmt = $dbo -> prepare($query);
     $stmt -> bindParam(":id", $_GET["id"]);
     $stmt -> execute();
     if ($stmt -> rowCount() == 1) {
-        echo "Apagou com sucesso";
+        showMessage(false, "Apagou com sucesso!");
     } else {
-        echo "Não apagou";
-    }
-
-    function showPerma() {
-
+        showMessage(true, "Não foi possivel apagar!");
     }
 ?>

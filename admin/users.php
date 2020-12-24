@@ -18,8 +18,19 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/navbar_footer.css">
-    <link rel="stylesheet" href="../assets/css/users.css">
+    <link rel="stylesheet" href="/ProjetoPWBD/assets/css/navbar_footer.css">
+    <link rel="stylesheet" href="/ProjetoPWBD/assets/css/users.css">
+    <script src="/ProjetoPWBD/assets/js/users.js"></script>
+    <script>
+        window.onload = function () {
+            <?php
+                if (isset($_SESSION["message"])) {
+                    echo "showMessage(".json_encode($_SESSION["message"]).")";
+                    unset($_SESSION["message"]);
+                }
+            ?>
+        }
+    </script>
     <title>CI | Admin - Utilizadores</title>
 </head>
 <body>
@@ -28,6 +39,10 @@
     ?>
     
     <div class="u-zone">
+        <div class="message" id="message">
+            ERRO
+        </div>
+
         <div class="u-panel">
             <div class="u-title">
                 Utilizadores

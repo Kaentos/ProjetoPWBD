@@ -23,6 +23,11 @@
         die();
     }
 
+    function gotoListUsers() {
+        header("location: /ProjetoPWBD/admin/users.php");
+        die();
+    }
+
 
     /* Checks */
     function checkIfLogged() {

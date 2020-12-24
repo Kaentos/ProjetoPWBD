@@ -4,6 +4,30 @@
     margin-top: 25px;
 }
 
+.message {
+    width: 95%;
+    border-radius: 2px;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 10px;
+    font-size: 1.3rem;
+    color: white;
+    font-weight: bold;
+    margin: 25px auto;
+    visibility: hidden;
+    height: 50px;
+}
+
+.message-success {
+    background-color: #009c31;
+    border: 2px solid green;
+}
+
+.message-error {
+    background-color: #ff4336;
+    border: 2px solid #ff3021;
+}
+
 .u-panel {
     margin: auto;
     color: white;
