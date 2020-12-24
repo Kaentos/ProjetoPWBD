@@ -29,21 +29,26 @@
     $result = $stmt -> fetch();
     $userID = $result["id"];
 
-    if (isset($_GET["perma"]) && $_GET["perma"] === "true") {
-        $query = "DELETE FROM Utilizador WHERE id = :id";
+
+    if (isset($_GET["action"])) {
+        if ($_GET["action"] === "give") {
+            $isActive = 1;
+        } else if ($_GET["action"] === "remove") {
+            $isActive = 0;
+        } else {
+            showMessage(true, "Ação inválida!");
+        }
     } else {
-        $query = "
-            UPDATE Utilizador
-            SET nome=null, password=null, telemovel=null, telefone=null, isActive=0, isDeleted=1, idTipo=0
-            WHERE id = :id;
-        ";
+        showMessage(true, "Ação inválida!");
     }
+    $query = "UPDATE Utilizador SET isActive=:isActive WHERE id = :id";
     $stmt = $dbo -> prepare($query);
+    $stmt -> bindParam(":isActive", $isActive);
     $stmt -> bindParam(":id", $_GET["id"]);
     $stmt -> execute();
     if ($stmt -> rowCount() == 1) {
-        showMessage(false, "Apagou ".($_GET["perma"] === "true" ? "permanente" : "")." o utilizador (ID: $userID) com sucesso!");
+        showMessage(false, ($isActive ? "Deu acesso" : "Removeu acesso" ) . " ao utilizador (ID: $userID) com sucesso!");
     } else {
-        showMessage(true, "Não foi possivel apagar ".($_GET["perma"] === "true" ? "permanente" : "")." o utilizador (ID: $userID)!");
+        showMessage(true, "Não foi gerir o acesso do utilizador (ID: $userID)!");
     }
 ?>

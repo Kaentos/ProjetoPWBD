@@ -133,13 +133,13 @@
                                         if (!$user["isDeleted"]) {
                                             if ($user["isActive"]) {
                                                 echo "
-                                                    <a href='remove_access.php?id=".$user["id"]."'>
+                                                    <a href='manage_access_user.php?id=".$user["id"]."&action=remove'>
                                                         <img class='u-table-icon' src='../assets/img/icons/dislike.png' alt='Tirar acesso' srcset=''>
                                                     </a>
                                                 ";
                                             } else {
                                                 echo "
-                                                    <a href='give_access.php?id=".$user["id"]."'>
+                                                    <a href='manage_access_user.php?id=".$user["id"]."&action=give'>
                                                         <img class='u-table-icon' src='../assets/img/icons/like.png' alt='Aprovar' title='Aprovar'>
                                                     </a>
                                                 ";
