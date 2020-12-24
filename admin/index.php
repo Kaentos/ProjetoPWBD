@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/index_admin.css">
-    <link rel="stylesheet" href="/ProjetoPWBD/assets/css/navbar.css">
+    <link rel="stylesheet" href="/ProjetoPWBD/assets/css/navbar_footer.css">
     <title>CI | Admin - Utilizadores</title>
 </head>
 <body>
@@ -53,7 +53,10 @@
         </div>
         
     </div>
-    <footer id="footer"></footer>
+    
+    <?php
+        include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/footer.php");
+    ?>
 </body>
 </html>
 

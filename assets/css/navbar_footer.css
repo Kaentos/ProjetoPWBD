@@ -12,6 +12,9 @@ body {
     background-color: #515151;
 }
 
+
+
+/* NAVBAR */
 .navbar {
     position: sticky;
     top: 0;
@@ -41,7 +44,15 @@ body {
     margin-left: 15px;
 }
 
-.navbar-links > a, span {
+.navbar-links > a {
+    padding: 10px 15px;
+    font-size: 1.1rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: white;
+    border-radius: 2px;
+}
+.navbar-links > span {
     padding: 10px 15px;
     font-size: 1.1rem;
     font-weight: bold;
@@ -67,4 +78,36 @@ body {
 .navbar-LR:hover {
     background-color: white !important;
     color: black !important;
+}
+
+
+
+/* FOOTER */
+.footer {
+    padding: 25px;
+    margin-top: 100px;
+    background-color: #3b3b3b;
+    border-top: 1px solid gray;
+    display: flex;
+    justify-content: space-between;
+    color: white;
+    font-weight: bold;
+}
+.footer-links {
+    min-width: 300px;
+}
+.footer-links > ul > li > a {
+    color: white;
+}
+.footer-links > img {
+    height: 200px;
+    width: 200px;
+}
+.footer-links > span {
+    font-size: 1.5rem;
+}
+.footer-links > ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
 }

@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="assets/css/login.css">
     <script src="assets/js/login_register.js"></script>
     <link rel="stylesheet" href="assets/css/login_register.css">
-    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/navbar_footer.css">
     <script>
         window.onload = function() {
             activateLiveCheckLogin();
@@ -64,6 +64,8 @@
         </div>
     </div>
     
-    <footer id="footer"></footer>
+    <?php
+        include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/footer.php");
+    ?>
 </body>
 </html>

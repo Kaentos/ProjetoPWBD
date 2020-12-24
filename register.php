@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="assets/css/register.css">
     <link rel="stylesheet" href="assets/css/login_register.css">
-    <link rel="stylesheet" href="assets/css/navbar.css">
+    <link rel="stylesheet" href="assets/css/navbar_footer.css">
     <script src="assets/js/login_register.js"></script>
     
     <script>
@@ -122,6 +122,8 @@
         </div>
     </div>
     
-    <footer id="footer"></footer>
+    <?php
+        include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/footer.php");
+    ?>
 </body>
 </html>
