@@ -103,3 +103,12 @@
 .canWrap {
     white-space: normal !important;
 }
+
+.red-icon {
+    background-color: #ff5e5e !important;
+}
+
+.red-icon:hover {
+    background-color: red !important;
+    transition: 0.5s;
+}

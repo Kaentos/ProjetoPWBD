@@ -18,7 +18,7 @@ CREATE TABLE Utilizador (
     dataCriacao DATETIME DEFAULT NOW() NOT NULL,
     isActive BOOLEAN DEFAULT FALSE NOT NULL,
     isDeleted BOOLEAN DEFAULT FALSE NOT NULL,
-    idTipo INT,
+    idTipo INT NOT NULL,
     CONSTRAINT TB_Utilizador_TipoUtilizador_FK FOREIGN KEY (idTipo) REFERENCES TipoUtilizador(id)
 );
 
@@ -48,8 +48,8 @@ CREATE TABLE Inspecao (
     CONSTRAINT TB_Inspecao_LinhaInspecao_FK FOREIGN KEY (idLinha) REFERENCES LinhaInspecao(id)
 );
 
-INSERT INTO TipoUtilizador (nome) VALUES
-    ('Administrador'), ('Inspector'), ('Cliente');
+INSERT INTO TipoUtilizador VALUES
+    (1, 'Administrador'), (2, 'Inspector'), (3, 'Cliente'), (0, "Apagado");
 
 INSERT INTO Utilizador (nome, username, email, password, telemovel, telefone, isActive, idTipo) VALUES
     ('José Rodrigues', 'admin', 'admin@mail.com', '$2y$12$OgKQmortu0reACW6sMmwz.nbCSPztT/SUWe399O48YKkWQSoV/j5u', 912123168, NULL, TRUE, 1),

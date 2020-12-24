@@ -3,7 +3,10 @@
     checkIfAdminWithGoto();
 
     include("../scripts/php/basedados.h");
-    $query = "SELECT Utilizador.id, Utilizador.nome, username, email, telemovel, telefone, dataCriacao, isActive, isDeleted, TipoUtilizador.nome as nomeTipo FROM Utilizador INNER JOIN TipoUtilizador ON idTipo = TipoUtilizador.id";
+    $query = "
+        SELECT Utilizador.id, Utilizador.nome, username, email, telemovel, telefone, dataCriacao, isActive, isDeleted, TipoUtilizador.nome as nomeTipo
+        FROM Utilizador INNER JOIN TipoUtilizador ON idTipo = TipoUtilizador.id
+        ORDER BY Utilizador.id;";
     $stmt = $dbo -> prepare($query);
     $stmt -> execute();
     $result = $stmt -> fetchAll();
@@ -17,18 +20,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/navbar_footer.css">
     <link rel="stylesheet" href="../assets/css/users.css">
-    <script>
-        window.onload = function() {
-            activateLiveCheckLogin();
-            <?php
-                if (isset($_SESSION["badLogin"])) {
-                    echo "badLogin('".$_SESSION["badLogin"]."')";
-                    unset($_SESSION["badLogin"]);
-                }
-            ?>
-        }
-    </script>
-    
     <title>CI | Admin - Utilizadores</title>
 </head>
 <body>
@@ -101,7 +92,7 @@
                                         ".$user["telemovel"]."
                                     </th>
                                     <th class='u-table-width-125'>
-                                        ".($user["telefone"] === null ? "NÃO TEM" : $user["telefone"])."
+                                        ".$user["telefone"]."
                                     </th>
                                     <th class='canWrap u-table-width-125'>
                                         ".$user["dataCriacao"]."
@@ -118,7 +109,12 @@
                                     <th class='u-table-width-100'>
                                         <div class='u-table-all-icons'>
                                     ";
-                                    if ($user["id"] !== $_SESSION["login"]["id"]) {
+                                    if ($user["id"] !== LOGIN_DATA["id"]) {
+                                        echo "
+                                            <a href='edit_user.php?id=".$user["id"]."'>
+                                                <img class='u-table-icon' src='../assets/img/icons/pencil.png' alt='Editar' srcset=''>
+                                            </a>
+                                        ";
                                         if (!$user["isDeleted"]) {
                                             if ($user["isActive"]) {
                                                 echo "
@@ -133,16 +129,19 @@
                                                     </a>
                                                 ";
                                             }
-    
+                                            echo "
+                                                <a href='remove_user.php?id=".$user["id"]."'>
+                                                    <img class='u-table-icon' src='../assets/img/icons/garbage.png' alt='Apagar' srcset=''>
+                                                </a>
+                                            ";
+                                        } else {
+                                            echo "
+                                                <a class='red-icon' href='remove_user.php?id=".$user["id"]."&perma=true'>
+                                                    <img class='u-table-icon' src='../assets/img/icons/garbage.png' alt='Apagar' srcset=''>
+                                                </a>
+                                            ";
                                         }
                                         echo "
-                                                        <a href='edit_user.php?id=".$user["id"]."'>
-                                                            <img class='u-table-icon' src='../assets/img/icons/pencil.png' alt='Editar' srcset=''>
-                                                        </a>
-                                                        <a href='remove_user.php?id=".$user["id"]."'>
-                                                            <img class='u-table-icon' src='../assets/img/icons/garbage.png' alt='Apagar' srcset=''>
-                                                        </a>
-                                                    </div>
                                                 </th>
                                             </tr>
                                         ";
