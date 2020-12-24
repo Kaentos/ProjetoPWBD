@@ -13,7 +13,7 @@
             </span>
             <ul>
                 <li class="footer-links-item">
-                    <a href="/">
+                    <a href="/ProjetoPWBD/">
                         Página principal
                     </a>
                 </li>
@@ -29,7 +29,7 @@
                     <a href="https://www.flaticon.com/authors/freepik" target="_blank">
                         Freepik
                     </a>
-                    from
+                    de
                     <a href="https://www.flaticon.com/" target="_blank">
                         www.flaticon.com
                     </a>
