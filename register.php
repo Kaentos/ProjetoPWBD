@@ -49,7 +49,7 @@
                             Nome de Utilizador<sup>*</sup>
                         </label>
                         <div class="r-inputGroup-input">
-                            <input class="type-input" type="text" name="r_username" id="r_username" required>
+                            <input class="type-input" type="text" name="r_username" id="r_username" autofocus required>
                             <span>Tamanho: 4-16 caracteres</span>
                         </div>
                     </div>

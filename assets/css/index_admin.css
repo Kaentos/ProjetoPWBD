@@ -1,0 +1,50 @@
+.ia-zone {
+    min-height: 500px;
+    margin-top: 50px;
+}
+
+.ia-panel {
+    margin: auto;
+    width: 50%;
+    background-color: #3B3B3B;
+    border: 2px solid #626262;
+    border-radius: 2px;
+}
+
+.ia-title {
+    font-size: 2rem;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-bottom: 1px solid #626262;
+    font-weight: bold;
+}
+
+.ia-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.ia-item {
+    margin: 10px auto;
+    width: 38%;
+    font-size: 1.5rem;
+    padding: 25px;
+    color: white;
+    border: 2px solid white;
+    border-radius: 2px;
+    background-color: #667292;
+    text-align: center;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.ia-item:hover {
+    background-color: #4c4d8c;
+    transition: 0.5s;
+}
+
+.ia-item > img{
+    width: 100px;
+    height: 100px;
+}

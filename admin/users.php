@@ -1,7 +1,5 @@
 <?php
     include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/scripts/php/major_functions.php");
-    
-    define("LOGIN_DATA", getLoginData());
     checkIfAdminWithGoto();
 
     include("../scripts/php/basedados.h");

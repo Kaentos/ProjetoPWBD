@@ -44,11 +44,11 @@
                 <form action="scripts/php/efetua_login.php" method="POST">
                     <div class="l-inputGroup">
                         <label for="l_user">Nome de utilizador ou Email:</label>
-                        <input class="type-input" type="text" name="l_user" id="l_user" placeholder="mail@dominio.pt">
+                        <input class="type-input" type="text" name="l_user" id="l_user" autofocus required>
                     </div>
                     <div class="l-inputGroup">
                         <label for="l_pwd">Palavra-passe:</label>
-                        <input class="type-input" type="password" name="l_pwd" id="l_pwd">
+                        <input class="type-input" type="password" name="l_pwd" id="l_pwd" required>
                     </div>
                     <div class="l-inputGroup">
                         <label for="l_keepLogin">Manter-me logado:

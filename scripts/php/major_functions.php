@@ -1,6 +1,8 @@
 <?php
     session_start();
     include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/scripts/php/rules.php");
+    define("LOGIN_DATA", getLoginData());
+
 
     /* Get data */
     function getLoginData() {
@@ -24,7 +26,7 @@
 
     /* Checks */
     function checkIfLogged() {
-        if ($_SESSION["login"] || $_COOKIE["login"]) {
+        if (LOGIN_DATA !== null) {
             return true;
         }
         return false;
