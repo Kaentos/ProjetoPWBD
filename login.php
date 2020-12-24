@@ -49,7 +49,6 @@
                     <div class="l-inputGroup">
                         <label for="l_pwd">Palavra-passe:</label>
                         <input class="type-input" type="password" name="l_pwd" id="l_pwd">
-                        <a href="">Esqueci-me da palavra-passe</a>
                     </div>
                     <div class="l-inputGroup">
                         <label for="l_keepLogin">Manter-me logado:
