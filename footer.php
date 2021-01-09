@@ -22,7 +22,7 @@
                         echo "
                             <li class='footer-links-item'>
                                 <a href='/ProjetoPWBD/admin/'>
-                                    Painel de admin
+                                    Painel de controlo
                                 </a>
                             </li>
                         ";

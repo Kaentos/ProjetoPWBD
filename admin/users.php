@@ -4,7 +4,7 @@
 
     include("../scripts/php/basedados.h");
     $query = "
-        SELECT Utilizador.id, Utilizador.nome, username, email, telemovel, telefone, dataCriacao, isActive, isDeleted, TipoUtilizador.nome as nomeTipo
+        SELECT Utilizador.id, Utilizador.nome, username, email, telemovel, telefone, dataCriacao, dataEdicao, isActive, isDeleted, TipoUtilizador.nome as nomeTipo
         FROM Utilizador INNER JOIN TipoUtilizador ON idTipo = TipoUtilizador.id
         ORDER BY Utilizador.id;
     ";
@@ -54,23 +54,26 @@
                         <th class="u-table-width-50">
                             ID
                         </th>
-                        <th class="u-table-width-150">
+                        <th class="u-table-width-125">
                             Nome
                         </th>
                         <th class="u-table-width-100">
                             Username
                         </th>
-                        <th class="u-table-width-200">
+                        <th class="u-table-width-150">
                             Email
                         </th>
-                        <th class="u-table-width-125">
+                        <th class="u-table-width-100">
                             Telemovel
                         </th>
-                        <th class="u-table-width-125">
+                        <th class="u-table-width-100">
                             Telefone
                         </th>
                         <th class="canWrap u-table-width-125">
                             Data Criação
+                        </th>
+                        <th class="canWrap u-table-width-125">
+                            Data Edição
                         </th>
                         <th class="u-table-width-50">
                             Ativo?
@@ -95,23 +98,26 @@
                                     <th class='u-table-width-50'>
                                         ".$user["id"]."
                                     </th>
-                                    <th class='u-table-width-150'>
+                                    <th class='u-table-width-125'>
                                         ".$user["nome"]."
                                     </th>
                                     <th class='u-table-width-100'>
                                         ".$user["username"]."
                                     </th>
-                                    <th class='u-table-width-200'>
+                                    <th class='u-table-width-150'>
                                         ".$user["email"]."
                                     </th>
-                                    <th class='u-table-width-125'>
+                                    <th class='u-table-width-100'>
                                         ".$user["telemovel"]."
                                     </th>
-                                    <th class='u-table-width-125'>
+                                    <th class='u-table-width-100'>
                                         ".$user["telefone"]."
                                     </th>
                                     <th class='canWrap u-table-width-125'>
                                         ".$user["dataCriacao"]."
+                                    </th>
+                                    <th class='canWrap u-table-width-125'>
+                                        ".$user["dataEdicao"]."
                                     </th>
                                     <th class='u-table-width-50'>
                                         ".($user["isActive"] ? "SIM" : "NÃO")."
