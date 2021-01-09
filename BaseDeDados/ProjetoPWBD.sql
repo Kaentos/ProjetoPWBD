@@ -53,7 +53,7 @@ INSERT INTO TipoUtilizador VALUES
     (1, 'Administrador'), (2, 'Inspector'), (3, 'Cliente'), (0, "Apagado");
 
 INSERT INTO Utilizador (nome, username, email, password, telemovel, telefone, isActive, idTipo) VALUES
-    ('José Rodrigues', 'admin', 'admin@mail.com', '$2y$12$OgKQmortu0reACW6sMmwz.nbCSPztT/SUWe399O48YKkWQSoV/j5u', 912123168, NULL, TRUE, 1),
+    ('Jose Rodrigues', 'admin', 'admin@mail.com', '$2y$12$OgKQmortu0reACW6sMmwz.nbCSPztT/SUWe399O48YKkWQSoV/j5u', 912123168, NULL, TRUE, 1),
     ('Rodrigo Rafael', 'inspector', 'inspector@mail.com', '$2y$12$aWR7iVWNKAp12DQhSavGpOH9305vIUcH3NXyUlj8hMaTCX/r7uhX6', 925102312, NULL, TRUE, 2),
     ('Ricardo Pereira', 'cliente', 'cliente@mail.com', '$2y$12$5kqtya37Wf1ecQuDZybkSuxOaU.OxKb198L2wOH4ji8XFCrBZty3.', 912323123, NULL, TRUE, 3);
 

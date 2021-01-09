@@ -15,4 +15,5 @@
     define("USER_TYPE_ADMIN", 1);
     define("USER_TYPE_INSPECTOR", 2);
     define("USER_TYPE_CLIENT", 3);
+    define("USER_TYPE_DELETED", 0);
 ?>

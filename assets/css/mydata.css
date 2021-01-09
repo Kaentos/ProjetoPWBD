@@ -1,0 +1,167 @@
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
+.md-warning {
+    background-color: #ff4336;
+    border: 2px solid #ff3021;
+    border-radius: 2px;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 10px;
+    font-size: 1.3rem;
+    color: white;
+    font-weight: bold;
+    visibility: hidden;
+    margin: 25px auto;
+    height: 50px;
+    width: 900px;
+}
+
+.md-zone {
+    min-height: 500px;
+}
+
+.md-panel {
+    background-color: #3B3B3B;
+    border: 1px solid #626262;
+    color: white;
+    border-radius: 2px;
+    margin: auto;
+    max-width: 900px;
+}
+
+.md-panel > h1 {
+    text-align: center;
+    border-bottom: 1px solid #626262;
+    margin: 0px;
+    padding: 15px;
+    font-size: 2rem;
+}
+
+.md-form {
+    width: 100%;
+    margin: auto;
+}
+
+.md-form > form {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 0px 25px;
+}
+
+.md-form-category {
+    width: 100%;
+    font-size: 1.4rem;
+    margin-top: 30px;
+    border-bottom: 1px solid white;
+    font-weight: bold;
+}
+
+.md-inputGroup {
+    font-size: 1.3rem;
+    margin-top: 25px;
+    width: 100%;
+    display: flex;
+    align-items: space-between;
+}
+
+.md-inputGroup > label {
+    white-space: nowrap;
+    min-width: 32%;
+    text-align: right;
+}
+
+.md-inputGroup-input {
+    width: 100%;
+    padding-left: 5px;
+}
+
+.md-inputGroup-input > input {
+    border: 2px solid white;
+    padding: 5px;
+    border-radius: 2px;
+    box-sizing: border-box; 
+    font-size: 1.3rem;
+    width: 100%;
+}
+
+.md-inputGroup-input > select {
+    border: 2px solid white;
+    padding: 5px;
+    border-radius: 2px;
+    box-sizing: border-box; 
+    font-size: 1.3rem;
+    width: 100%;
+}
+
+.md-inputGroup-input > span {
+    font-size: 0.8rem !important;
+    font-weight: normal !important;
+    display: block;
+}
+
+.disabled {
+    background-color: #ff5e5e !important;
+}
+.disabled:hover {
+    cursor: initial !important;
+    background-color: #ff5e5e !important;
+    border: 2px solid #626262 !important;
+}
+
+.valid {
+    border-color: #68a000 !important;
+}
+
+.invalid {
+    border-color: #ff3021 !important;
+}
+
+.md-inputBtn {
+    margin: 15px 0px;
+    width: 100%;
+    text-align: center;
+}
+
+.md-inputBtn > input {
+    font-size: 1.3rem;
+    font-weight: bold;
+    background-color: #667292;
+    box-sizing: border-box;
+    border: 2px solid #626262;
+    border-radius: 2px;
+    padding: 10px 30px;
+    color: white;
+}
+
+.md-inputBtn > input:hover {
+    background-color: #4c4d8c;
+    border: 2px solid white;
+    color: white;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.md-footer {
+    border-top: 1px solid #626262;
+    text-align: center;
+    padding: 15px 0px;
+    font-size: 1.3rem;
+}
+
+.md-footer > a {
+    color: white;
+}
+
+.message-success {
+    background-color: #009c31;
+    border: 2px solid green;
+}

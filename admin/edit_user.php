@@ -30,6 +30,7 @@
     } else {
         gotoIndex();
     }
+    
 ?>
 
 <!DOCTYPE html>
@@ -120,15 +121,15 @@
                     </div>
 
                     <div class="eu-inputGroup">
-                        <label for="eu_email">
+                        <label for="eu_userType">
                             Tipo utilizador<sup>*</sup>
                         </label>
                         <div class="eu-inputGroup-input">
-                            <select name="eu_userType">
+                            <select id="eu_userType" name="eu_userType">
                                 <?php
                                     foreach ($userTypes as $type) {
                                         // Se o tipo for apagado não coloca na lista
-                                        if ($type["id"] == 0) {
+                                        if ($type["id"] == USER_TYPE_DELETED && $user["tipoId"] != USER_TYPE_DELETED) {
                                             continue;
                                         }
                                         if ($type["id"] == $user["tipoId"]) {
@@ -155,16 +156,16 @@
                         Dados pessoais:
                     </div>
                     <div class="eu-inputGroup">
-                        <label for="r_name">
+                        <label for="eu_name">
                             Primeiro e último nome<sup>*</sup>
                         </label>
                         <div class="eu-inputGroup-input">
                             <input class="type-input" type="text" name="eu_name" id="eu_name" required>
-                            <span>Tamanho: 6-64 caracteres.</span>
+                            <span>Tamanho: 6-64 caracteres. Sem pontuação.</span>
                         </div>
                     </div>
                     <div class="eu-inputGroup">
-                        <label for="r_mobile">
+                        <label for="eu_mobile">
                             Nº telemóvel<sup>*</sup>
                         </label>
                         <div class="eu-inputGroup-input">
@@ -173,7 +174,7 @@
                         </div>
                     </div>
                     <div class="eu-inputGroup">
-                        <label for="r_tel">
+                        <label for="eu_tel">
                             Nº telefone
                         </label>
                         <div class="eu-inputGroup-input">

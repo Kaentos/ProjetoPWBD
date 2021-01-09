@@ -92,7 +92,7 @@
                         </label>
                         <div class="r-inputGroup-input">
                             <input class="type-input" type="text" name="r_name" id="r_name" required>
-                            <span>Tamanho: 6-64 caracteres.</span>
+                            <span>Tamanho: 6-64 caracteres. Sem pontuação.</span>
                         </div>
                     </div>
                     <div class="r-inputGroup">

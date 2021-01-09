@@ -2,7 +2,12 @@
     include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/scripts/php/major_functions.php");
     checkIfAdminWithGoto();
 
-    if ( isset($_POST["eu_id"]) && isset($_POST["eu_username"]) && isset($_POST["eu_email"]) && isset($_POST["eu_name"]) && isset($_POST["eu_mobile"]) && isset($_POST["eu_tel"]) ) {
+    if ( isset($_POST["eu_id"]) && isset($_POST["eu_username"]) && isset($_POST["eu_email"]) && isset($_POST["eu_name"]) && isset($_POST["eu_mobile"]) && isset($_POST["eu_tel"]) && isset($_POST["eu_userType"]) ) {
+        if ($_POST["eu_userType"] == USER_TYPE_DELETED) {
+            showErrorValue(8, "Utilizador não pode ser do tipo apagado!");
+            gotoEditUser($_POST["eu_id"]);
+        }
+        
         include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/scripts/php/basedados.h");
 
         $user = array(
@@ -16,7 +21,7 @@
             "idTipo" => $_POST["eu_userType"]
         );
 
-        $editColumns = "SET nome = :nome, username = :username, email = :email, telemovel = :telemovel, telefone = :telefone, dataEdicao = :dataEdicao, idTipo = :idTipo";
+        $editColumns = "SET isDeleted = false, nome = :nome, username = :username, email = :email, telemovel = :telemovel, telefone = :telefone, dataEdicao = :dataEdicao, idTipo = :idTipo";
 
         if ( isset($_POST["eu_pwd"]) && isset($_POST["eu_pwd2"]) ) {
             if ( preg_match(REGEX_PWD, $_POST["eu_pwd"]) && strcmp($_POST["eu_pwd"], $_POST["eu_pwd2"] ) == 0 ) {
@@ -109,10 +114,5 @@
             "isError" => $isError,
             "msg" => $msg
         ];
-    }
-
-    function gotoEditUser($id) {
-        header("location: /ProjetoPWBD/admin/edit_user.php?id=" . $id);
-        die();
     }
 ?>

@@ -28,6 +28,16 @@
         die();
     }
 
+    function gotoMyData() {
+        header("location: /ProjetoPWBD/mydata.php");
+        die();
+    }
+
+    function gotoEditUser($id) {
+        header("location: /ProjetoPWBD/admin/edit_user.php?id=" . $id);
+        die();
+    }
+
 
     /* Checks */
     function checkIfLogged() {
@@ -38,6 +48,11 @@
     }
     function checkIfLoggedWithGoto() {
         if(checkIfLogged()) {
+            gotoIndex();
+        }
+    }
+    function checkIfNotLoggedWithGoto() {
+        if(!checkIfLogged()) {
             gotoIndex();
         }
     }
