@@ -16,6 +16,7 @@ CREATE TABLE Utilizador (
     telemovel INT,
     telefone INT,
     dataCriacao DATETIME DEFAULT NOW() NOT NULL,
+    dataEdicao DATETIME DEFAULT NOW() NOT NULL,
     isActive BOOLEAN DEFAULT FALSE NOT NULL,
     isDeleted BOOLEAN DEFAULT FALSE NOT NULL,
     idTipo INT NOT NULL,

@@ -17,6 +17,17 @@
                         Página principal
                     </a>
                 </li>
+                <?php
+                    if(checkIfAdmin()) {
+                        echo "
+                            <li class='footer-links-item'>
+                                <a href='/ProjetoPWBD/admin/'>
+                                    Painel de admin
+                                </a>
+                            </li>
+                        ";
+                    }
+                ?>
             </ul>
         </div>
         <div class="footer-links">

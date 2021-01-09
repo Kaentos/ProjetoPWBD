@@ -28,25 +28,10 @@
                     <br>
                     Utilizadores
                 </a>
-                <a class="ia-item" href="type-users.php">
-                    <img src="/ProjetoPWBD/assets/img/icons/type-user.png">
-                    <br>
-                    Tipos de Utilizador
-                </a>
                 <a class="ia-item" href="inspections.php">
                     <img src="/ProjetoPWBD/assets/img/icons/list.png">
                     <br>
                     Marcações
-                </a>
-                <a class="ia-item" href="lines.php">
-                    <img src="/ProjetoPWBD/assets/img/icons/car-repair.png">
-                    <br>
-                    Linhas
-                </a>
-                <a class="ia-item" href="category-cars.php">
-                    <img src="/ProjetoPWBD/assets/img/icons/car.png">
-                    <br>
-                    Categoria de veículos
                 </a>
             </div>
             <br>

@@ -6,7 +6,8 @@
     $query = "
         SELECT Utilizador.id, Utilizador.nome, username, email, telemovel, telefone, dataCriacao, isActive, isDeleted, TipoUtilizador.nome as nomeTipo
         FROM Utilizador INNER JOIN TipoUtilizador ON idTipo = TipoUtilizador.id
-        ORDER BY Utilizador.id;";
+        ORDER BY Utilizador.id;
+    ";
     $stmt = $dbo -> prepare($query);
     $stmt -> execute();
     $result = $stmt -> fetchAll();
