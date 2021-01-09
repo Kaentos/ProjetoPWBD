@@ -20,10 +20,10 @@
             $stmt -> execute();
             if ($stmt -> rowCount() == 1) {
                 $result = $stmt -> fetch();
-                if ($result["isActive"] == FALSE) {
-                    gotoLoginWithError("Aguarde que a sua conta seja validada.");
-                } else if ($result["isDeleted"]) {
+                if ($result["isDeleted"]) {
                     gotoLoginWithError("Esta conta encontra-se eliminada.");
+                } else if ($result["isActive"] == FALSE) {
+                    gotoLoginWithError("Aguarde que a sua conta seja validada.");
                 } else {
                     if (password_verify($pwd, $result["password"])) {
                         $login_user = [
