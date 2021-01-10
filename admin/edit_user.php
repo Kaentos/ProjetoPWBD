@@ -184,6 +184,10 @@
                     </div>
 
                     <div class="eu-inputBtn">
+                        <a href="/ProjetoPWBD/admin/users.php">
+                            Cancelar
+                        </a>
+
                         <input type="submit" value="Editar" name="editBtn" id="editBtn">
                     </div>
                 </form>

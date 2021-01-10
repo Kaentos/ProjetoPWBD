@@ -48,10 +48,13 @@
 
 .u-table {
     width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 2px solid #3B3B3B;
 }
 
 .u-table > thead > tr > th {
-    border: 1px solid #626262;
+    border: 2px solid #626262;
     padding: 0px 5px;
 }
 
@@ -65,13 +68,14 @@
 }
 
 
-.u-table > tbody > tr > th {
-    border: 1px solid #626262;
-    font-weight: normal !important;
+.u-table > tbody > tr > td {
+    border: 2px solid #3B3B3B;
     padding: 0px 10px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
+    text-align: center;
+    padding: 3px;
 }
 
 .u-table-icon {
@@ -97,6 +101,11 @@
     width: 50px;
     max-width: 50px;
     min-width: 50px;
+}
+.u-table-width-75 {
+    width: 75px;
+    max-width: 75px;
+    min-width: 75px;
 }
 .u-table-width-100 {
     width: 100px;

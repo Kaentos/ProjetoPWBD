@@ -63,16 +63,16 @@
                         <th class="u-table-width-150">
                             Email
                         </th>
-                        <th class="u-table-width-100">
+                        <th class="u-table-width-75">
                             Telemovel
                         </th>
-                        <th class="u-table-width-100">
+                        <th class="u-table-width-75">
                             Telefone
                         </th>
-                        <th class="canWrap u-table-width-125">
+                        <th class="canWrap u-table-width-100">
                             Data Criação
                         </th>
-                        <th class="canWrap u-table-width-125">
+                        <th class="canWrap u-table-width-100">
                             Data Edição
                         </th>
                         <th class="u-table-width-50">
@@ -95,40 +95,40 @@
                         foreach(ALL_USERS as $user) {
                             echo "
                                 <tr>
-                                    <th class='u-table-width-50'>
+                                    <td class='u-table-width-50' title='".$user["id"]."'>
                                         ".$user["id"]."
-                                    </th>
-                                    <th class='u-table-width-125'>
+                                    </td>
+                                    <td class='u-table-width-125' title='".$user["nome"]."'>
                                         ".$user["nome"]."
-                                    </th>
-                                    <th class='u-table-width-100'>
+                                    </td>
+                                    <td class='u-table-width-100' title='".$user["username"]."'>
                                         ".$user["username"]."
-                                    </th>
-                                    <th class='u-table-width-150'>
+                                    </td>
+                                    <td class='u-table-width-150' title='".$user["email"]."'>
                                         ".$user["email"]."
-                                    </th>
-                                    <th class='u-table-width-100'>
+                                    </td>
+                                    <td class='u-table-width-75' title='".$user["telemovel"]."'>
                                         ".$user["telemovel"]."
-                                    </th>
-                                    <th class='u-table-width-100'>
+                                    </td>
+                                    <td class='u-table-width-75' title='".$user["telefone"]."'>
                                         ".$user["telefone"]."
-                                    </th>
-                                    <th class='canWrap u-table-width-125'>
+                                    </td>
+                                    <td class='canWrap u-table-width-100' title='".$user["dataCriacao"]."'>
                                         ".$user["dataCriacao"]."
-                                    </th>
-                                    <th class='canWrap u-table-width-125'>
+                                    </td>
+                                    <td class='canWrap u-table-width-100' title='".$user["dataEdicao"]."'>
                                         ".$user["dataEdicao"]."
-                                    </th>
-                                    <th class='u-table-width-50'>
+                                    </td>
+                                    <td class='u-table-width-50' title='".$user["isActive"]."'>
                                         ".($user["isActive"] ? "SIM" : "NÃO")."
-                                    </th>
-                                    <th class='u-table-width-50'>
+                                    </td>
+                                    <td class='u-table-width-50' title='".$user["isDeleted"]."'>
                                         ".($user["isDeleted"] ? "SIM" : "NÃO")."
-                                    </th>
-                                    <th class='u-table-width-100'>
+                                    </td>
+                                    <td class='u-table-width-100' title='".$user["nomeTipo"]."'>
                                         ".$user["nomeTipo"]."
-                                    </th>
-                                    <th class='u-table-width-100'>
+                                    </td>
+                                    <td class='u-table-width-100'>
                                         <div class='u-table-all-icons'>
                                     ";
                                     if ($user["id"] !== LOGIN_DATA["id"]) {
@@ -164,7 +164,7 @@
                                             ";
                                         }
                                         echo "
-                                                </th>
+                                                </td>
                                             </tr>
                                         ";
                                     }

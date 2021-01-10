@@ -125,10 +125,33 @@ input[type=number] {
     border-color: #ff3021 !important;
 }
 
+
+
 .eu-inputBtn {
     margin: 15px 0px;
     width: 100%;
-    text-align: center;
+    display: flex;
+    justify-content: space-between;
+}
+
+.eu-inputBtn > a {
+    font-size: 1.3rem;
+    font-weight: bold;
+    background-color: #667292;
+    box-sizing: border-box;
+    border: 2px solid #626262;
+    border-radius: 2px;
+    padding: 10px 30px;
+    color: white;
+    text-decoration: none;
+}
+
+.eu-inputBtn > a:hover {
+    background-color: white;
+    border: 2px solid white;
+    color: black;
+    transition: 0.5s;
+    cursor: pointer;
 }
 
 .eu-inputBtn > input {

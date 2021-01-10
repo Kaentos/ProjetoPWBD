@@ -61,7 +61,7 @@
         </div>
         <div class="md-panel">
             <h1>
-                Alterar meus dados
+                Meus dados / Alterar dados
             </h1>
             <div class="md-form">
                 <form action="/ProjetoPWBD/scripts/php/change_my_data.php" method="POST">

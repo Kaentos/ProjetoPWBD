@@ -1,0 +1,87 @@
+.i-container {
+    min-height: 500px;
+    background-color: #3B3B3B;
+    border: 1px solid #626262;
+    color: white;
+    border-radius: 2px;
+    width: 50%;
+    margin: 50px auto;
+}
+
+.i-schedule {
+    padding: 15px;
+}
+
+.i-schedule-title {
+    margin: auto;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.i-schedule-table {
+    border: 1px solid white;
+    margin: auto;
+    border-spacing: 0;
+    border-radius: 2px;
+}
+
+.i-schedule-table > thead > tr > th {
+    background-color: #204b73;
+    border: 1px solid white;
+    padding: 10px;
+    min-width: 250px;
+    font-size: 1.35rem;
+}
+
+.i-schedule-table > tbody > tr > td {
+    border: 1px solid white;
+    background-color:  #b0b0b0;
+    color: black;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 5px;
+}
+
+.i-prices {
+    padding: 15px;
+}
+
+.i-prices-title {
+    margin: auto;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.i-prices-table {
+    border: 1px solid white;
+    margin: auto;
+    border-spacing: 0;
+    border-radius: 2px;
+}
+
+.i-prices-table > thead > tr > th {
+    border: 1px solid white;
+    background-color: #204b73;
+    padding: 10px;
+    min-width: 250px;
+    font-size: 1.35rem;
+}
+
+.i-prices-table > tbody > tr > td:first-child {
+    text-align: left !important;
+}
+
+.i-prices-table > tbody > tr > td {
+    border: 1px solid white;
+    background-color:  #b0b0b0;
+    color: black;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 5px;
+}
