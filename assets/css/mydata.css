@@ -165,3 +165,60 @@ input[type=number] {
     background-color: #009c31;
     border: 2px solid green;
 }
+
+
+
+.md-zone-delete {
+    min-height: 100px;
+    background-color: #3B3B3B;
+    max-width: 900px;
+    margin: auto;
+    margin-top: 50px;
+    color: white;
+}
+.md-zone-delete > h1 {
+    text-align: center;
+    border-bottom: 1px solid #626262;
+    margin: 0px;
+    padding: 15px;
+    font-size: 2rem;
+}
+
+.md-form {
+    padding: 0px 25px;
+    display: inline;
+}
+
+.md-delete-pwd-group {
+    font-size: 1.3rem;
+    width: 65%;
+    margin: auto;
+}
+.md-delete-pwd-group > label {
+    width: 100%;
+    margin: auto;
+}
+.md-delete-pwd-group > input {
+    border: 2px solid white;
+    padding: 5px;
+    border-radius: 2px;
+    box-sizing: border-box; 
+    font-size: 1.3rem;
+    width: 100%;
+}
+
+.md-delete-select-group {
+    display: flex;
+    width: 65%;
+    margin: 15px auto 0 auto;
+    text-align: justify;
+}
+
+.md-delete-select-group > input {
+    transform: scale(1.5);
+    margin-right: 25px;
+}
+
+.md-delete-select-group > div {
+    font-size: 1.1rem;
+}

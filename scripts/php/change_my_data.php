@@ -17,8 +17,7 @@
         if ($stmt -> rowCount() == 1) {
             $oldUser = $stmt -> fetch();
         } else {
-            header("location: /ProjetoPWBD/logout.php");
-            die();
+            gotoLogout();
         }
 
         if (!password_verify($_POST["md_cPwd"], $oldUser["password"])) {

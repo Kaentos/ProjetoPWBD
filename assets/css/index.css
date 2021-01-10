@@ -8,16 +8,15 @@
     margin: 50px auto;
 }
 
-.i-schedule {
-    padding: 15px;
-}
-
 .i-schedule-title {
     margin: auto;
+    padding: 15px 0 15px 0;
     text-align: center;
     font-size: 2rem;
     font-weight: bold;
-    margin-bottom: 5px;
+    border-top: 1px solid #626262;
+    border-bottom: 1px solid #626262;
+    width: 100%;
 }
 
 .i-schedule-table {
@@ -25,6 +24,8 @@
     margin: auto;
     border-spacing: 0;
     border-radius: 2px;
+    margin-top: 10px;
+    margin-bottom: 50px;
 }
 
 .i-schedule-table > thead > tr > th {
@@ -45,16 +46,16 @@
     padding: 5px;
 }
 
-.i-prices {
-    padding: 15px;
-}
-
 .i-prices-title {
     margin: auto;
+    padding: 15px 0 15px 0;
     text-align: center;
     font-size: 2rem;
     font-weight: bold;
-    margin-bottom: 5px;
+    border-top: 1px solid #626262;
+    border-bottom: 1px solid #626262;
+    width: 100%;
+    margin-top: 10px;
 }
 
 .i-prices-table {
@@ -62,6 +63,8 @@
     margin: auto;
     border-spacing: 0;
     border-radius: 2px;
+    margin-top: 10px;
+    margin-bottom: 50px;
 }
 
 .i-prices-table > thead > tr > th {

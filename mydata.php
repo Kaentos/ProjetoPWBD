@@ -156,6 +156,30 @@
             </div>
         </div>
     </div>
+
+    <div class="md-zone-delete">
+        <h1>
+            Apagar conta
+        </h1>
+        <form class="md-form" action="/ProjetoPWBD/scripts/php/self_delete.php" method="POST">
+            <div class="md-delete-pwd-group">
+                <label for="md_delete_pwd">
+                    Palavra-passe<sup>*</sup>
+                </label>
+                <input type="password" name="md_delete_pwd" id="md_delete_pwd" required>
+            </div>
+            <div class="md-delete-select-group">
+                <input type="checkbox" name="md_delete_confirm" id="md_delete_confirm" value="confirm" required>
+                <div>
+                    Confirmo que ao apagar a conta não poderei voltar a recuperar a mesma e que o meu email e username serão guardados para evitar novos registos com os mesmos.
+                </div>
+            </div>
+
+            <div class="md-inputBtn">
+                <input type="submit" value="Apagar conta" name="deleteBtn" id="deleteBtn">
+            </div>
+        </form>
+    </div>
     
     <?php
         include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/footer.php");

@@ -10,8 +10,7 @@ function showInfoMyDataUser (user) {
     document.getElementById("md_name").value = user["nome"];
     document.getElementById("md_mobile").value = user["telemovel"];
     document.getElementById("md_tel").value = user["telefone"] == null ? "" : user["telefone"];
-    checkEditUserButton();
-    borderRed([document.getElementById("md_cPwd")]);
+    checkMyDataEditButton();
 }
 
 /* REGISTER */
@@ -46,12 +45,25 @@ const editInputValidations = {
     },
 };
 
+const deleteInputValidations = {
+    "md_delete_pwd": {
+        isValid: false,
+        regex: /^[a-zA-Z\d+!?#$%&_\-.,;]{4,64}$/
+    }, 
+    "md_delete_confirm": {
+        isValid: false
+    }
+}
+
 function activateLiveCheckMyData() {
     const inputs = document.querySelectorAll(".type-input");
     inputs.forEach(node => node.addEventListener("keyup", checkMyDataInput));
+    document.getElementById("md_delete_pwd").addEventListener("keyup", checkDeletePassword);
+    document.getElementById("md_delete_confirm").addEventListener("change", checkDeleteCheckBox);
+    checkMyDataDeleteButton();
 }
 
-function checkEditUserButton() {
+function checkMyDataEditButton() {
     for (const input in editInputValidations) {
         if (!editInputValidations[input].isValid) {
             document.getElementById("editBtn").classList.add("disabled");
@@ -63,18 +75,30 @@ function checkEditUserButton() {
     document.getElementById("editBtn").disabled = false;
 }
 
+function checkMyDataDeleteButton() {
+    for (const input in deleteInputValidations) {
+        if (!deleteInputValidations[input].isValid) {
+            document.getElementById("deleteBtn").classList.add("disabled");
+            document.getElementById("deleteBtn").disabled = true;
+            return;
+        }
+    }
+    document.getElementById("deleteBtn").classList.remove("disabled");
+    document.getElementById("deleteBtn").disabled = false;
+}
+
 function checkMyDataInput(event) {
     const {id, value} = event.target;
     if (id === "md_tel" && value === "") {
         editInputValidations[id].isValid = true;
         event.target.classList.remove("valid");
         event.target.classList.remove("invalid");
-        checkEditUserButton();
+        checkMyDataEditButton();
         return;
     }
     if (id === "md_pwd2" || id === "md_pwd") {
         checkPasswords();
-        checkEditUserButton();
+        checkMyDataEditButton();
         return;
     }
 
@@ -87,7 +111,7 @@ function checkMyDataInput(event) {
         event.target.classList.add("invalid");
         event.target.classList.remove("valid");
     }
-    checkEditUserButton();
+    checkMyDataEditButton();
 }
 
 function checkPasswords() {
@@ -98,7 +122,7 @@ function checkPasswords() {
         editInputValidations["md_pwd"].isValid = true;
         inputPwd.classList.remove("invalid");
         inputPwd2.classList.remove("invalid");
-        checkEditUserButton();
+        checkMyDataEditButton();
         return;
     }
 
@@ -123,6 +147,26 @@ function checkPasswords() {
     }
 }
 
+function checkDeletePassword(event) {
+    const { target } = event;
+    if (deleteInputValidations[target.id].regex.test(target.value)) {
+        deleteInputValidations[target.id].isValid = true;
+        target.classList.add("valid");
+        target.classList.remove("invalid");
+    } else {
+        deleteInputValidations[target.id].isValid = false;
+        target.classList.add("invalid");
+        target.classList.remove("valid");
+    }
+    checkMyDataDeleteButton();
+}
+
+function checkDeleteCheckBox(event) {
+    const { target } = event;
+    deleteInputValidations[target.id].isValid = target.checked;
+    checkMyDataDeleteButton();
+}
+
 function badMyData(code, reason) {
     const warningArea = document.getElementById("badWarning");
     warningArea.style.visibility = "visible";
@@ -136,6 +180,7 @@ function badMyData(code, reason) {
         case 6: toRedInputs = [document.getElementById("md_mobile")]; break;
         case 7: toRedInputs = [document.getElementById("md_tel")]; break;
         case 8: toRedInputs = [document.getElementById("md_cPwd")]; break;
+        case 9: toRedInputs = [document.getElementById("md_delete_pwd")]; break;
         default: return;
     }
     borderRed(toRedInputs);

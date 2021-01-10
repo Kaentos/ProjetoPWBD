@@ -38,6 +38,11 @@
         die();
     }
 
+    function gotoLogout() {
+        header("location: /ProjetoPWBD/logout.php");
+        die();
+    }
+
 
     /* Checks */
     function checkIfLogged() {

@@ -1,8 +1,7 @@
 <?php
     session_start();
     unset($_SESSION["badRegister"]);
-    if(isset($_POST["r_name"]) && isset($_POST["r_username"]) && isset($_POST["r_email"])
-     && isset($_POST["r_pwd"]) && isset($_POST["r_pwd2"]) && isset($_POST["r_mobile"])) {
+    if(isset($_POST["r_name"]) && isset($_POST["r_username"]) && isset($_POST["r_email"]) && isset($_POST["r_pwd"]) && isset($_POST["r_pwd2"]) && isset($_POST["r_mobile"])) {
         include("basedados.h");
         include("rules.php");
 
@@ -53,8 +52,10 @@
             gotoRegisterWithError("Número de telefone inválido", $user, 7);
         }
         $user["pwd"] = password_hash($user["pwd"], PASSWORD_BCRYPT, ["cost" => 12]);
-        $query = "INSERT INTO Utilizador (nome, username, email, password, telemovel, telefone, idTipo)
-            VALUE (:name, :username, :email, :pwd, :mobile, :tel, " . USER_TYPE_CLIENT . ");";
+        $query = "
+            INSERT INTO Utilizador (nome, username, email, password, telemovel, telefone, idTipo) 
+            VALUE (:name, :username, :email, :pwd, :mobile, :tel, " . USER_TYPE_CLIENT . ");
+        ";
         $stmt =  $dbo -> prepare($query);
         $stmt -> bindParam(":name", $user["name"]);
         $stmt -> bindParam(":username", $user["username"]);

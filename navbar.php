@@ -39,8 +39,8 @@
             } else {
                 echo "
                     <div class='navbar-links'>
-                        <a class='navbar-login navbar-LR' href='login.php'>Login</a>
-                        <a class='navbar-register navbar-LR' href='register.php'>Registar</a>
+                        <a class='navbar-login navbar-LR' href='/ProjetoPWBD/login.php'>Login</a>
+                        <a class='navbar-register navbar-LR' href='/ProjetoPWBD/register.php'>Registar</a>
                     </div>
                 ";
             }

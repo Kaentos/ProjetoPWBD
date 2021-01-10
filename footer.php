@@ -32,6 +32,33 @@
                             </li>
                         ";
                     }
+                    if (checkIfLogged()) {
+                        echo "
+                            <li class='footer-links-item'>
+                                <a href='/ProjetoPWBD/mydata.php'>
+                                    Meus Dados
+                                </a>
+                            </li>
+                            <li>
+                                <a href='/ProjetoPWBD/logout.php'>
+                                    Logout
+                                </a>
+                            </li>
+                        ";
+                    } else {
+                        echo "
+                            <li class='footer-links-item'>
+                                <a href='/ProjetoPWBD/login.php'>
+                                    Login
+                                </a>
+                            </li>
+                            <li>
+                                <a href='/ProjetoPWBD/register.php'>
+                                    Registar
+                                </a>
+                            </li>
+                        ";
+                    }
                 ?>
             </ul>
         </div>

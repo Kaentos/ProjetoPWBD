@@ -24,7 +24,7 @@
 
         <div class="i-schedule">
             <div class="i-schedule-title">
-                Horário
+                Horário de funcionamento
             </div>
             <table class="i-schedule-table">
                 <thead>
