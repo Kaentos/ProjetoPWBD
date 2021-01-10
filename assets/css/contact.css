@@ -1,0 +1,57 @@
+.c-container {
+    min-height: 500px;
+    background-color: #3B3B3B;
+    border: 1px solid #626262;
+    color: white;
+    border-radius: 2px;
+    width: 50%;
+    margin: 50px auto;
+}
+
+.c-info-title {
+    margin: auto;
+    padding: 15px 0 15px 0;
+    text-align: center;
+    font-size: 2rem;
+    font-weight: bold;
+    border-bottom: 1px solid #626262;
+    width: 100%;
+}
+
+.c-info-desc {
+    margin: auto;
+    text-align: center;
+    font-size: 1.2rem;
+    margin: 25px;
+}
+
+
+.c-info-table {
+    border: 1px solid white;
+    margin: auto;
+    border-spacing: 0;
+    border-radius: 2px;
+}
+
+.c-info-table > thead > tr > th {
+    background-color: #204b73;
+    border: 1px solid white;
+    padding: 10px;
+    min-width: 350px;
+    font-size: 1.25rem;
+}
+
+.c-info-table > tbody > tr > td {
+    border: 1px solid white;
+    background-color:  #b0b0b0;
+    color: black;
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-align: center;
+    padding: 5px;
+}
+
+.c-info-table-footer {
+    margin-bottom: 25px;
+    text-align: center;
+}

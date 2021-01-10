@@ -23,6 +23,7 @@
                     ";
                 }
             ?>
+            <a href="/ProjetoPWBD/contact.php">Contactos</a>
         </div>
     </div>
     <div>

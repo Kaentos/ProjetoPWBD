@@ -17,6 +17,11 @@
                         Página principal
                     </a>
                 </li>
+                <li class="footer-links-item">
+                    <a href="/ProjetoPWBD/contact.php">
+                        Contactos
+                    </a>
+                </li>
                 <?php
                     if(checkIfAdmin()) {
                         echo "

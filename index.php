@@ -19,6 +19,9 @@
 
     <div class="i-container">
 
+        <div>
+        </div>
+
         <div class="i-schedule">
             <div class="i-schedule-title">
                 Horário
@@ -32,6 +35,9 @@
                         <th>
                             Sábado
                         </th>
+                        <th>
+                            Domingo
+                        </th>
                     </tr>
                 </thead>
                 <tbody>
@@ -42,10 +48,16 @@
                         <td>
                             9:00 - 13:00
                         </td>
+                        <td>
+                            Encerrado
+                        </td>
                     </tr>
                     <tr>
                         <td>
                             14:00 - 18:00
+                        </td>
+                        <td>
+                            Encerrado
                         </td>
                         <td>
                             Encerrado
