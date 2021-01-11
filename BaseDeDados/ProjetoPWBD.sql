@@ -29,20 +29,12 @@ CREATE TABLE CategoriaVeiculo (
     duracao INT NOT NULL /* em minutos */
 );
 
-CREATE TABLE MarcaVeiculo (
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    nome TEXT NOT NULL, 
-    idCategoria INT NOT NULL,
-    CONSTRAINT TB_Marca_CategoriaVeiculo_FK FOREIGN KEY (idCategoria) REFERENCES CategoriaVeiculo(id)
-);
-
 CREATE TABLE Veiculo (
     id INT PRIMARY KEY AUTO_INCREMENT,
     matricula VARCHAR(6) NOT NULL UNIQUE,
     ano INT NOT NULL,
-    idMarca INT NOT NULL,
+    marca TEXT NOT NULL,
     idCategoria INT NOT NULL,
-    CONSTRAINT TB_Veiculo_MarcaVeiculo_FK FOREIGN KEY (idMarca) REFERENCES MarcaVeiculo(id),
     CONSTRAINT TB_Veiculo_CategoriaVeiculo_FK FOREIGN KEY (idCategoria) REFERENCES CategoriaVeiculo(id)
 );
 
@@ -60,6 +52,13 @@ CREATE TABLE LinhaInspecao (
     numero INT,
     idCategoria INT NOT NULL,
     CONSTRAINT TB_LinhaInspecao_CategoriaVeiculo_FK FOREIGN KEY (idCategoria) REFERENCES CategoriaVeiculo(id)
+);
+
+CREATE TABLE LinhaInspecaoUtilizador (
+    idLinha INT PRIMARY KEY AUTO_INCREMENT,
+    idUtilizador INT NOT NULL,
+    CONSTRAINT TB_LinhaInspecaUtilizador_LinhaInspecao_FK FOREIGN KEY (idLinha) REFERENCES LinhaInspecao(id),
+    CONSTRAINT TB_LinhaInspecaUtilizador_Utilizador_FK FOREIGN KEY (idUtilizador) REFERENCES Utilizador(id),
 );
 
 CREATE TABLE Inspecao (
@@ -89,20 +88,3 @@ INSERT INTO CategoriaVeiculo VALUES
 
 INSERT INTO LinhaInspecao (nome, idCategoria) VALUES
     ('AutoExp', 1), ('AutoFpz', 1), ('Moto', 2), ('Cami', 3);
-
-INSERT INTO MarcaVeiculo (nome, idCategoria) VALUES
-    ('Audi', 1), ('BMW', 1), ('Cadillac', 1), ('Chevrolet', 1), ('Dodge', 1), 
-    ('Ferrari', 1), ('Ford', 1), ('Honda', 1), ('Hummer', 1), ('Hyundai', 1),
-    ('Infiniti', 1), ('Jaguar', 1), ('Jeep', 1), ('Kia', 1), ('Lamborghini', 1),
-    ('Land Rover', 1), ('Lexus', 1), ('Lotus', 1), ('Mazda', 1), ('Mercedes-Benz', 1),
-    ('Mitsubishi', 1), ('Nissan', 1), ('Renault', 1), ('Peugeot', 1), ('Porsche', 1),
-    ('Subaru', 1), ('Suzuki', 1), ('Toyota', 1), ('Volkswagen', 1), ('Volvo', 1);
-
-INSERT INTO MarcaVeiculo (nome, idCategoria) VALUES
-    ('BMW', 2), ('Honda', 2), ('Yamaha', 2), ('Suzuki', 2), ('Peugeot', 2),
-    ('Kawasaki', 2), ('KTM', 2), ('Kymco', 2), ('Harley-Davidson', 2), ('Ducati', 2);
-
-INSERT INTO MarcaVeiculo (nome, idCategoria) VALUES
-    ('Chevrolet', 3), ('Volkswagen', 3), ('Fiat', 3), ('Mercedes-Benz', 3), ('Ford', 3),
-    ('Hyundai', 3), ('Kia', 3), ('Renault', 3), ('Scania', 3), ('Volvo', 2),
-    ('Toyota', 3), ('Iveco', 3);
