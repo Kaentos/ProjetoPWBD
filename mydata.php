@@ -2,7 +2,7 @@
     include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/scripts/php/major_functions.php");
     checkIfNotLoggedWithGoto();
 
-    include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/scripts/php/basedados.h");   
+    include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/scripts/php/basedados.h");
     
     $query = "
         SELECT *
@@ -17,8 +17,8 @@
         $user = $stmt -> fetch();
         unset($idUser);
     } else {
-        header("location: logout.php");
         die();
+        gotoLogout();
     }
 ?>
 
