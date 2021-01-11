@@ -91,6 +91,18 @@
         $stmt = $dbo -> prepare($query);
         $stmt -> execute($user);
 
+        if ( isset($_POST["eu_linha"]) ) {
+            $query = "
+                UPDATE LinhaInspecao_Utilizador
+                SET idLinha = :idLinha
+                WHERE idUtilizador = :id
+            ";
+            $stmt = $dbo -> prepare($query);
+            $stmt -> bindValue("idLinha", $_POST["eu_linha"]);
+            $stmt -> bindValue("id", $user["id"]);
+            $stmt -> execute();
+        }
+
         if ($stmt -> rowCount() == 1) {
             showMessage(false, "Alterou com sucesso o utilizador (ID: ".$user["id"].")");
             gotoListUsers();

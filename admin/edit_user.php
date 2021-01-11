@@ -27,6 +27,26 @@
         $stmt = $dbo -> prepare($query);
         $stmt -> execute();
         $userTypes = $stmt -> fetchAll();
+
+        if ($user["tipoId"] == USER_TYPE_INSPECTOR) {
+            $query = "
+                SELECT li.id, li.nome, cv.nome AS categoria
+                FROM LinhaInspecao AS li INNER JOIN CategoriaVeiculo AS cv ON li.idCategoria = cv.id;
+            ";        
+            $stmt = $dbo -> prepare($query);
+            $stmt -> execute();
+            $linhas = $stmt -> fetchAll();
+
+            $query = "
+                SELECT *
+                FROM LinhaInspecao_Utilizador
+                WHERE idUtilizador = :id;
+            ";        
+            $stmt = $dbo -> prepare($query);
+            $stmt -> bindValue("id", $user["id"]);
+            $stmt -> execute();
+            $userLinha = $stmt -> fetch();
+        }
     } else {
         gotoIndex();
     }
@@ -150,6 +170,41 @@
                             </select>
                         </div>
                     </div>
+
+                    <?php
+                        if (isset($linhas)) {
+                            echo "
+                                <div class='eu-inputGroup'>
+                                    <label for='eu_userTye'>
+                                        Linha de inspecao<sup>*</sup>
+                                    </label>
+                                    <div class='eu-inputGroup-input'>
+                                        <select id='eu_linha' name='eu_linha'>
+                            ";
+                            foreach($linhas as $linha) {
+                                if ($userLinha["idLinha"] == $linha["id"]) {
+                                    echo "
+                                        <option value=".$linha["id"]." selected>
+                                            ".$linha["categoria"]." - ".$linha["nome"]."
+                                        </option>
+                                    ";
+                                } else {
+                                    echo "
+                                        <option value=".$linha["id"].">
+                                            ".$linha["categoria"]." - ".$linha["nome"]."
+                                        </option>
+                                    ";
+                                }
+                            }
+                            echo "
+                                            
+                                        </select>
+                                    </div>
+                                </div>
+                            ";
+                        }
+                    ?>
+                    
 
 
                     <div class="eu-form-category">

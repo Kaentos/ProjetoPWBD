@@ -54,8 +54,8 @@ CREATE TABLE LinhaInspecao (
 );
 
 CREATE TABLE LinhaInspecao_Utilizador (
-    idLinha INT PRIMARY KEY AUTO_INCREMENT,
-    idUtilizador INT NOT NULL,
+    idLinha INT,
+    idUtilizador INT PRIMARY KEY,
     CONSTRAINT TB_LinhaInspecaUtilizador_LinhaInspecao_FK FOREIGN KEY (idLinha) REFERENCES LinhaInspecao(id),
     CONSTRAINT TB_LinhaInspecaUtilizador_Utilizador_FK FOREIGN KEY (idUtilizador) REFERENCES Utilizador(id)
 );
