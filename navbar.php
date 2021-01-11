@@ -12,7 +12,7 @@
                     ";
                 } else if (checkIfInspector()) {
                     echo "
-                        <a href='/ProjetoPWBD/admin'>Nao sei</a>
+                        <a href='/ProjetoPWBD/inspector/list.php'>Minhas inspecoes</a>
                     ";
                 } else if (checkIfClient()) {
                     echo "

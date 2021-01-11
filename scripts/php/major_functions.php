@@ -92,10 +92,22 @@
         return true;
     }
 
+    function checkIfInspectorWithGoto() {
+        if(!checkIfInspector()) {
+            gotoIndex();
+        }
+    }
+
     function checkIfClient() {
         if (LOGIN_DATA === null || LOGIN_DATA["type"] != USER_TYPE_CLIENT) {
             return false;
         }
         return true;
+    }
+
+    function checkIfClientWithGoto() {
+        if(!checkIfClient()) {
+            gotoIndex();
+        }
     }
 ?>

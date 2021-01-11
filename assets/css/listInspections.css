@@ -1,0 +1,169 @@
+.u-zone {
+    min-height: 700px;
+    width: 100%;
+    margin-top: 25px;
+}
+
+.message {
+    width: 95%;
+    border-radius: 2px;
+    box-sizing: border-box;
+    text-align: center;
+    padding: 10px;
+    font-size: 1.3rem;
+    color: white;
+    font-weight: bold;
+    margin: 25px auto;
+    visibility: hidden;
+    height: 50px;
+}
+
+.message-success {
+    background-color: #009c31;
+    border: 2px solid green;
+}
+
+.message-error {
+    background-color: #ff4336;
+    border: 2px solid #ff3021;
+}
+
+.u-panel {
+    margin: auto;
+    color: white;
+    background-color: #3B3B3B;
+    border: 1px solid #626262;
+    border-radius: 2px;
+    max-width: 95%;
+}
+
+.u-title {
+    font-size: 2rem;
+    font-weight: bold;
+    text-align: center;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.u-title > a {
+    text-decoration: none;
+    color: white;
+    background-color: #667292;
+    box-sizing: border-box;
+    border: 2px solid #626262;
+    border-radius: 2px;
+    padding: 0px 10px
+}
+
+.u-title > a:hover {
+    background-color: #4c4d8c;
+    border: 2px solid white;
+    color: white;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
+.u-table {
+    width: 100%;
+    border-collapse: collapse;
+    border-spacing: 0;
+    border: 2px solid #3B3B3B;
+}
+
+.u-table > thead > tr > th {
+    border: 2px solid #626262;
+    padding: 0px 5px;
+}
+
+.u-table > tbody > tr:nth-child(odd) {
+    background-color: #667292;
+    
+}
+
+.u-table > tbody > tr:nth-child(even) {
+    background-color: #4c4d8c;
+}
+
+
+.u-table > tbody > tr > td {
+    border: 2px solid #3B3B3B;
+    padding: 0px 10px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    text-align: center;
+    padding: 3px;
+}
+
+.u-table-icon {
+    height: 24px;
+    width: 24px;
+}
+
+.u-table-all-icons {
+    display: flex;
+    justify-content: center;
+}
+
+.u-table-all-icons > a {
+    padding: 5px;
+    border: 1px solid white;
+    border-radius: 2px;
+    text-decoration: none;
+    color: white;
+}
+.u-table-all-icons > a:hover {
+    background-color: #ffffff;
+    color: black;
+    transition: 0.5s;
+}
+
+.u-table-width-50 {
+    width: 50px;
+    max-width: 50px;
+    min-width: 50px;
+}
+.u-table-width-75 {
+    width: 75px;
+    max-width: 75px;
+    min-width: 75px;
+}
+.u-table-width-100 {
+    width: 100px;
+    max-width: 100px;
+    min-width: 100px;
+}
+.u-table-width-125 {
+    width: 125px;
+    max-width: 125px;
+    min-width: 125px;
+}
+.u-table-width-150 {
+    width: 150px;
+    max-width: 150px;
+    min-width: 150px;
+}
+.u-table-width-200 {
+    width: 200px;
+    max-width: 200px;
+    min-width: 200px;
+}
+.u-table-width-250 {
+    width: 250px;
+    max-width: 250px;
+    min-width: 250px;
+}
+
+.canWrap {
+    white-space: normal !important;
+}
+
+.red-icon {
+    background-color: #ff5e5e !important;
+}
+
+.red-icon:hover {
+    background-color: red !important;
+    transition: 0.5s;
+}
