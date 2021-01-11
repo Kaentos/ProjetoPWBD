@@ -103,6 +103,6 @@ INSERT INTO MarcaVeiculo (nome, idCategoria) VALUES
     ('Kawasaki', 2), ('KTM', 2), ('Kymco', 2), ('Harley-Davidson', 2), ('Ducati', 2);
 
 INSERT INTO MarcaVeiculo (nome, idCategoria) VALUES
-    ('Chevrolet', 3), ('Volkswagen', 3), ('Fiat', 3), ('Mercedes-Benz', 3), ('Ford', 3)
+    ('Chevrolet', 3), ('Volkswagen', 3), ('Fiat', 3), ('Mercedes-Benz', 3), ('Ford', 3),
     ('Hyundai', 3), ('Kia', 3), ('Renault', 3), ('Scania', 3), ('Volvo', 2)
     ('Toyota', 3), ('Iveco', 3);
