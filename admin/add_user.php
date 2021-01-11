@@ -1,6 +1,19 @@
 <?php
     include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/scripts/php/major_functions.php");
-    checkIfLoggedWithGoto();
+    checkIfAdminWithGoto();
+
+    include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/scripts/php/basedados.h");
+    $query = "
+        SELECT *
+        FROM TipoUtilizador
+        ORDER BY nome;
+    ";        
+    $stmt = $dbo -> prepare($query);
+    $stmt -> execute();
+    if ($stmt -> rowCount() == 0) {
+        die("Não existem tipos de utilizadores");
+    }
+    $userTypes = $stmt -> fetchAll();
 ?>
 
 <!DOCTYPE html>
@@ -8,10 +21,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/register.css">
-    <link rel="stylesheet" href="assets/css/login_register.css">
-    <link rel="stylesheet" href="assets/css/navbar_footer.css">
-    <script src="assets/js/login_register.js"></script>
+    <link rel="stylesheet" href="/ProjetoPWBD/assets/css/register.css">
+    <link rel="stylesheet" href="/ProjetoPWBD/assets/css/login_register.css">
+    <link rel="stylesheet" href="/ProjetoPWBD/assets/css/navbar_footer.css">
+    <script src="/ProjetoPWBD/assets/js/login_register.js"></script>
     
     <script>
         window.onload = function() {
@@ -37,10 +50,10 @@
         </div>
         <div class="r-panel">
             <h1>
-                Registar
+                Adicionar utilizador
             </h1>
             <div class="r-form">
-                <form action="scripts/php/efetua_registo.php" method="POST">
+                <form action="/ProjetoPWBD/scripts/php/efetua_registo.php" method="POST">
                     <div class="r-form-category">
                         Informação da conta
                     </div>
@@ -81,6 +94,37 @@
                         </div>
                     </div>
 
+                    <div class="r-inputGroup">
+                        <label for="r_userType">
+                            Tipo utilizador<sup>*</sup>
+                        </label>
+                        <div class="r-inputGroup-input">
+                            <select id="r_userType" name="r_userType">
+                                <?php
+                                    foreach ($userTypes as $type) {
+                                        // Se o tipo for apagado não coloca na lista
+                                        if ($type["id"] == USER_TYPE_DELETED) {
+                                            continue;
+                                        }
+                                        if ($type["id"] == USER_TYPE_CLIENT) {
+                                            echo "
+                                                <option value='". $type["id"] ."' selected>
+                                                    ". $type["nome"] ."
+                                                </option>
+                                            ";
+                                        } else {
+                                            echo "
+                                                <option value='". $type["id"] ."'>
+                                                    ". $type["nome"] ."
+                                                </option>
+                                            ";
+                                        }
+                                    }
+                                ?>
+                            </select>
+                        </div>
+                    </div>
+
 
 
                     <div class="r-form-category">
@@ -115,7 +159,7 @@
                     </div>
 
                     <div class="lr-inputBtn">
-                        <input type="submit" value="Registar" name="registerBtn" id="registerBtn">
+                        <input type="submit" value="Adicionar" name="registerBtn" id="registerBtn">
                     </div>
                 </form>
             </div>

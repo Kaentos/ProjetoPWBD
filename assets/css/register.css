@@ -81,6 +81,15 @@ input[type=number] {
     width: 100%;
 }
 
+.r-inputGroup-input > select {
+    border: 2px solid white;
+    padding: 5px;
+    border-radius: 2px;
+    box-sizing: border-box; 
+    font-size: 1.3rem;
+    width: 100%;
+}
+
 .r-inputGroup-input > span {
     font-size: 0.8rem !important;
     font-weight: normal !important;

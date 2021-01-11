@@ -7,7 +7,7 @@
 
         $query = "
             SELECT *
-            FROM utilizador
+            FROM Utilizador
             WHERE id = :id;
         ";
         $stmt = $dbo -> prepare($query);
@@ -69,7 +69,7 @@
         } else {
             $query = "
                 SELECT id 
-                FROM utilizador
+                FROM Utilizador
                 WHERE email = :email AND id != :id;
             ";
             $stmt = $dbo -> prepare($query);

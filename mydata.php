@@ -6,18 +6,18 @@
     
     $query = "
         SELECT *
-        FROM utilizador
+        FROM Utilizador
         WHERE id = :id;
     ";
     $stmt = $dbo -> prepare($query);
     $idUser = LOGIN_DATA["id"];
     $stmt -> bindParam("id", $idUser);
     $stmt -> execute();
+    
     if ($stmt -> rowCount() == 1) {
         $user = $stmt -> fetch();
         unset($idUser);
     } else {
-        die();
         gotoLogout();
     }
 ?>

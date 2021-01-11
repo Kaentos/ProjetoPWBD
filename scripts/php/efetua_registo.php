@@ -54,17 +54,35 @@
         $user["pwd"] = password_hash($user["pwd"], PASSWORD_BCRYPT, ["cost" => 12]);
         $query = "
             INSERT INTO Utilizador (nome, username, email, password, telemovel, telefone, idTipo) 
-            VALUE (:name, :username, :email, :pwd, :mobile, :tel, " . USER_TYPE_CLIENT . ");
+            VALUE (:name, :username, :email, :pwd, :mobile, :tel, :idTipo);
         ";
         $stmt =  $dbo -> prepare($query);
-        $stmt -> bindParam(":name", $user["name"]);
-        $stmt -> bindParam(":username", $user["username"]);
-        $stmt -> bindParam(":email", $user["email"]);
-        $stmt -> bindParam(":pwd", $user["pwd"]);
-        $stmt -> bindParam(":mobile", $user["mobile"]);
-        $stmt -> bindParam(":tel", $user["tel"]);
-        
+        $stmt -> bindValue(":name", $user["name"]);
+        $stmt -> bindValue(":username", $user["username"]);
+        $stmt -> bindValue(":email", $user["email"]);
+        $stmt -> bindValue(":pwd", $user["pwd"]);
+        $stmt -> bindValue(":mobile", $user["mobile"]);
+        $stmt -> bindValue(":tel", $user["tel"]);
+        if (isset($_POST["r_userType"])) {
+            $checkQuery = "
+                SELECT *
+                FROM TipoUtilizador
+                WHERE id = ".$_POST["r_userType"]."
+            ";
+            $checkStmt = $dbo -> prepare($checkQuery);
+            $checkStmt -> execute();
+            if ($checkStmt -> rowCount() == 1) {
+                $stmt -> bindValue("idTipo", $_POST["r_userType"]);
+            } else {
+                die("no");
+            }
+        } else {
+            $stmt -> bindValue("idTipo", USER_TYPE_CLIENT);
+        }
         if ($stmt -> execute()) {
+            if (isset($_POST["r_userType"])) {
+                gotoListUsers();
+            }
             gotoIndex();
         } else {
             gotoRegisterWithError("Contact admin.", $user, 0);
