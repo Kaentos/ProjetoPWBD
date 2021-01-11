@@ -93,14 +93,28 @@
 
         if ( isset($_POST["eu_linha"]) ) {
             $query = "
-                UPDATE LinhaInspecao_Utilizador
-                SET idLinha = :idLinha
-                WHERE idUtilizador = :id
+                SELECT * FROM LinhaInspecao_Utilizador WHERE idUtilizador = :id
             ";
             $stmt = $dbo -> prepare($query);
-            $stmt -> bindValue("idLinha", $_POST["eu_linha"]);
             $stmt -> bindValue("id", $user["id"]);
             $stmt -> execute();
+            if ($stmt -> rowCount() == 1) {
+                $query = "
+                    UPDATE LinhaInspecao_Utilizador
+                    SET idLinha = :idLinha
+                    WHERE idUtilizador = :id
+                ";
+                $stmt = $dbo -> prepare($query);
+                $stmt -> bindValue("idLinha", $_POST["eu_linha"]);
+                $stmt -> bindValue("id", $user["id"]);
+                $stmt -> execute();
+            } else {
+                $query = "INSERT INTO LinhaInspecao_Utilizador VALUES (:idLinha, :idUtilizador);";
+                $stmt = $dbo -> prepare($query);
+                $stmt -> bindValue("idLinha", $_POST["eu_linha"]);
+                $stmt -> bindValue("idUtilizador", $user["id"]);
+                $stmt -> execute();
+            }
         }
 
         if ($stmt -> rowCount() == 1) {
