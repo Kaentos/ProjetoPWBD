@@ -176,8 +176,9 @@ function badRegister(reason, code) {
         case 2: toRedInputs = [document.getElementById("r_email")]; break;
         case 3: toRedInputs = [document.getElementById("r_pwd"), document.getElementById("r_pwd2")]; break;
         case 5: toRedInputs = [document.getElementById("r_name")]; break;
-        case 6: toRedInputs = [document.getElementsByName("r_mobile")]; break;
-        case 7: toRedInputs = [document.getElementsByName("r_tel")]; break;
+        case 6: toRedInputs = [document.getElementById("r_mobile")]; break;
+        case 7: toRedInputs = [document.getElementById("r_tel")]; break;
+        case 8: toRedInputs = [document.getElementById("r_userType")]; break;
         default: return;
     }
     borderRed(toRedInputs);

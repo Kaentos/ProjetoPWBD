@@ -6,7 +6,7 @@
     if (isset($_GET["id"])) {
         $query = "
             SELECT u.id, u.username, u.email, tu.id AS tipoId, tu.nome AS tipoNome, u.nome, u.telemovel, u.telefone, u.isActive, u.isDeleted
-            FROM utilizador AS u INNER JOIN tipoutilizador AS tu ON u.idTipo = tu.id 
+            FROM Utilizador AS u INNER JOIN TipoUtilizador AS tu ON u.idTipo = tu.id 
             WHERE u.id = :id;
         ";
         $stmt = $dbo -> prepare($query);
@@ -21,7 +21,7 @@
 
         $query = "
             SELECT *
-            FROM tipoutilizador
+            FROM TipoUtilizador
             ORDER BY nome;
         ";        
         $stmt = $dbo -> prepare($query);

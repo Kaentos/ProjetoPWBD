@@ -46,7 +46,12 @@
 
         <div class="u-panel">
             <div class="u-title">
-                Utilizadores
+                <div>
+                    Todos utilizadores
+                </div>
+                <a href="/ProjetoPWBD/admin/add_user.php">
+                    Adicionar novo
+                </a>
             </div>
             <table class="u-table">
                 <thead>

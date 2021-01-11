@@ -36,7 +36,7 @@
         } else {
             $query = "
                 SELECT id 
-                FROM utilizador
+                FROM Utilizador
                 WHERE username = :username AND id != :id;
             ";
             $stmt = $dbo -> prepare($query);
@@ -55,7 +55,7 @@
         } else {
             $query = "
                 SELECT id 
-                FROM utilizador
+                FROM Utilizador
                 WHERE email = :email AND id != :id;
             ";
             $stmt = $dbo -> prepare($query);
@@ -84,7 +84,7 @@
         }
 
         $query = "
-            UPDATE utilizador
+            UPDATE Utilizador
             ". $editColumns ."
             WHERE id = :id
         ";

@@ -1,9 +1,8 @@
 <?php
-    session_start();
+    include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/scripts/php/major_functions.php");
     unset($_SESSION["badRegister"]);
     if(isset($_POST["r_name"]) && isset($_POST["r_username"]) && isset($_POST["r_email"]) && isset($_POST["r_pwd"]) && isset($_POST["r_pwd2"]) && isset($_POST["r_mobile"])) {
-        include("basedados.h");
-        include("rules.php");
+        include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/scripts/php/basedados.h");
 
         $user = [
             "name" => trim($_POST["r_name"]),
@@ -74,7 +73,9 @@
             if ($checkStmt -> rowCount() == 1) {
                 $stmt -> bindValue("idTipo", $_POST["r_userType"]);
             } else {
-                die("no");
+                $error = "Tipo de utilizador inválido";
+                $_SESSION["badRegister"] = ["error" => $error, "user" => $user, "code" => 8];
+                gotoAddUser();
             }
         } else {
             $stmt -> bindValue("idTipo", USER_TYPE_CLIENT);
@@ -82,12 +83,12 @@
         if ($stmt -> execute()) {
             if (isset($_POST["r_userType"])) {
                 gotoListUsers();
+            } else {
+                gotoIndex();
             }
-            gotoIndex();
         } else {
             gotoRegisterWithError("Contact admin.", $user, 0);
         }
-        
 
     } else {
         gotoRegisterWithError("error", $user, 0);
@@ -102,14 +103,5 @@
         unset($user["pwd2"]);
         $_SESSION["badRegister"] = ["error" => $error, "user" => $user, "code" => $code];
         gotoRegister();
-    }
-    function gotoRegister() {
-        header("location: ../../register.php");
-        die();
-    }
-
-    function gotoIndex() {
-        header("location: ../../index.php");
-        die();
     }
 ?>

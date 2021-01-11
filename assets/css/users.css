@@ -41,9 +41,27 @@
     font-size: 2rem;
     font-weight: bold;
     text-align: center;
-    border-bottom: 1px solid #626262;
-    width: 100%;
-    padding: 10px 0px;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+.u-title > a {
+    text-decoration: none;
+    color: white;
+    background-color: #667292;
+    box-sizing: border-box;
+    border: 2px solid #626262;
+    border-radius: 2px;
+    padding: 0px 10px
+}
+
+.u-title > a:hover {
+    background-color: #4c4d8c;
+    border: 2px solid white;
+    color: white;
+    transition: 0.5s;
+    cursor: pointer;
 }
 
 .u-table {

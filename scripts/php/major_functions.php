@@ -23,8 +23,18 @@
         die();
     }
 
+    function gotoRegister() {
+        header("location: /ProjetoPWBD/register.php");
+        die();
+    }
+
     function gotoListUsers() {
         header("location: /ProjetoPWBD/admin/users.php");
+        die();
+    }
+
+    function gotoAddUser() {
+        header("location: /ProjetoPWBD/admin/add_user.php");
         die();
     }
 
