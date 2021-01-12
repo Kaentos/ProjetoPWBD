@@ -9,7 +9,7 @@
             die("Matricula Invalida");
         }
         $year = intval($_POST["nv_year"]);
-        if ($year < 1900 && $year < getdate()["year"]) {
+        if ($year < 1900 || $year > getdate()["year"]) {
             die("Ano Invalido");
         }
         $vehicle = array(
@@ -20,10 +20,11 @@
         );
         include("basedados.h");
         $query = "SELECT matricula FROM veiculo
-            WHERE matricula = $matricula;";
+            WHERE matricula = :matricula;";
         $stmt = $dbo->prepare($query);
+        $stmt->bindValue("matricula", $matricula);
         $stmt->execute();
-        if ($stmt->rowCount() !== 0) {
+        if ($stmt->rowCount() != 0) {
             die("Matricula ja esta registada");
         }
         $query = "INSERT INTO veiculo (matricula, ano, marca, idCategoria) VALUES (:matricula, :ano, :marca, :idCategoria);";
@@ -33,14 +34,16 @@
         $stmt->bindValue("marca", $vehicle["brand"]);
         $stmt->bindValue("idCategoria", $vehicle["cat"]);
         $stmt->execute();
-        if ($stmt->rowCount() === 1) {
+        if ($stmt->rowCount() == 1) {
             $query = "SELECT id FROM veiculo WHERE matricula = :matricula;";
             $stmt = $dbo->prepare($query);
             $stmt->bindValue("matricula", $vehicle["matricula"]);
             $stmt->execute();
             $inserted_id = $stmt->fetch()["id"];
-            $query = "INSERT INTO veiculo_utilizador VALUES (".$inserted_id.", ".LOGIN_DATA["id"].");";
+            $query = "INSERT INTO veiculo_utilizador VALUES (:id, :userid);";
             $stmt = $dbo->prepare($query);
+            $stmt->bindValue("id", $inserted_id);
+            $stmt->bindValue("userid", LOGIN_DATA["id"]);
             $stmt->execute();
         }
         header("Location: /ProjetoPWBD/vehicle/index.php");
