@@ -11,6 +11,7 @@
     define("REGEX_CONTACTNUMBER", "/^[0-9]{9}$/");
     // https://stackoverflow.com/questions/19605150/regex-for-password-must-contain-at-least-eight-characters-at-least-one-number-a
     define("REGEX_PWD", "/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d+!?#$%&_\-.,;]{4,64}$/");
+    define("REGEX_PLATE", "/^[A-Z0-9]{6}$/");
     
     define("USER_TYPE_ADMIN", 1);
     define("USER_TYPE_INSPECTOR", 2);
