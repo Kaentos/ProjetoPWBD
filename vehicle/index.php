@@ -98,7 +98,7 @@
                                             <a href='edit.php?id=".$vehicle["id"]."'>
                                                 <img class='u-table-icon' src='../assets/img/icons/pencil.png' alt='Editar' srcset=''>
                                             </a>
-                                            <a href='delete.php?id=".$vehicle["id"]."'>
+                                            <a href='../scripts/php/delete_vehicle.php?id=".$vehicle["id"]."'>
                                                 <img class='u-table-icon' src='../assets/img/icons/garbage.png' alt='Apagar' srcset=''>
                                             </a>
                                         </div>

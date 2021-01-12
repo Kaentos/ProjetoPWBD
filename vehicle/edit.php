@@ -15,11 +15,12 @@
     $result = $stmt -> fetchAll();
     define("CATEGORIES", $result);
     $idtoedit = $_GET["id"];
-    $query = "SELECT idVeiculo FROM veiculo_utilizador WHERE idUtilizador = ".LOGIN_DATA["id"]." AND idVeiculo = :id;";
+    $query = "SELECT idVeiculo FROM veiculo_utilizador WHERE idUtilizador = :userid AND idVeiculo = :id;";
     $stmt = $dbo -> prepare($query);
+    $stmt->bindValue("userid", LOGIN_DATA["id"]);
     $stmt->bindValue("id", $idtoedit);
     $stmt->execute();
-    if ($stmt->rowCount() !== 1) {
+    if ($stmt->rowCount() != 1) {
         die("Veiculo invalido (não existe ou não pertence ao utilizador)");
     }
     $query = "SELECT veiculo.id, veiculo.matricula, veiculo.ano, veiculo.marca, categoriaveiculo.id categoria
@@ -28,7 +29,7 @@
     $stmt = $dbo -> prepare($query);
     $stmt->bindValue("id", $idtoedit);
     $stmt->execute();
-    if ($stmt->rowCount() !== 1) {
+    if ($stmt->rowCount() != 1) {
         die("Erro a obter detalhes do veiculo");
     }
     $result = $stmt->fetch();
@@ -71,7 +72,7 @@
                 Editar Veículo
             </h1>
             <div class="eu-form">
-                <form action="/ProjetoPWBD/scripts/php/new_vehicle.php" method="POST">
+                <form action="/ProjetoPWBD/scripts/php/edit_vehicle.php" method="POST">
                     <div class="eu-form-category">
                         Detalhes do Veículo
                     </div>
