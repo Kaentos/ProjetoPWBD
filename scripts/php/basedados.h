@@ -1,10 +1,10 @@
 <?php
-    define("DB_SERVER", "localhost");
-    define("DB_USER", "root");
-    define("DB_PASSWORD", "");
-    define("DB_NAME", "CentroInspecoes");
+    define("HOST_BD", "localhost");
+    define("USER_BD", "root");
+    define("PASS_BD", "");
+    define("NOME_BD", "CentroInspecoes");
     try {
-        $dbo = new PDO("mysql:host=". DB_SERVER .";dbname=".DB_NAME.";charset=utf8", DB_USER, DB_PASSWORD);
+        $dbo = new PDO("mysql:host=". HOST_BD .";dbname=".NOME_BD.";charset=utf8", USER_BD, PASS_BD);
     } catch (PDOException $e) {
         echo "Erro a conectar à base de dados.";
         die();
