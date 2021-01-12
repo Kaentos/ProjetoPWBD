@@ -5,9 +5,14 @@
     }
 
     include("../scripts/php/basedados.h");
-    $query = "SELECT * FROM inspecao WHERE idCliente = ".LOGIN_DATA["id"].";";
-    $stmt = $dbo -> prepare($query);
-    $stmt -> execute();
+    $query = "SELECT inspecao.id, inspecao.horaInicio, inspecao.horaFim, veiculo.matricula, linhainspecao.nome linha, 
+        inspecao.isDoing, inspecao.isCompleted FROM inspecao 
+        INNER JOIN veiculo ON inspecao.idVeiculo=veiculo.id
+        INNER JOIN linhainspecao ON inspecao.idLinha=linhainspecao.id
+        WHERE inspecao.idCliente = :clienteid;";
+    $stmt = $dbo->prepare($query);
+    $stmt->bindValue("clienteid", LOGIN_DATA["id"]);
+    $stmt->execute();
     $result = $stmt -> fetchAll();
     define("INSPECTIONS", $result);
 ?>
@@ -59,10 +64,13 @@
                             Hora de Fim
                         </th>
                         <th class="u-table-width-100">
-                            ID de Linha
+                            Veículo
                         </th>
                         <th class="u-table-width-100">
-                            ID de Inspetor
+                            Linha
+                        </th>
+                        <th class="u-table-width-50">
+                            Status
                         </th>
                         <th class="u-table-width-50">
                             Ações
@@ -73,8 +81,13 @@
                 <tbody>
                     <?php
                         foreach(INSPECTIONS as $inspection) {
-                            $id_inspetor = $inspection["idInspetor"] !== NULL ? $inspection["idInspetor"] : "Por atribuir";
-                            $id_linha = $inspection["idLinha"] !== NULL ? $inspection["idLinha"] : "Por atribuir";
+                            if ($inspection["isDoing"]) {
+                                $status = "Em progresso";
+                            } elseif ($inspection["isCompleted"]) {
+                                $status = "Completa";
+                            } else {
+                                $status = "Marcada";
+                            }
                             echo "
                                 <tr>
                                     <th class='u-table-width-50'>
@@ -87,30 +100,33 @@
                                         ".$inspection["horaFim"]."
                                     </th>
                                     <th class='u-table-width-100'>
-                                        ".$id_linha."
+                                        ".$inspection["matricula"]."
                                     </th>
                                     <th class='u-table-width-100'>
-                                        ".$id_inspetor."
+                                        ".$inspection["linha"]."
+                                    </th>
+                                    <th class='u-table-width-50'>
+                                        ".$status."
                                     </th>
                                     <th class='u-table-width-50'>
                                         <div class='u-table-all-icons'>
                                     ";
-                                    if ($id_inspetor !== NULL) {
+                                    $date_diff = date_diff(date_create($inspection["horaInicio"]), date_create());
+                                    if ($date_diff->d > 2 && $date_diff->invert == true) {
                                         echo "
                                             <a href='edit_user.php?id=".$inspection["id"]."'>
                                                 <img class='u-table-icon' src='../assets/img/icons/pencil.png' alt='Editar' srcset=''>
                                             </a>
+                                            <a href='remove_user.php?id=".$inspection["id"]."'>
+                                                <img class='u-table-icon' src='../assets/img/icons/garbage.png' alt='Apagar' srcset=''>
+                                            </a>
                                         ";
                                     }
-                                    echo "
-                                        <a href='remove_user.php?id=".$inspection["id"]."'>
-                                            <img class='u-table-icon' src='../assets/img/icons/garbage.png' alt='Apagar' srcset=''>
-                                        </a>
-                                        ";
-                                    echo "
-                                        </th>
-                                        </tr>
-                                        ";
+                            echo "
+                                        </div>
+                                    </th>
+                                </tr>
+                            ";
                         }
                     ?>
                 </tbody>
