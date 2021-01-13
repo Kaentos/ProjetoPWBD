@@ -20,7 +20,7 @@ CREATE TABLE Utilizador (
     isActive BOOLEAN DEFAULT FALSE NOT NULL,
     isDeleted BOOLEAN DEFAULT FALSE NOT NULL,
     idTipo INT NOT NULL,
-    CONSTRAINT TB_Utilizador_TipoUtilizador_FK FOREIGN KEY (idTipo) REFERENCES TipoUtilizador(id)
+    CONSTRAINT TB_Utilizador_TipoUtilizador_FK FOREIGN KEY (idTipo) REFERENCES TipoUtilizador(id) ON DELETE CASCADE
 );
 
 CREATE TABLE CategoriaVeiculo (
@@ -35,29 +35,29 @@ CREATE TABLE Veiculo (
     ano INT NOT NULL,
     marca TEXT NOT NULL,
     idCategoria INT NOT NULL,
-    CONSTRAINT TB_Veiculo_CategoriaVeiculo_FK FOREIGN KEY (idCategoria) REFERENCES CategoriaVeiculo(id)
+    CONSTRAINT TB_Veiculo_CategoriaVeiculo_FK FOREIGN KEY (idCategoria) REFERENCES CategoriaVeiculo(id) ON DELETE CASCADE
 );
 
 CREATE TABLE Veiculo_Utilizador (
     idVeiculo INT,
     idUtilizador INT,
     PRIMARY KEY (idVeiculo, idUtilizador),
-    CONSTRAINT TB_VeiculoUtilizador_Veiculo_FK FOREIGN KEY (idVeiculo) REFERENCES Veiculo(id),
-    CONSTRAINT TB_VeiculoUtilizador_Utilizador_FK FOREIGN KEY (idUtilizador) REFERENCES Utilizador(id)
+    CONSTRAINT TB_VeiculoUtilizador_Veiculo_FK FOREIGN KEY (idVeiculo) REFERENCES Veiculo(id) ON DELETE CASCADE,
+    CONSTRAINT TB_VeiculoUtilizador_Utilizador_FK FOREIGN KEY (idUtilizador) REFERENCES Utilizador(id) ON DELETE CASCADE
 );
 
 CREATE TABLE LinhaInspecao (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(64),
     idCategoria INT NOT NULL,
-    CONSTRAINT TB_LinhaInspecao_CategoriaVeiculo_FK FOREIGN KEY (idCategoria) REFERENCES CategoriaVeiculo(id)
+    CONSTRAINT TB_LinhaInspecao_CategoriaVeiculo_FK FOREIGN KEY (idCategoria) REFERENCES CategoriaVeiculo(id) ON DELETE CASCADE
 );
 
 CREATE TABLE LinhaInspecao_Utilizador (
     idLinha INT,
     idUtilizador INT PRIMARY KEY,
-    CONSTRAINT TB_LinhaInspecaUtilizador_LinhaInspecao_FK FOREIGN KEY (idLinha) REFERENCES LinhaInspecao(id),
-    CONSTRAINT TB_LinhaInspecaUtilizador_Utilizador_FK FOREIGN KEY (idUtilizador) REFERENCES Utilizador(id)
+    CONSTRAINT TB_LinhaInspecaUtilizador_LinhaInspecao_FK FOREIGN KEY (idLinha) REFERENCES LinhaInspecao(id) ON DELETE CASCADE,
+    CONSTRAINT TB_LinhaInspecaUtilizador_Utilizador_FK FOREIGN KEY (idUtilizador) REFERENCES Utilizador(id) ON DELETE CASCADE
 );
 
 CREATE TABLE Inspecao (
@@ -69,9 +69,9 @@ CREATE TABLE Inspecao (
     idLinha INT NOT NULL,
     isDoing BOOLEAN DEFAULT FALSE NOT NULL,  
     isCompleted BOOLEAN DEFAULT FALSE NOT NULL,
-    CONSTRAINT TB_Inspecao_Utilizador_Cliente_FK FOREIGN KEY (idCliente) REFERENCES Utilizador(id),
-    CONSTRAINT TB_Inspecao_Veiculo_FK FOREIGN KEY (idVeiculo) REFERENCES Veiculo(id),
-    CONSTRAINT TB_Inspecao_LinhaInspecao_FK FOREIGN KEY (idLinha) REFERENCES LinhaInspecao(id)
+    CONSTRAINT TB_Inspecao_Utilizador_Cliente_FK FOREIGN KEY (idCliente) REFERENCES Utilizador(id) ON DELETE CASCADE,
+    CONSTRAINT TB_Inspecao_Veiculo_FK FOREIGN KEY (idVeiculo) REFERENCES Veiculo(id) ON DELETE CASCADE,
+    CONSTRAINT TB_Inspecao_LinhaInspecao_FK FOREIGN KEY (idLinha) REFERENCES LinhaInspecao(id) ON DELETE CASCADE
 );
 
 INSERT INTO TipoUtilizador VALUES
