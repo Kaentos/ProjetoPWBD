@@ -17,9 +17,7 @@
                 } else if (checkIfClient()) {
                     echo "
                         <a href='/ProjetoPWBD/admin'>Meus dados</a>
-                        <a href='/ProjetoPWBD/admin'>Marcações</a>
-                        <a href='/ProjetoPWBD/admin'>Minhas Marcações</a>
-                        <a href='/ProjetoPWBD/admin'>Meus veículos</a>
+                        <a href='/ProjetoPWBD/customer'>Minhas Marcações</a>
                     ";
                 }
             ?>

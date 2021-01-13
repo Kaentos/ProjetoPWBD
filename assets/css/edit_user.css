@@ -173,6 +173,26 @@ input[type=number] {
     cursor: pointer;
 }
 
+.eu-inputBtn > a {
+    font-size: 1.3rem;
+    font-weight: bold;
+    background-color: #667292;
+    box-sizing: border-box;
+    border: 2px solid #626262;
+    border-radius: 2px;
+    padding: 10px 30px;
+    color: white;
+    text-decoration: none;
+}
+
+.eu-inputBtn > a:hover {
+    background-color: #4c4d8c;
+    border: 2px solid white;
+    color: white;
+    transition: 0.5s;
+    cursor: pointer;
+}
+
 .eu-footer {
     border-top: 1px solid #626262;
     text-align: center;
