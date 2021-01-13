@@ -4,12 +4,20 @@
         gotoIndex();
     }
 
-    include("../scripts/php/basedados.h");
-    $query = "SELECT * FROM categoriaveiculo;";
-    $stmt = $dbo -> prepare($query);
-    $stmt -> execute();
-    $result = $stmt -> fetchAll();
-    define("CATEGORIES", $result);
+    include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/scripts/php/basedados.h");
+    $query = "SELECT veiculo.id, veiculo.matricula FROM veiculo
+        INNER JOIN veiculo_utilizador ON veiculo.id=veiculo_utilizador.idVeiculo
+        WHERE veiculo_utilizador.idUtilizador = :userid";
+    $stmt = $dbo->prepare($query);
+    $stmt->bindValue("userid", LOGIN_DATA["id"]);
+    $stmt->execute();
+    if ($stmt->rowCount() == 0) {
+        $novehicles = true;
+    } else {
+        $novehicles = false;
+        $result = $stmt->fetchAll();
+        define("VEHICLES", $result);
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -31,9 +39,6 @@
 
                 
             ?>
-            let today = new Date();
-            // document.getElementById("ni_startdate").min = `${today.getFullYear()}-${today.getMonth() + 1}-${today.getDate()}`;
-            document.getElementById("ni_startdate").min = today.toISOString();
         }
     </script>
     <title>CI | Nova Marcação</title>
@@ -47,51 +52,61 @@
             
         </div>
         <div class="eu-panel">
-            <h1>
-                Nova marcação
-            </h1>
-            <div class="eu-form">
-                <form action="/ProjetoPWBD/customer/" method="POST">
-                    <div class="eu-form-category">
-                        Detalhes da Marcação
-                    </div>
-                    <div class="eu-inputGroup">
-                        <label for="ni_startdate">
-                            Data<sup>*</sup>
-                        </label>
-                        <div class="eu-inputGroup-input">
-                            <input class="type-input" type="date" name="ni_startdate" id="ni_startdate" required>
+            <?php
+                echo $novehicles ? "<h1>Registe um veículo antes de criar marcação</h1>" : "<h1>Nova marcação</h1>";
+                if (!$novehicles) {
+                    echo '
+                        <div class="eu-form">
+                            <form action="/ProjetoPWBD/scripts/php/new_inspection.php" method="POST">
+                                <div class="eu-form-category">
+                                    Detalhes da Marcação
+                                </div>
+                                <div class="eu-inputGroup">
+                                    <label for="ni_startdate">
+                                        Data<sup>*</sup>
+                                    </label>
+                                    <div class="eu-inputGroup-input">
+                                        <input class="type-input" type="date" name="ni_startdate" id="ni_startdate" required>
+                                    </div>
+                                </div>
+                                <div class="eu-inputGroup">
+                                    <label for="ni_starttime">
+                                        Hora de Início<sup>*</sup>
+                                    </label>
+                                    <div class="eu-inputGroup-input">
+                                        <input class="type-input" type="time" name="ni_starttime" id="ni_starttime" required>
+                                    </div>
+                                </div>
+                                <div class="eu-inputGroup">
+                                    <label for="ni_cat">
+                                        Veículo
+                                    </label>
+                                    <div class="eu-inputGroup-input">
+                                        <select id="ni_cat" name="ni_cat">
+                    ';
+                    foreach (VEHICLES as $v) {
+                        echo "
+                            <option value='". $v["id"] ."'>".$v["matricula"]."</option>
+                        ";
+                    }
+                    echo '
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="eu-inputBtn">
+                                    <input type="submit" value="Criar marcação" name="submit" id="editBtn">
+                                </div>
+                            </form>
                         </div>
-                    </div>
-                    <div class="eu-inputGroup">
-                        <label for="ni_starttime">
-                            Hora de Início<sup>*</sup>
-                        </label>
-                        <div class="eu-inputGroup-input">
-                            <input class="type-input" type="time" name="ni_starttime" id="ni_starttime" required>
+                    ';
+                } else {
+                    echo "
+                        <div class='eu-inputBtn'>    
+                            <a href='/ProjetoPWBD/vehicle/new.php'>Registar veículo</a>
                         </div>
-                    </div>
-                    <div class="eu-inputGroup">
-                        <label for="eu_pwd">
-                            Categoria de veículo
-                        </label>
-                        <div class="eu-inputGroup-input">
-                            <select id="ni_cat" name="ni_cat">
-                                <?php
-                                    foreach (CATEGORIES as $cat) {
-                                        echo "
-                                            <option value='". $cat["id"] ."'>".$cat["nome"]."</option>
-                                        ";
-                                    }
-                                ?>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="eu-inputBtn">
-                        <input type="submit" value="Editar" name="editBtn" id="editBtn">
-                    </div>
-                </form>
-            </div>
+                    ";
+                }
+                ?>
         </div>
     </div>
     
