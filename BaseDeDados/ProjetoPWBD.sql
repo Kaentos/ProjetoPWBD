@@ -64,12 +64,10 @@ CREATE TABLE Inspecao (
     id INT PRIMARY KEY AUTO_INCREMENT,
     horaInicio DATETIME NOT NULL,
     horaFim DATETIME NOT NULL,
-    idCliente INT NOT NULL,
     idVeiculo INT NOT NULL,
     idLinha INT NOT NULL,
     isDoing BOOLEAN DEFAULT FALSE NOT NULL,  
     isCompleted BOOLEAN DEFAULT FALSE NOT NULL,
-    CONSTRAINT TB_Inspecao_Utilizador_Cliente_FK FOREIGN KEY (idCliente) REFERENCES Utilizador(id) ON DELETE CASCADE,
     CONSTRAINT TB_Inspecao_Veiculo_FK FOREIGN KEY (idVeiculo) REFERENCES Veiculo(id) ON DELETE CASCADE,
     CONSTRAINT TB_Inspecao_LinhaInspecao_FK FOREIGN KEY (idLinha) REFERENCES LinhaInspecao(id) ON DELETE CASCADE
 );
