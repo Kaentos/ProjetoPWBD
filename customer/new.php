@@ -3,8 +3,18 @@
     if (!checkIfClient()) {
         gotoIndex();
     }
-
+    if (!isset($_GET["id"])) {
+        header("Location: ../vehicle");
+        die();
+    }
     include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/scripts/php/basedados.h");
+    // TODO https://www.php.net/manual/en/class.dateperiod.php
+    // Creating all dates out of strings might be too expensive
+    // Using a 30-day period starting from current_time + 3d and excluding invalid dates might be a better idea
+    // Don't even bother generating dates for Sundays
+    // Watch out for methods that aren't in PHP 7.0+ by default
+    // Also I should probably fix some page headers not being centered
+
     $query = "SELECT veiculo.id, veiculo.matricula FROM veiculo
         INNER JOIN veiculo_utilizador ON veiculo.id=veiculo_utilizador.idVeiculo
         WHERE veiculo_utilizador.idUtilizador = :userid";
@@ -28,6 +38,12 @@
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/login_register.css">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/navbar_footer.css">
     <script src="/ProjetoPWBD/assets/js/edit_user.js"></script>
+
+    <style>
+        .eu-inputBtn {
+            justify-content: center;
+        }
+    </style>
     
     <script>
         window.onload = function() {
@@ -78,11 +94,11 @@
                                     </div>
                                 </div>
                                 <div class="eu-inputGroup">
-                                    <label for="ni_cat">
+                                    <label for="ni_vehicle">
                                         Veículo
                                     </label>
                                     <div class="eu-inputGroup-input">
-                                        <select id="ni_cat" name="ni_cat">
+                                        <select id="ni_vehicle" name="ni_vehicle">
                     ';
                     foreach (VEHICLES as $v) {
                         echo "

@@ -21,6 +21,12 @@
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/navbar_footer.css">
     <script src="/ProjetoPWBD/assets/js/edit_user.js"></script>
     
+    <style>
+        .eu-inputBtn {
+            justify-content: center;
+        }
+    </style>
+
     <script>
         window.onload = function() {
             <?php
