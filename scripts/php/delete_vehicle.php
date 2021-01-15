@@ -14,10 +14,6 @@
         if ($stmt->rowCount() != 1) {
             die("Veiculo invalido (não existe ou não pertence ao utilizador)");
         }
-        $query = "DELETE FROM veiculo_utilizador WHERE idVeiculo = :id;";
-        $stmt = $dbo->prepare($query);
-        $stmt->bindValue("id", $id);
-        $stmt->execute();
         $query = "DELETE FROM veiculo WHERE id = :id";
         $stmt = $dbo->prepare($query);
         $stmt->bindValue("id", $id);

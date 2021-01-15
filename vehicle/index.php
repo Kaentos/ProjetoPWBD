@@ -95,6 +95,9 @@
                                     </th>
                                     <th class='u-table-width-50'>
                                         <div class='u-table-all-icons'>
+                                            <a href='../customer/new.php?id=".$vehicle["id"]."'>
+                                                <img class='u-table-icon' src='../assets/img/icons/notebook.png' alt='Marcar Inspeção' title='Marcar Inspeção' srcset=''>
+                                            </a>
                                             <a href='edit.php?id=".$vehicle["id"]."'>
                                                 <img class='u-table-icon' src='../assets/img/icons/pencil.png' alt='Editar' srcset=''>
                                             </a>
