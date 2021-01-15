@@ -47,14 +47,16 @@
 
         <div class="u-panel">
             <div class="u-title">
-                Veículos Registados
+                <div>
+                    Veículos Registados
+                </div>
+                <a href="/ProjetoPWBD/vehicle/new.php">
+                    Adicionar
+                </a>
             </div>
             <table class="u-table">
                 <thead>
                     <tr>
-                        <th class="u-table-width-50">
-                            ID
-                        </th>
                         <th class="u-table-width-100">
                             Matrícula
                         </th>
@@ -78,22 +80,19 @@
                         foreach(VEHICLES as $vehicle) {
                             echo "
                                 <tr>
-                                    <th class='u-table-width-50'>
-                                        ".$vehicle["id"]."
-                                    </th>
-                                    <th class='u-table-width-100'>
+                                    <td class='u-table-width-100'>
                                         ".$vehicle["matricula"]."
-                                    </th>
-                                    <th class='u-table-width-100'>
+                                    </td>
+                                    <td class='u-table-width-100'>
                                         ".$vehicle["ano"]."
-                                    </th>
-                                    <th class='u-table-width-100'>
+                                    </td>
+                                    <td class='u-table-width-100'>
                                         ".$vehicle["marca"]."
-                                    </th>
-                                    <th class='u-table-width-100'>
+                                    </td>
+                                    <td class='u-table-width-100'>
                                         ".$vehicle["categoria"]."
-                                    </th>
-                                    <th class='u-table-width-50'>
+                                    </td>
+                                    <td class='u-table-width-50'>
                                         <div class='u-table-all-icons'>
                                             <a href='../customer/new.php?id=".$vehicle["id"]."'>
                                                 <img class='u-table-icon' src='../assets/img/icons/notebook.png' alt='Marcar Inspeção' title='Marcar Inspeção' srcset=''>
@@ -105,7 +104,7 @@
                                                 <img class='u-table-icon' src='../assets/img/icons/garbage.png' alt='Apagar' srcset=''>
                                             </a>
                                         </div>
-                                    </th>
+                                    </td>
                                 </tr>
                             ";
                         }

@@ -82,14 +82,8 @@
                     <div class="eu-form-category">
                         Detalhes do Veículo
                     </div>
-                    <div class="eu-inputGroup">
-                        <label for="nv_id">
-                            ID<sup>*</sup>
-                        </label>
-                        <div class="eu-inputGroup-input">
-                            <input class="type-input" type="text" name="nv_id" id="nv_id" value="<?php echo $_GET["id"]; ?>" readonly required>
-                        </div>
-                    </div>
+                    <input class="type-input" type="hidden" name="nv_id" id="nv_id" value="<?php echo $_GET["id"]; ?>" readonly required>
+                    
                     <div class="eu-inputGroup">
                         <label for="nv_matricula">
                             Matrícula<sup>*</sup>

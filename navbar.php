@@ -16,8 +16,8 @@
                     ";
                 } else if (checkIfClient()) {
                     echo "
-                        <a href='/ProjetoPWBD/admin'>Meus dados</a>
                         <a href='/ProjetoPWBD/customer'>Minhas Marcações</a>
+                        <a href='/ProjetoPWBD/vehicle'>Meus veículos</a>
                     ";
                 }
             ?>
