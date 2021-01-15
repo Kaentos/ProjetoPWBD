@@ -8,25 +8,138 @@
         die();
     }
     include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/scripts/php/basedados.h");
-    // TODO https://www.php.net/manual/en/class.dateperiod.php
-    // Creating all dates out of strings might be too expensive
-    // Using a 30-day period starting from current_time + 3d and excluding invalid dates might be a better idea
-    // Don't even bother generating dates for Sundays
-    // Watch out for methods that aren't in PHP 7.0+ by default
-    // Also I should probably fix some page headers not being centered
-
-    $query = "SELECT veiculo.id, veiculo.matricula FROM veiculo
-        INNER JOIN veiculo_utilizador ON veiculo.id=veiculo_utilizador.idVeiculo
-        WHERE veiculo_utilizador.idUtilizador = :userid";
+    
+    $query = "
+        SELECT v.id, v.matricula, vu.idUtilizador AS idUser, cv.id AS idCategory
+        FROM veiculo AS v
+            INNER JOIN Veiculo_Utilizador AS vu ON v.id = vu.idVeiculo
+            INNER JOIN CategoriaVeiculo AS cv ON v.idCategoria = cv.id
+        WHERE v.id = :id
+    ";
     $stmt = $dbo->prepare($query);
-    $stmt->bindValue("userid", LOGIN_DATA["id"]);
+    $stmt->bindValue("id", $_GET["id"]);
     $stmt->execute();
     if ($stmt->rowCount() == 0) {
         $novehicles = true;
     } else {
         $novehicles = false;
-        $result = $stmt->fetchAll();
-        define("VEHICLES", $result);
+        $vehicle = $stmt->fetch();
+    }
+    
+    if (isset($vehicle)) {
+        $query = "
+            SELECT i.horaInicio AS dateStart, i.horaFim AS dateEnd, i.idLinha AS linha
+            FROM Inspecao AS i
+                INNER JOIN LinhaInspecao AS li ON i.idLinha = li.id
+                INNER JOIN CategoriaVeiculo AS cv ON li.idCategoria = cv.id
+            WHERE cv.id = :id;
+        ";
+        $stmt = $dbo -> prepare($query);
+        $stmt -> bindValue("id", $vehicle["idCategory"]);
+        $stmt -> execute();
+        $invalidDates = $stmt -> fetchAll();
+        
+        if ($vehicle["idCategory"] == 1) {
+            /*$query = "
+                SELECT *
+                FROM LinhaInspecao
+                WHERE idCategoria = :id;
+            ";
+            $stmt = $dbo -> prepare($query);
+            $stmt -> bindValue("id", $vehicle["idCategory"]);
+            $stmt -> execute();
+            $lines = $stmt -> fetchAll();
+            $lines_final = array();
+            
+            print_r($lines);
+            exit();*/
+            
+            $start = new DateTime(date("Y-m-d H:i:s", strtotime("09:00:00")));
+            $end = new DateTime(date("Y-m-d H:i:s", strtotime("17:00:00")));
+            $dateStart = date_add($start, new DateInterval("P2D"));
+            $dateEnd = date_add($end, new DateInterval("P30D"));
+
+            $interval = new DatePeriod($dateStart, new DateInterval('PT1H'), $dateEnd);
+            $datesAvailable = array();
+            foreach($interval as $date) {
+                $weekDay = $date -> format("w");
+                $hour = $date -> format("H");
+                if ($weekDay == 0) {
+                    continue;
+                } elseif ($weekDay == 6 && $hour > 13) {
+                    continue;
+                } else {
+                    if ($hour < 9 || $hour > 18 ) {
+                        continue;
+                    }
+                }
+                $isValid = true;
+                $linha = 1;
+                foreach($invalidDates as $invDate) {
+                    if ( $date == new DateTime($invDate["dateStart"]) ) {
+                        $isValid = false;
+                        break;
+                    }
+                }
+                
+                if ($isValid) {
+                    array_push($datesAvailable, array("date" => $date, "linha" => "1" /*$linha*/));
+                }
+                
+            }
+            /*foreach($datesAvailable as $yes) {
+                print_r($yes["data"] -> format("Y-m-d H:i:s") . " | linha: " . $yes["linha"]);
+                echo "<br>";
+            }*/
+        }
+        if ($vehicle["idCategory"] == 1) {
+            $validHours = "
+                <table>
+                    <tr>
+                        <th>
+                            Manha
+                        </th>
+                        <th>
+                            Tarde
+                        </th>
+                    </tr>
+                    <tr>
+                        <td>
+                            09:00
+                        <td>
+                        <td>
+                            14:00
+                        <td>
+                    </tr>
+                    <tr>
+                        <td>
+                            10:00
+                        <td>
+                        <td>
+                            15:00
+                        <td>
+                    </tr>
+                    <tr>
+                        <td>
+                            11:00
+                        <td>
+                        <td>
+                            16:00
+                        <td>
+                    </tr>
+                    <tr>
+                        <td>
+                            12:00
+                        <td>
+                        <td>
+                            17:00
+                        <td>
+                    </tr>
+                </table>
+            ";
+            //$validHours = ["09:00", "10:00", "11:00", "12:00", "14:00", "15:00", "16:00", "17:00"];
+            $duration = "1 hora";
+        }
     }
 ?>
 <!DOCTYPE html>
@@ -71,9 +184,15 @@
             <?php
                 echo $novehicles ? "<h1>Registe um veículo antes de criar marcação</h1>" : "<h1>Nova marcação</h1>";
                 if (!$novehicles) {
+                    $lastId = array_key_last($datesAvailable);
                     echo '
                         <div class="eu-form">
                             <form action="/ProjetoPWBD/scripts/php/new_inspection.php" method="POST">
+                                <div>
+                                    Escolha uma data entre '.$datesAvailable[0]["date"] -> format("d-m-Y").' e '.$datesAvailable[$lastId]["date"] -> format("d-m-Y").'<br>
+                                    Duração: '.$duration.'<br>
+                                    Horas: '.$validHours.'
+                                </div>
                                 <div class="eu-form-category">
                                     Detalhes da Marcação
                                 </div>
