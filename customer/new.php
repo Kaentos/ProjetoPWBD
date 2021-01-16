@@ -150,6 +150,7 @@
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/edit_user.css">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/login_register.css">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/navbar_footer.css">
+    <link rel="stylesheet" href="/ProjetoPWBD/assets/css/new_inspection.css">
     <script src="/ProjetoPWBD/assets/js/edit_user.js"></script>
 
     <style>
@@ -186,13 +187,56 @@
                 if (!$novehicles) {
                     $lastId = array_key_last($datesAvailable);
                     echo '
+                        <div class="ni-schedule">
+                            <div class="ni-schedule-title">
+                                Horário válido para marcações
+                            </div>
+                            <table class="ni-schedule-table">
+                                <thead>
+                                    <tr>
+                                        <th>
+                                            Segunda a Sexta-feira
+                                        </th>
+                                        <th>
+                                            Sábado
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>
+                                            9:00 - 13:00
+                                        </td>
+                                        <td>
+                                            9:00 - 13:00
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            14:00 - 18:00
+                                        </td>
+                                        <td>
+                                            Inválido
+                                        </td>
+                                    </tr>
+                                </tbody>
+                                <tfoot>
+                                    <tr>
+                                        <td colspan="2">
+                                            Escolha uma data entre '.$datesAvailable[0]["date"] -> format("d-m-Y").' e '.$datesAvailable[$lastId]["date"] -> format("d-m-Y").'<br>
+                                            Duração: '.$duration.'
+                                        </td>
+                                    </tr>
+                                </tfoot>
+                            </table>
+                        </div>
+                    <div>
+                            <br>
+                            <br>
+                            Horas: '.$validHours.'
+                        </div>
                         <div class="eu-form">
                             <form action="/ProjetoPWBD/scripts/php/new_inspection.php" method="POST">
-                                <div>
-                                    Escolha uma data entre '.$datesAvailable[0]["date"] -> format("d-m-Y").' e '.$datesAvailable[$lastId]["date"] -> format("d-m-Y").'<br>
-                                    Duração: '.$duration.'<br>
-                                    Horas: '.$validHours.'
-                                </div>
                                 <div class="eu-form-category">
                                     Detalhes da Marcação
                                 </div>

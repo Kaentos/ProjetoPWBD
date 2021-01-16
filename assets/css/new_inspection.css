@@ -1,0 +1,42 @@
+.ni-schedule-title {
+    margin: auto;
+    padding: 5px 0 5px 0;
+    text-align: center;
+    font-size: 1.5rem;
+    font-weight: bold;
+    width: 100%;
+}
+
+.ni-schedule-table {
+    border: 1px solid white;
+    margin: auto;
+    border-spacing: 0;
+    border-radius: 2px;
+    margin-top: 10px;
+    margin-bottom: 50px;
+}
+
+.ni-schedule-table > thead > tr > th {
+    background-color: #204b73;
+    border: 1px solid white;
+    padding: 10px;
+    font-size: 1.35rem;
+}
+
+.ni-schedule-table > tbody > tr > td {
+    border: 1px solid white;
+    background-color:  #b0b0b0;
+    color: black;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-align: center;
+    padding: 5px;
+}
+
+.ni-schedule-table > tfoot > tr > td {
+    background-color: #3a75ac;
+    border: 1px solid white;
+    padding: 10px;
+    font-size: 1.35rem;
+    text-align: center;
+}

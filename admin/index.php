@@ -33,6 +33,11 @@
                     <br>
                     Marcações
                 </a>
+                <a class="ia-item" href="vehicles.php">
+                    <img src="/ProjetoPWBD/assets/img/icons/car.png">
+                    <br>
+                    Veículos
+                </a>
             </div>
             <br>
         </div>
