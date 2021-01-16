@@ -64,8 +64,8 @@
                         </td>
                     </tr>
                 </tbody>
-                <tfooter>
-                </tfooter>
+                <tfoot>
+                </tfoot>
             </table>
         </div>
 
@@ -110,8 +110,8 @@
                         </td>
                     </tr>
                 </tbody>
-                <tfooter>
-                </tfooter>
+                <tfoot>
+                </tfoot>
             </table>
         </div>
 
