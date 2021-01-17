@@ -10,6 +10,22 @@
     include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/scripts/php/basedados.h");
     
     $query = "
+        SELECT i.horaInicio
+        FROM inspecao AS i
+            INNER JOIN veiculo AS v ON i.idVeiculo=v.id
+            INNER JOIN Veiculo_Utilizador AS vu ON v.id = vu.idVeiculo
+        WHERE i.id = :id AND vu.idUtilizador = :userid
+    ";
+    $stmt = $dbo->prepare($query);
+    $stmt->bindValue("id", $_GET["id"]);
+    $stmt->bindValue("userid", LOGIN_DATA["id"]);
+    $stmt->execute();
+    if ($stmt->rowCount() == 0) {
+        header("Location: index.php");
+        die();
+    }
+
+    $query = "
         SELECT v.id, v.matricula, vu.idUtilizador AS idUser, cv.id AS idCategory
         FROM veiculo AS v
             INNER JOIN Veiculo_Utilizador AS vu ON v.id = vu.idVeiculo
@@ -19,14 +35,7 @@
     $stmt = $dbo->prepare($query);
     $stmt->bindValue("id", $_GET["id"]);
     $stmt->execute();
-    if ($stmt->rowCount() == 0) {
-        $novehicles = true;
-        header("Location: ../vehicle");
-        die();
-    } else {
-        $novehicles = false;
-        $vehicle = $stmt->fetch();
-    }
+    $vehicle = $stmt->fetch();
     
     if (isset($vehicle)) {
         $query = "
@@ -36,9 +45,9 @@
                 INNER JOIN CategoriaVeiculo AS cv ON li.idCategoria = cv.id
             WHERE cv.id = :id;
         ";
-        $stmt = $dbo -> prepare($query);
-        $stmt -> bindValue("id", $vehicle["idCategory"]);
-        $stmt -> execute();
+        $stmt = $dbo->prepare($query);
+        $stmt->bindValue("id", $vehicle["idCategory"]);
+        $stmt->execute();
         $invalidDates = $stmt -> fetchAll();
         $query = "
             SELECT *
@@ -146,87 +155,79 @@
             
         </div>
         <div class="eu-panel">
+            <h1>Nova marcação</h1>
             <?php
-                echo $novehicles ? "<h1>Registe um veículo antes de criar marcação</h1>" : "<h1>Nova marcação</h1>";
-                if (!$novehicles) {
-                    $lastId = array_key_last($datesAvailable);
+                $lastId = array_key_last($datesAvailable);
+                echo '
+                    <div class="ni-schedule">
+                        <div class="ni-schedule-title">
+                            Horário válido para marcações
+                        </div>
+                        <table class="ni-schedule-table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Manhã
+                                    </th>
+                                    <th>
+                                        Tarde<br>(exceto Sábado)
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                ';
+                foreach($validHours as $h) {
                     echo '
-                        <div class="ni-schedule">
-                            <div class="ni-schedule-title">
-                                Horário válido para marcações
-                            </div>
-                            <table class="ni-schedule-table">
-                                <thead>
-                                    <tr>
-                                        <th>
-                                            Manhã
-                                        </th>
-                                        <th>
-                                            Tarde<br>(exceto Sábado)
-                                        </th>
-                                    </tr>
-                                </thead>
-                                <tbody>
+                                <tr>
+                                    <td>
+                                        '. $h[0] .'
+                                    </td>
+                                    <td>
+                                        '. $h[1] .'
+                                    </td>
+                                </tr>
                     ';
-                    foreach($validHours as $h) {
-                        echo '
-                                    <tr>
-                                        <td>
-                                            '. $h[0] .'
-                                        </td>
-                                        <td>
-                                            '. $h[1] .'
-                                        </td>
-                                    </tr>
-                        ';
-                    }
-                    echo '
-                                </tbody>
-                                <tfoot>
-                                    <tr>
-                                        <td colspan="2">
-                                            Escolha uma data entre '.$datesAvailable[0]["date"] -> format("d-m-Y").' e '.$datesAvailable[$lastId]["date"] -> format("d-m-Y").'<br>
-                                            Duração: '.$duration.'
-                                        </td>
-                                    </tr>
-                                </tfoot>
-                            </table>
-                        </div>
-                        <div class="eu-form">
-                            <form action="/ProjetoPWBD/scripts/php/new_inspection.php" method="POST">
-                                <div class="eu-form-category">
-                                    Detalhes da Marcação
-                                </div>
-                                <input class="type-input" type="hidden" name="ni_vehicle" id="ni_vehicle" value="'.$_GET["id"].'"" readonly required>
-                                <div class="eu-inputGroup">
-                                    <label for="ni_startdate">
-                                        Data<sup>*</sup>
-                                    </label>
-                                    <div class="eu-inputGroup-input">
-                                        <input class="type-input" type="date" name="ni_startdate" id="ni_startdate" required>
-                                    </div>
-                                </div>
-                                <div class="eu-inputGroup">
-                                    <label for="ni_starttime">
-                                        Hora de Início<sup>*</sup>
-                                    </label>
-                                    <div class="eu-inputGroup-input">
-                                        <input class="type-input" type="time" name="ni_starttime" id="ni_starttime" required>
-                                    </div>
-                                </div>
-                                <div class="eu-inputBtn">
-                                    <input type="submit" value="Criar marcação" name="submit" id="editBtn">
-                                </div>
-                            </form>
-                        </div>
-                    ';
-                } else {
-                    echo "
-                        <div class='eu-inputBtn'>    
-                            <a href='/ProjetoPWBD/vehicle/new.php'>Registar veículo</a>
-                        </div>
-                    ";
                 }
+                echo '
+                            </tbody>
+                            <tfoot>
+                                <tr>
+                                    <td colspan="2">
+                                        Escolha uma data entre '.$datesAvailable[0]["date"] -> format("d-m-Y").' e '.$datesAvailable[$lastId]["date"] -> format("d-m-Y").'<br>
+                                        Duração: '.$duration.'
+                                    </td>
+                                </tr>
+                            </tfoot>
+                        </table>
+                    </div>
+                    <div class="eu-form">
+                        <form action="/ProjetoPWBD/scripts/php/edit_inspection.php" method="POST">
+                            <div class="eu-form-category">
+                                Detalhes da Marcação
+                            </div>
+                            <input class="type-input" type="hidden" name="ni_inspection" id="ni_inspection" value="'.$_GET["id"].'"" readonly required>
+                            <div class="eu-inputGroup">
+                                <label for="ni_startdate">
+                                    Data<sup>*</sup>
+                                </label>
+                                <div class="eu-inputGroup-input">
+                                    <input class="type-input" type="date" name="ni_startdate" id="ni_startdate" required>
+                                </div>
+                            </div>
+                            <div class="eu-inputGroup">
+                                <label for="ni_starttime">
+                                    Hora de Início<sup>*</sup>
+                                </label>
+                                <div class="eu-inputGroup-input">
+                                    <input class="type-input" type="time" name="ni_starttime" id="ni_starttime" required>
+                                </div>
+                            </div>
+                            <div class="eu-inputBtn">
+                                <input type="submit" value="Criar marcação" name="submit" id="editBtn">
+                            </div>
+                        </form>
+                    </div>
+                ';
                 ?>
         </div>
     </div>

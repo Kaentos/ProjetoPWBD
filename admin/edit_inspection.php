@@ -1,10 +1,9 @@
 <?php
+    // WIP / NOT TESTED
     include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/scripts/php/major_functions.php");
-    if (!checkIfClient()) {
-        gotoIndex();
-    }
+    checkIfAdminWithGoto();
     if (!isset($_GET["id"])) {
-        header("Location: ../vehicle");
+        header("Location: ./vehicles.php");
         die();
     }
     include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/scripts/php/basedados.h");
@@ -20,9 +19,7 @@
     $stmt->bindValue("id", $_GET["id"]);
     $stmt->execute();
     if ($stmt->rowCount() == 0) {
-        $novehicles = true;
-        header("Location: ../vehicle");
-        die();
+        header("Location: ./vehicles.php");
     } else {
         $novehicles = false;
         $vehicle = $stmt->fetch();
@@ -40,48 +37,55 @@
         $stmt -> bindValue("id", $vehicle["idCategory"]);
         $stmt -> execute();
         $invalidDates = $stmt -> fetchAll();
-        $query = "
-            SELECT *
-            FROM LinhaInspecao
-            WHERE idCategoria = :id;
-        ";
-        $stmt = $dbo -> prepare($query);
-        $stmt -> bindValue("id", $vehicle["idCategory"]);
-        $stmt -> execute();
-        $lines = $stmt -> fetchAll();
         
-        $start = new DateTime(date("Y-m-d H:i:s", strtotime("09:00:00")));
-        $end = new DateTime(date("Y-m-d H:i:s", strtotime("17:00:00")));
-        $dateStart = date_add($start, new DateInterval("P2D"));
-        $dateEnd = date_add($end, new DateInterval("P30D"));
+        if ($vehicle["idCategory"] == 1) {
+            $query = "
+                SELECT *
+                FROM LinhaInspecao
+                WHERE idCategoria = :id;
+            ";
+            $stmt = $dbo -> prepare($query);
+            $stmt -> bindValue("id", $vehicle["idCategory"]);
+            $stmt -> execute();
+            $lines = $stmt -> fetchAll();
+            
+            $start = new DateTime(date("Y-m-d H:i:s", strtotime("09:00:00")));
+            $end = new DateTime(date("Y-m-d H:i:s", strtotime("17:00:00")));
+            $dateStart = date_add($start, new DateInterval("P2D"));
+            $dateEnd = date_add($end, new DateInterval("P30D"));
 
-        $interval = new DatePeriod($dateStart, new DateInterval('PT1H'), $dateEnd);
-        $datesAvailable = array();
-        foreach($interval as $date) {
-            $weekDay = $date -> format("w");
-            $hour = $date -> format("H");
-            if ($weekDay == 0) {
-                continue;
-            } elseif ($weekDay == 6 && $hour > 13) {
-                continue;
-            } else {
-                if ($hour < 9 || $hour > 18 ) {
+            $interval = new DatePeriod($dateStart, new DateInterval('PT1H'), $dateEnd);
+            $datesAvailable = array();
+            foreach($interval as $date) {
+                $weekDay = $date -> format("w");
+                $hour = $date -> format("H");
+                if ($weekDay == 0) {
                     continue;
+                } elseif ($weekDay == 6 && $hour > 13) {
+                    continue;
+                } else {
+                    if ($hour < 9 || $hour > 18 ) {
+                        continue;
+                    }
                 }
-            }
-            $isValid = true;
-            $linha = 1;
-            foreach($invalidDates as $invDate) {
-                if ( $date == new DateTime($invDate["dateStart"]) ) {
-                    $isValid = false;
-                    break;
+                $isValid = true;
+                $linha = 1;
+                foreach($invalidDates as $invDate) {
+                    if ( $date == new DateTime($invDate["dateStart"]) ) {
+                        $isValid = false;
+                        break;
+                    }
                 }
+                
+                if ($isValid) {
+                    array_push($datesAvailable, array("date" => $date, "linha" => $linha));
+                }
+                
             }
-            
-            if ($isValid) {
-                array_push($datesAvailable, array("date" => $date, "linha" => $linha));
-            }
-            
+            /*foreach($datesAvailable as $yes) {
+                print_r($yes["data"] -> format("Y-m-d H:i:s") . " | linha: " . $yes["linha"]);
+                echo "<br>";
+            }*/
         }
         $hourEnd = new DateTime(date("Y-m-d H:i:s", strtotime("18:00:00")));
         $hourEndDate = date_add($hourEnd, new DateInterval("P2D"));
@@ -106,6 +110,8 @@
                 $i++;
             }
         }
+            // $validHours = "";
+            // $validHours = ["09:00", "10:00", "11:00", "12:00", "14:00", "15:00", "16:00", "17:00"];
     }
 ?>
 <!DOCTYPE html>
@@ -130,7 +136,7 @@
             <?php
                 if (isset($_SESSION["badEdit"])) {
                     echo "badEdit(".$_SESSION["badEdit"]["code"].", '".$_SESSION["badEdit"]["reason"]."');";
-                    unset($_SESSION["badEdit"]);
+                    unset($_SESSION["badEdit"]);    
                 }
             ?>
         }
