@@ -134,6 +134,7 @@ function badEdit(code, reason) {
         case 6: toRedInputs = [document.getElementById("eu_mobile")]; break;
         case 7: toRedInputs = [document.getElementById("eu_tel")]; break;
         case 8: toRedInputs = [document.getElementById("eu_userType")]; break;
+        case 9: toRedInputs = [document.getElementById("eu_linha")]; break;
         default: return;
     }
     borderRed(toRedInputs);
