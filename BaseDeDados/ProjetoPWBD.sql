@@ -96,4 +96,4 @@ INSERT INTO Veiculo (matricula, ano, marca, idCategoria) VALUES ('A3B2SD', 2000,
 INSERT INTO Veiculo_Utilizador VALUES (1, 3);
 
 INSERT INTO Inspecao (horaInicio, horaFim, idVeiculo, idLinha)
-VALUES ('2021-01-07 18:00:00', '2021-01-07 19:00:00', 1, 1), ('2021-01-11 18:00:00', '2021-01-11 19:00:00', 3, 1, 1);
+VALUES ('2021-01-07 18:00:00', '2021-01-07 19:00:00', 1, 1), ('2021-01-11 18:00:00', '2021-01-11 19:00:00', 1, 1);

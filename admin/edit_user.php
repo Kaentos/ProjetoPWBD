@@ -46,6 +46,9 @@
             $stmt -> bindValue("id", $user["id"]);
             $stmt -> execute();
             $userLinha = $stmt -> fetch();
+            if ($stmt -> rowCount() == 0) {
+                $userLinha["idLinha"] = -100;
+            }
         }
     } else {
         gotoIndex();
@@ -62,6 +65,7 @@
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/login_register.css">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/navbar_footer.css">
     <script src="/ProjetoPWBD/assets/js/edit_user.js"></script>
+    <link rel="icon" href="/ProjetoPWBD/assets/img/icon.png">
     
     <script>
         window.onload = function() {
@@ -181,6 +185,13 @@
                                     <div class='eu-inputGroup-input'>
                                         <select id='eu_linha' name='eu_linha'>
                             ";
+                            if ($userLinha["idLinha"] == -100) {
+                                echo "
+                                    <option value='-100' disabled selected>
+                                        Nenhuma atribuída
+                                    </option>
+                                ";
+                            }
                             foreach($linhas as $linha) {
                                 if ($userLinha["idLinha"] == $linha["id"]) {
                                     echo "

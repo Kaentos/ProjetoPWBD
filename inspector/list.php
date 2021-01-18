@@ -29,7 +29,8 @@
         SELECT i.id, i.horaInicio, i.horaFim, i.isDoing, i.isCompleted, v.matricula, v.marca, u.nome
         FROM inspecao AS i
             INNER JOIN veiculo as v ON i.idVeiculo = v.id
-            INNER JOIN utilizador as u ON i.idCliente = u.id
+            INNER JOIN veiculo_utilizador AS vu ON v.id = vu.idVeiculo 
+            INNER JOIN utilizador as u ON vu.idUtilizador = u.id
         WHERE i.idLinha = :idLinha AND DATE(i.horaInicio) = DATE(NOW());
     ";
     $stmt = $dbo -> prepare($query);
@@ -46,6 +47,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/navbar_footer.css">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/listInspections.css">
+    <link rel="icon" href="/ProjetoPWBD/assets/img/icon.png">
     <title>CI | Inspector - Inspeções</title>
 </head>
 <body>
@@ -112,29 +114,31 @@
                                     </td>
                                     <td class='u-table-width-100'>
                             ";
-                            if ($inspection["isDoing"]) {
+                            if ($inspection["isDoing"] == false && $inspection["isCompleted"] == false) {
                                 echo "
-                                    ".($inspection["isDoing"] ? "Em progresso" : "Não começou" )."
-                                </td>";
+                                        ".($inspection["isDoing"] ? "Em progresso" : "Não começou" )."
+                                    </td>
+                                ";
                             } else {
                                 echo "
-                                    ".($inspection["isCompleted"] ? "Completada" : "Não completada" )."
-                                </td>";
+                                        ".($inspection["isCompleted"] ? "Completada" : "A inspecionar..." )."
+                                    </td>
+                                ";
                             }
                                     
                             echo "
                                     <td class='u-table-width-100'>
                                         <div class='u-table-all-icons'>
                             ";
-                            if ($inspection["isDoing"]) {
-                                if (!$inspection["isCompleted"]) {
+                            if ($inspection["isDoing"] == true) {
+                                if ($inspection["isCompleted"] == false) {
                                     echo "
                                         <a href='manageInspection.php?id=".$inspection["id"]."&action=finish'>
                                             Completar
                                         </a>
                                     ";
                                 }
-                            } else if (!$inspection["isCompleted"]) {
+                            } else if ($inspection["isCompleted"] == false) {
                                 echo "
                                     <a href='manageInspection.php?id=".$inspection["id"]."&action=doing'>
                                         Começar

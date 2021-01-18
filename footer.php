@@ -84,7 +84,10 @@
                     </a>
                 </li>
                 <li class="footer-links-item">
-                    Desenvolvedor:
+                    Desenvolvedores:
+                    <a href="https://github.com/Thekings2468" target="_blank">
+                        André Duarte
+                    </a> & 
                     <a href="https://github.com/Kaentos" target="_blank">
                         Miguel Magueijo
                     </a>

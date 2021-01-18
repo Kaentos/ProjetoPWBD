@@ -13,12 +13,19 @@
         $stmt = $dbo -> prepare($query);
         $stmt -> bindValue("id", $_GET["id"]);
         $stmt -> execute();
-        if ($stmt -> rowCount() == 0) {
+        if ($stmt -> rowCount() != 1) {
             die("invalido");
         }
 
         $action = $_GET["action"];
         if (strcmp($action, "doing") == 0) {
+            $infoInspecao = $stmt -> fetch();
+            $horaInicio = new DateTime(date("Y-m-d H:i:s", strtotime($infoInspecao["horaInicio"])));
+            $horaAtual = new DateTime(date("Y-m-d H:i:s"));
+            $horaAtual -> sub(new DateInterval('PT30M'));
+            if ( $horaInicio > $horaAtual ) {
+                die("Ainda não pode começar a inspeção");
+            }
             $query = "
                 UPDATE Inspecao
                 SET isDoing = 1

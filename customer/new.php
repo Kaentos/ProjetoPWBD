@@ -119,8 +119,9 @@
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/login_register.css">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/navbar_footer.css">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/new_inspection.css">
+    <script src="/ProjetoPWBD/assets/js/edit_user.js"></script>
+    <link rel="icon" href="/ProjetoPWBD/assets/img/icon.png">
     <script src="/ProjetoPWBD/assets/js/messages.js"></script>
-
     <style>
         .eu-inputBtn {
             justify-content: center;

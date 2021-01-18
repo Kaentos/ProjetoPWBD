@@ -90,10 +90,22 @@
         ";
         $stmt = $dbo -> prepare($query);
         $stmt -> execute($user);
+        if ($stmt -> rowCount() == 0) {
+            showMessage(true, "Não foi possivel alterar o utilizador (ID: ".$user["id"].")");
+            gotoListUsers();
+        }
 
-        if ( isset($_POST["eu_linha"]) ) {
+
+        if ( isset($_POST["eu_linha"]) && $user["idTipo"] == USER_TYPE_INSPECTOR ) {
+            if ($_POST["eu_linha"] == -100) {
+                showErrorValue(9, "Não selecionou uma linha de inspeção!");
+                gotoEditUser($user["id"]);
+            }
+
             $query = "
-                SELECT * FROM LinhaInspecao_Utilizador WHERE idUtilizador = :id
+                SELECT *
+                FROM LinhaInspecao_Utilizador
+                WHERE idUtilizador = :id
             ";
             $stmt = $dbo -> prepare($query);
             $stmt -> bindValue("id", $user["id"]);
@@ -102,7 +114,7 @@
                 $query = "
                     UPDATE LinhaInspecao_Utilizador
                     SET idLinha = :idLinha
-                    WHERE idUtilizador = :id
+                    WHERE idUtilizador = :id;
                 ";
                 $stmt = $dbo -> prepare($query);
                 $stmt -> bindValue("idLinha", $_POST["eu_linha"]);
@@ -114,16 +126,15 @@
                 $stmt -> bindValue("idLinha", $_POST["eu_linha"]);
                 $stmt -> bindValue("idUtilizador", $user["id"]);
                 $stmt -> execute();
+                if ($stmt -> rowCount() == 0) {
+                    showMessage(true, "Não foi possivel alterar o utilizador (ID: ".$user["id"].")");
+                    gotoListUsers();
+                }
             }
         }
-
-        if ($stmt -> rowCount() == 1) {
-            showMessage(false, "Alterou com sucesso o utilizador (ID: ".$user["id"].")");
-            gotoListUsers();
-        } else {
-            showMessage(true, "Não foi possivel alterar o utilizador (ID: ".$user["id"].")");
-            gotoListUsers();
-        }
+        showMessage(false, "Alterou com sucesso o utilizador (ID: ".$user["id"].")");
+        gotoListUsers();
+        
     } else {
         gotoListUsers();
     }

@@ -24,6 +24,7 @@
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/navbar_footer.css">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/users.css">
     <script src="/ProjetoPWBD/assets/js/users.js"></script>
+    <link rel="icon" href="/ProjetoPWBD/assets/img/icon.png">
     <script>
         window.onload = function () {
             <?php
@@ -89,25 +90,25 @@
                             }
                             echo "
                                 <tr>
-                                    <th class='u-table-width-50'>
+                                    <td class='u-table-width-50'>
                                         ".$inspection["id"]."
-                                    </th>
-                                    <th class='u-table-width-100'>
+                                    </td>
+                                    <td class='u-table-width-100'>
                                         ".$inspection["horaInicio"]."
-                                    </th>
-                                    <th class='u-table-width-100'>
+                                    </td>
+                                    <td class='u-table-width-100'>
                                         ".$inspection["horaFim"]."
-                                    </th>
-                                    <th class='u-table-width-100'>
+                                    </td>
+                                    <td class='u-table-width-100'>
                                         ".$inspection["matricula"]."
-                                    </th>
-                                    <th class='u-table-width-100'>
+                                    </td>
+                                    <td class='u-table-width-100'>
                                         ".$inspection["linha"]."
-                                    </th>
-                                    <th class='u-table-width-50'>
+                                    </td>
+                                    <td class='u-table-width-50'>
                                         ".$status."
-                                    </th>
-                                    <th class='u-table-width-50'>
+                                    </td>
+                                    <td class='u-table-width-50'>
                                         <div class='u-table-all-icons'>
                                     ";
                                     $date_diff = date_diff(date_create($inspection["horaInicio"]), date_create());
@@ -123,7 +124,7 @@
                                     }
                             echo "
                                         </div>
-                                    </th>
+                                    </td>
                                 </tr>
                             ";
                         }

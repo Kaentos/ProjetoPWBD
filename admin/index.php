@@ -10,6 +10,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/index_admin.css">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/navbar_footer.css">
+    <link rel="icon" href="/ProjetoPWBD/assets/img/icon.png">
     <title>CI | Admin - Utilizadores</title>
 </head>
 <body>
