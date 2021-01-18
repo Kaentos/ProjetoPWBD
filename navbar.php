@@ -1,7 +1,10 @@
 <nav class="navbar" id="navbar">
     <div>
         <div class="navbar-title">
-            <a href="/ProjetoPWBD/">Centro de Inspeções</a>
+            <a href="/ProjetoPWBD/">
+                <img width="25" src="/ProjetoPWBD/assets/img/icon.png">
+                Centro de inspecoes
+            </a>
         </div>
         <div class="navbar-links">
             <a href="/ProjetoPWBD/">Página principal</a>

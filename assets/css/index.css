@@ -86,3 +86,36 @@
     text-align: center;
     padding: 5px;
 }
+
+.map-div {
+    margin: auto;
+    width: 90%;
+    text-align: center;
+    padding: 25px 0px;
+}
+
+.map-div > span {
+    font-size: 2rem;
+}
+
+.map-div > iframe {
+    margin-top: 25px;
+    margin-bottom: 15px;
+    width: 75%;
+    height: 200px;
+}
+
+.map-div > a {
+    text-decoration: none;
+    font-size: 1.5rem;
+    color: white;
+    padding: 5px 10px;
+    border: 1px solid white;
+    border-radius: 2px;
+}
+
+.map-div > a:hover {
+    transition: 0.5s;
+    background-color: white;
+    color: black;
+}

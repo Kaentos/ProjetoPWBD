@@ -9,6 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/navbar_footer.css">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/contact.css">
+    <link rel="icon" href="/ProjetoPWBD/assets/img/icon.png">
     
     <title>CI | Contacto</title>
 </head>
@@ -89,7 +90,7 @@
             <div class="c-info-table-footer">
                 <b>Horário de atendimento:</b><br>
                 <b>Segunda a sexta-feira:</b> 9:00 - 13:00 / 14:00 - 18:00<br>
-                <b>Sábado: 9:00 - 13:00</b><br>
+                <b>Sábado:</b> 9:00 - 13:00<br>
                 <b>Domingo:</b> Indisponivel
             </div>
                 

@@ -25,6 +25,7 @@
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/login_register.css">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/navbar_footer.css">
     <script src="/ProjetoPWBD/assets/js/login_register.js"></script>
+    <link rel="icon" href="/ProjetoPWBD/assets/img/icon.png">
     
     <script>
         window.onload = function() {

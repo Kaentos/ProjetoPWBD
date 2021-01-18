@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/navbar_footer.css">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/users.css">
     <script src="/ProjetoPWBD/assets/js/users.js"></script>
+    <link rel="icon" href="/ProjetoPWBD/assets/img/icon.png">
     <script>
         window.onload = function () {
             <?php

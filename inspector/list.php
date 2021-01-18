@@ -46,6 +46,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/navbar_footer.css">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/listInspections.css">
+    <link rel="icon" href="/ProjetoPWBD/assets/img/icon.png">
     <title>CI | Inspector - Inspeções</title>
 </head>
 <body>

@@ -30,6 +30,7 @@
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/mydata.css">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/login_register.css">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/navbar_footer.css">
+    <link rel="icon" href="/ProjetoPWBD/assets/img/icon.png">
     <script src="/ProjetoPWBD/assets/js/mydata.js"></script>
     
     <script>

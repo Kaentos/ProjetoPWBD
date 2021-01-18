@@ -12,6 +12,7 @@
     <script src="assets/js/login_register.js"></script>
     <link rel="stylesheet" href="assets/css/login_register.css">
     <link rel="stylesheet" href="assets/css/navbar_footer.css">
+    <link rel="icon" href="/ProjetoPWBD/assets/img/icon.png">
     <script>
         window.onload = function() {
             activateLiveCheckLogin();

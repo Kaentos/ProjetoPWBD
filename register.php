@@ -8,9 +8,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="assets/css/register.css">
-    <link rel="stylesheet" href="assets/css/login_register.css">
-    <link rel="stylesheet" href="assets/css/navbar_footer.css">
+    <link rel="icon" href="/ProjetoPWBD/assets/img/icon.png">
+    <link rel="stylesheet" href="/ProjetoPWBD/assets/css/register.css">
+    <link rel="stylesheet" href="/ProjetoPWBD/assets/css/login_register.css">
+    <link rel="stylesheet" href="/ProjetoPWBD/assets/css/navbar_footer.css">
     <script src="assets/js/login_register.js"></script>
     
     <script>
