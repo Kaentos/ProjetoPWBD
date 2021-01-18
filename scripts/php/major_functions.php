@@ -14,6 +14,11 @@
         }
     }
 
+    function sendErrorMessage($iserror, $message, $destination) {
+        $_SESSION["message"] = array("isError" => $iserror, "msg" => $message);
+        header("Location: $destination");
+        die();
+    }
 
     /* Get data */
     function getLoginData() {

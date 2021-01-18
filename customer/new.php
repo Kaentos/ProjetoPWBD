@@ -119,7 +119,7 @@
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/login_register.css">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/navbar_footer.css">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/new_inspection.css">
-    <script src="/ProjetoPWBD/assets/js/edit_user.js"></script>
+    <script src="/ProjetoPWBD/assets/js/messages.js"></script>
 
     <style>
         .eu-inputBtn {
@@ -131,7 +131,7 @@
         window.onload = function() {
             <?php
                 if (isset($_SESSION["badEdit"])) {
-                    echo "badEdit(".$_SESSION["badEdit"]["code"].", '".$_SESSION["badEdit"]["reason"]."');";
+                    echo "showBadEdit(".$_SESSION["badEdit"]["reason"].", '".$_SESSION["badEdit"]["fields"]."');";
                     unset($_SESSION["badEdit"]);
                 }
             ?>

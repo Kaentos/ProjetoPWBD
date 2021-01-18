@@ -29,6 +29,7 @@
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/navbar_footer.css">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/users.css">
     <script src="/ProjetoPWBD/assets/js/users.js"></script>
+    <script src="/ProjetoPWBD/assets/js/showmessage.js"></script>
     <script>
         window.onload = function () {
             <?php

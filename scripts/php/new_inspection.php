@@ -85,7 +85,7 @@
                 $isValid = true;
                 foreach($invalidDates as $invDate) {
                     if ($invDate["idVeiculo"] == $inspection["vehicle"]) {
-                        die("Este veiculo ja tem inspeção marcada");
+                        sendErrorMessage(true, "Este veículo já tem inspeção marcada", "/ProjetoPWBD/customer/new.php");
                     }
                     if ( $date == new DateTime($invDate["dateStart"]) && $linha == $invDate["linha"]) {
                         $isValid = false;
@@ -110,9 +110,7 @@
             }
         }
         if (!$valido) {
-            echo "Data Invalida<br>";
-            echo "<a href='#' onclick='history.back()'>Voltar atrás</a>";
-            die();
+            sendErrorMessage(true, "Data Inválida", "/ProjetoPWBD/customer/new.php?id=".$_POST["ni_vehicle"]);
         }
         $query = "
             INSERT INTO inspecao (horaInicio, horaFim, idVeiculo, idLinha) VALUES (:horaInicio, :horaFim, :idVeiculo, :idLinha);
