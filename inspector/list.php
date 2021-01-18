@@ -16,9 +16,10 @@
     $idLinha = $result["idLinha"];
 
     $query = "
-        SELECT *
-        FROM LinhaInspecao
-        WHERE id = :id;
+        SELECT li.id, li.nome, li.idCategoria, cv.nome AS categoria
+        FROM LinhaInspecao AS li
+        INNER JOIN CategoriaVeiculo AS cv on li.idCategoria = cv.id
+        WHERE li.id = :id;
     ";
     $stmt = $dbo -> prepare($query);
     $stmt -> bindValue("id", $idLinha);
@@ -48,7 +49,18 @@
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/navbar_footer.css">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/listInspections.css">
     <link rel="icon" href="/ProjetoPWBD/assets/img/icon.png">
+    <script src="/ProjetoPWBD/assets/js/messages.js"></script>
     <title>CI | Inspector - Inspeções</title>
+    <script>
+        window.onload = function() {
+            <?php
+                if (isset($_SESSION["message"])) {
+                    echo "showMessage(".json_encode($_SESSION["message"]).");";
+                    unset($_SESSION["message"]);
+                }
+            ?>
+        }
+    </script>
 </head>
 <body>
     <?php
@@ -64,6 +76,12 @@
             <div class="u-title">
                 <div>
                     Inspeções de hoje
+                </div>
+                <div>
+                    Linha:
+                    <?php
+                        echo $infoLinha["id"] . " - " . $infoLinha["nome"] ." (". $infoLinha["categoria"].")";
+                    ?>
                 </div>
             </div>
             <table class="u-table">

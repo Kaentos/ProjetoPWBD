@@ -24,7 +24,7 @@
             $horaAtual = new DateTime(date("Y-m-d H:i:s"));
             $horaAtual -> sub(new DateInterval('PT30M'));
             if ( $horaInicio > $horaAtual ) {
-                die("Ainda não pode começar a inspeção");
+                showMessage(true, "Ainda não pode começar a inspeção!");
             }
             $query = "
                 UPDATE Inspecao
@@ -42,8 +42,22 @@
         $stmt -> bindValue("id", $_GET["id"]);
         $stmt -> execute();
 
+        if (strcmp($action, "doing") == 0) {
+            showMessage(false, "Começou a inspecionar");
+        } else {
+            showMessage(false, "Completou a inspeção!");
+        }
 
         
+        header("location: list.php");
+        die();
+    }
+
+    function showMessage($isError, $msg) {
+        $_SESSION["message"] = [
+            "isError" => $isError,
+            "msg" => $msg
+        ];
         header("location: list.php");
         die();
     }
