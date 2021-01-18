@@ -22,6 +22,7 @@
             $infoInspecao = $stmt -> fetch();
             $horaInicio = new DateTime(date("Y-m-d H:i:s", strtotime($infoInspecao["horaInicio"])));
             $horaAtual = new DateTime(date("Y-m-d H:i:s"));
+            $horaAtual -> sub(new DateInterval('PT30M'));
             if ( $horaInicio > $horaAtual ) {
                 die("Ainda não pode começar a inspeção");
             }
