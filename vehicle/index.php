@@ -5,14 +5,28 @@
     }
 
     include("../scripts/php/basedados.h");
-    $query = "SELECT veiculo.id, veiculo.matricula, veiculo.ano, veiculo.marca, categoriaveiculo.nome categoria
+    $query = "
+        SELECT veiculo.id, veiculo.matricula, veiculo.ano, veiculo.marca, categoriaveiculo.nome categoria
         FROM veiculo INNER JOIN categoriaveiculo ON veiculo.idCategoria = categoriaveiculo.id
         INNER JOIN veiculo_utilizador ON veiculo.id = veiculo_utilizador.idVeiculo 
-        WHERE veiculo_utilizador.idUtilizador = ".LOGIN_DATA["id"].";";
+        WHERE veiculo_utilizador.idUtilizador = :userid;
+    ";
     $stmt = $dbo -> prepare($query);
-    $stmt -> execute();
+    $stmt->bindValue("userid", LOGIN_DATA["id"]);
+    $stmt->execute();
     $result = $stmt -> fetchAll();
     define("VEHICLES", $result);
+    $query = "
+        SELECT inspecao.idVeiculo 
+        FROM inspecao AS i
+        INNER JOIN veiculo AS v ON i.idVeiculo=v.id
+        INNER JOIN veiculo_utilizador AS vu ON v.id=vu.idVeiculo
+        WHERE veiculo_utilizador.idUtilizador = :userid;
+    ";
+    $stmt = $dbo->prepare($query);
+    $stmt->bindValue("userid", LOGIN_DATA["id"]);
+    $stmt->execute();
+    $inspections = array_values($stmt->fetchAll());
 ?>
 
 <!DOCTYPE html>
@@ -95,9 +109,15 @@
                                     </td>
                                     <td class='u-table-width-50'>
                                         <div class='u-table-all-icons'>
+                            ";
+                            if (!in_array($vehicle["id"], $inspections)) {
+                                echo "
                                             <a href='../customer/new.php?id=".$vehicle["id"]."'>
                                                 <img class='u-table-icon' src='../assets/img/icons/notebook.png' alt='Marcar Inspeção' title='Marcar Inspeção' srcset=''>
                                             </a>
+                                ";
+                            }
+                            echo "
                                             <a href='edit.php?id=".$vehicle["id"]."'>
                                                 <img class='u-table-icon' src='../assets/img/icons/pencil.png' alt='Editar' srcset=''>
                                             </a>

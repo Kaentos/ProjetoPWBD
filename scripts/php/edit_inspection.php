@@ -30,7 +30,7 @@
             $initialDate = date_create_from_format("Y-m-d H:i:s", $stmt->fetch()["horaInicio"]);
         }
         if ($initialDate == $inspection["startdt"]) {
-            echo "A mesma data foi <br>";
+            echo "A mesma data foi introduzida<br>";
             echo "<a href='#' onclick='history.back()'>Voltar atrás</a>";
             die();
         }
@@ -69,14 +69,14 @@
         $stmt -> execute();
         $lines = $stmt -> fetchAll();
 
-        if ($vehicle["idCategory"] == 1) {
+        if ($vehicle["idCategory"] == 1 || $vehicle["idCategory"] == 2) {
             $intervalString = "PT30M";
         } else {
             $intervalString = "PT1H";
         }
         $start = new DateTime(date("Y-m-d H:i:s", strtotime("09:00:00")));
-        $end = new DateTime(date("Y-m-d H:i:s", strtotime("17:00:00")));
-        $dateStart = date_add($start, new DateInterval("P2D"));
+        $end = new DateTime(date("Y-m-d H:i:s", strtotime("18:00:00")));
+        $dateStart = date_add($start, new DateInterval("P3D"));
         $dateEnd = date_add($end, new DateInterval("P30D"));
         $interval = new DatePeriod($dateStart, new DateInterval($intervalString), $dateEnd);
         $datesAvailable = array();
@@ -123,7 +123,6 @@
             echo "<a href='#' onclick='history.back()'>Voltar atrás</a>";
             die();
         }
-        echo $valido ? "Valido na linha $validline" : "Invalido";
         $query = "
             UPDATE inspecao SET horaInicio = :horaInicio, horaFim = :horaFim WHERE id = :id;
         ";

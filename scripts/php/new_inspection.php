@@ -57,14 +57,14 @@
         $stmt -> execute();
         $lines = $stmt -> fetchAll();
 
-        if ($vehicle["idCategory"] == 1) {
+        if ($vehicle["idCategory"] == 1 || $vehicle["idCategory"] == 2) {
             $intervalString = "PT30M";
         } else {
             $intervalString = "PT1H";
         }
         $start = new DateTime(date("Y-m-d H:i:s", strtotime("09:00:00")));
-        $end = new DateTime(date("Y-m-d H:i:s", strtotime("17:00:00")));
-        $dateStart = date_add($start, new DateInterval("P2D"));
+        $end = new DateTime(date("Y-m-d H:i:s", strtotime("18:00:00")));
+        $dateStart = date_add($start, new DateInterval("P3D"));
         $dateEnd = date_add($end, new DateInterval("P30D"));
         $interval = new DatePeriod($dateStart, new DateInterval($intervalString), $dateEnd);
         $datesAvailable = array();
@@ -85,7 +85,7 @@
                 $isValid = true;
                 foreach($invalidDates as $invDate) {
                     if ($invDate["idVeiculo"] == $inspection["vehicle"]) {
-                        die("Este veiculo ja tem inspeção marcada");
+                        sendErrorMessage(true, "Este veículo já tem inspeção marcada", "/ProjetoPWBD/customer/new.php");
                     }
                     if ( $date == new DateTime($invDate["dateStart"]) && $linha == $invDate["linha"]) {
                         $isValid = false;
@@ -110,11 +110,8 @@
             }
         }
         if (!$valido) {
-            echo "Data Invalida<br>";
-            echo "<a href='#' onclick='history.back()'>Voltar atrás</a>";
-            die();
+            sendErrorMessage(true, "Data Inválida", "/ProjetoPWBD/customer/new.php?id=".$_POST["ni_vehicle"]);
         }
-        echo $valido ? "Valido na linha $validline" : "Invalido";
         $query = "
             INSERT INTO inspecao (horaInicio, horaFim, idVeiculo, idLinha) VALUES (:horaInicio, :horaFim, :idVeiculo, :idLinha);
         ";

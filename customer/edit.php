@@ -60,8 +60,8 @@
         $lines = $stmt -> fetchAll();
         
         $start = new DateTime(date("Y-m-d H:i:s", strtotime("09:00:00")));
-        $end = new DateTime(date("Y-m-d H:i:s", strtotime("17:00:00")));
-        $dateStart = date_add($start, new DateInterval("P2D"));
+        $end = new DateTime(date("Y-m-d H:i:s", strtotime("18:00:00")));
+        $dateStart = date_add($start, new DateInterval("P3D"));
         $dateEnd = date_add($end, new DateInterval("P30D"));
 
         $interval = new DatePeriod($dateStart, new DateInterval('PT1H'), $dateEnd);
@@ -93,13 +93,15 @@
             
         }
         $hourEnd = new DateTime(date("Y-m-d H:i:s", strtotime("18:00:00")));
-        $hourEndDate = date_add($hourEnd, new DateInterval("P2D"));
-        if ($vehicle["idCategory"] == 1) {
+        $hourEndDate = date_add($hourEnd, new DateInterval("P3D"));
+        if ($vehicle["idCategory"] == 1 || $vehicle["idCategory"] == 2) {
             $intervalString = "PT30M";
             $duration = "30 minutos";
+            $step = "1800";
         } else {
             $intervalString = "PT1H";
             $duration = "1 hora";
+            $step = "3600";
         }
         $hourinterval = new DatePeriod($dateStart, new DateInterval($intervalString), $hourEndDate);
         $validHours = array();
@@ -145,7 +147,7 @@
             ?>
         }
     </script>
-    <title>CI | Nova Marcação</title>
+    <title>CI | Editar Marcação</title>
 </head>
 <body>
     <?php
@@ -156,7 +158,7 @@
             
         </div>
         <div class="eu-panel">
-            <h1>Nova marcação</h1>
+            <h1>Editar marcação</h1>
             <?php
                 $lastId = array_key_last($datesAvailable);
                 echo '
@@ -212,7 +214,7 @@
                                     Data<sup>*</sup>
                                 </label>
                                 <div class="eu-inputGroup-input">
-                                    <input class="type-input" type="date" name="ni_startdate" id="ni_startdate" required>
+                                    <input class="type-input" type="date" min="'.$datesAvailable[0]["date"] -> format("Y-m-d").'" max="'.$datesAvailable[$lastId]["date"] -> format("Y-m-d").'" name="ni_startdate" id="ni_startdate" required>
                                 </div>
                             </div>
                             <div class="eu-inputGroup">
@@ -220,11 +222,11 @@
                                     Hora de Início<sup>*</sup>
                                 </label>
                                 <div class="eu-inputGroup-input">
-                                    <input class="type-input" type="time" name="ni_starttime" id="ni_starttime" required>
+                                    <input class="type-input" type="time" step="'.$step.'" min="'.$validHours[0][0].'" max="'.$validHours[count($validHours)-1][count($validHours[count($validHours)-1])-1].'" name="ni_starttime" id="ni_starttime" required>
                                 </div>
                             </div>
                             <div class="eu-inputBtn">
-                                <input type="submit" value="Criar marcação" name="submit" id="editBtn">
+                                <input type="submit" value="Editar marcação" name="submit" id="editBtn">
                             </div>
                         </form>
                     </div>

@@ -3,6 +3,22 @@
     include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/scripts/php/rules.php");
     define("LOGIN_DATA", getLoginData());
 
+    /* For PHP < 7.3 */
+    if (! function_exists("array_key_last")) {
+        function array_key_last($array) {
+            if (!is_array($array) || empty($array)) {
+                return NULL;
+            }
+           
+            return array_keys($array)[count($array)-1];
+        }
+    }
+
+    function sendErrorMessage($iserror, $message, $destination) {
+        $_SESSION["message"] = array("isError" => $iserror, "msg" => $message);
+        header("Location: $destination");
+        die();
+    }
 
     /* Get data */
     function getLoginData() {

@@ -117,7 +117,7 @@
                                             <a href='edit_inspection.php?id=".$inspection["id"]."'>
                                                 <img class='u-table-icon' src='../assets/img/icons/pencil.png' alt='Editar' srcset=''>
                                             </a>
-                                            <a href='remove_user.php?id=".$inspection["id"]."'>
+                                            <a href='remove_inspection.php?id=".$inspection["id"]."'>
                                                 <img class='u-table-icon' src='../assets/img/icons/garbage.png' alt='Apagar' srcset=''>
                                             </a>
                                         ";
