@@ -114,7 +114,7 @@
                                     </td>
                                     <td class='u-table-width-100'>
                             ";
-                            if ($inspection["isDoing"] == false) {
+                            if ($inspection["isDoing"] == false && $inspection["isCompleted"] == false) {
                                 echo "
                                         ".($inspection["isDoing"] ? "Em progresso" : "Não começou" )."
                                     </td>
