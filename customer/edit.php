@@ -22,7 +22,13 @@
     if ($stmt->rowCount() == 0) {
         sendErrorMessage(true, "Inspeção Inválida", "index.php");
     }
-    $vehicleid = $stmt->fetch()["idVeiculo"];
+    $fetched = $stmt->fetch();
+    $vehicleid = $fetched["idVeiculo"];
+
+    $date_diff = date_diff(date_create_from_format("Y-m-d H:i:s", $fetched["horaInicio"]), date_create());  
+    if (!($date_diff->d >= 2 && $date_diff->invert == true)) {
+        sendErrorMessage(true, "A data da inspeção está demasiado próxima para serem permitidas modificações", "index.php");
+    }
 
     $query = "
         SELECT v.id, v.matricula, vu.idUtilizador AS idUser, cv.id AS idCategory

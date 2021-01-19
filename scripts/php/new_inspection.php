@@ -57,6 +57,22 @@
         $stmt -> execute();
         $lines = $stmt -> fetchAll();
 
+        $query = "
+            SELECT horaInicio 
+            FROM inspecao
+            WHERE idVeiculo = :id
+        ";
+        $stmt = $dbo->prepare($query);
+        $stmt->bindValue("id", $inspection["vehicle"]);
+        $stmt->execute();
+        $prevInspections = $stmt->fetchAll();
+        foreach($prevInspections as $prev) {
+            $dateDiff = date_diff(date_create_from_format("Y-m-d H:i:s", $prev["horaInicio"]), $inspection["startdt"]);
+            if (!($dateDiff->d >= 2)) {
+                sendErrorMessage(true, "Só pode marcar inspeções consecutivas para cada veículo num espaço mínimo de 2 dias", "/ProjetoPWBD/vehicle");
+            }
+        }
+
         if ($vehicle["idCategory"] == 1 || $vehicle["idCategory"] == 2) {
             $intervalString = "PT30M";
         } else {
@@ -84,9 +100,6 @@
                 }
                 $isValid = true;
                 foreach($invalidDates as $invDate) {
-                    if ($invDate["idVeiculo"] == $inspection["vehicle"]) {
-                        sendErrorMessage(true, "Este veículo já tem inspeção marcada", "/ProjetoPWBD/vehicle");
-                    }
                     if ( $date == new DateTime($invDate["dateStart"]) && $linha == $invDate["linha"]) {
                         $isValid = false;
                         break;

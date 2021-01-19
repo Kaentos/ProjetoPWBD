@@ -56,7 +56,7 @@
         window.onload = function() {
             <?php
                 if (isset($_SESSION["badEdit"])) {
-                    echo "badEdit(".$_SESSION["badEdit"]["code"].", '".$_SESSION["badEdit"]["reason"]."');";
+                    echo "showBadEdit(".json_encode($_SESSION["badEdit"]).");";
                     unset($_SESSION["badEdit"]);    
                 }
 

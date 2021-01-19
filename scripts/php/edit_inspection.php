@@ -28,6 +28,10 @@
         } else {
             $initialDate = date_create_from_format("Y-m-d H:i:s", $stmt->fetch()["horaInicio"]);
         }
+        $date_diff = date_diff($initialDate, date_create());  
+        if (!($date_diff->d >= 2 && $date_diff->invert == true)) {
+            sendErrorMessage(true, "A data da inspeção está demasiado próxima para serem permitidas modificações", "/ProjetoPWBD/customer");
+        }
         if ($initialDate == $inspection["startdt"]) {
             sendBadEdit("A mesma data foi introduzida", ["ni_startdate", "ni_starttime"], "/ProjetoPWBD/customer/edit.php?id=".$_POST["ni_inspection"]);
         }

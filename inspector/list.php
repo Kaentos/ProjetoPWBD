@@ -26,7 +26,7 @@
     $stmt -> execute();
     $infoLinha = $stmt -> fetch();
 
-    $query = "
+    $query_nodate = "
         SELECT i.id, i.horaInicio, i.horaFim, i.isDoing, i.isCompleted, v.matricula, v.marca, u.nome
         FROM inspecao AS i
             INNER JOIN veiculo as v ON i.idVeiculo = v.id
@@ -34,7 +34,27 @@
             INNER JOIN utilizador as u ON vu.idUtilizador = u.id
         WHERE i.idLinha = :idLinha AND DATE(i.horaInicio) = DATE(NOW());
     ";
-    $stmt = $dbo -> prepare($query);
+
+    $query_date = "
+        SELECT i.id, i.horaInicio, i.horaFim, i.isDoing, i.isCompleted, v.matricula, v.marca, u.nome
+        FROM inspecao AS i
+            INNER JOIN veiculo as v ON i.idVeiculo = v.id
+            INNER JOIN veiculo_utilizador AS vu ON v.id = vu.idVeiculo 
+            INNER JOIN utilizador as u ON vu.idUtilizador = u.id
+        WHERE i.idLinha = :idLinha AND DATE(i.horaInicio) = :date;
+    ";
+    $date = false;
+    if (isset($_GET["date"])) {
+        $date = date_create_from_format("Y-m-d", $_GET["date"]);
+        if ($date !== false) {
+            $stmt = $dbo -> prepare($query_date);
+            $stmt -> bindValue("date", $date->format("Y-m-d"));
+        }else {
+            $stmt = $dbo -> prepare($query_nodate);
+        }
+    } else {
+        $stmt = $dbo -> prepare($query_nodate);
+    }
     $stmt -> bindValue("idLinha", $idLinha);
     $stmt -> execute();
     $allInspections = $stmt -> fetchAll();
@@ -48,6 +68,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/navbar_footer.css">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/listInspections.css">
+    <link rel="stylesheet" href="/ProjetoPWBD/assets/css/filterdate.css">
     <link rel="icon" href="/ProjetoPWBD/assets/img/icon.png">
     <script src="/ProjetoPWBD/assets/js/messages.js"></script>
     <title>CI | Inspector - Inspeções</title>
@@ -75,13 +96,24 @@
         <div class="u-panel">
             <div class="u-title">
                 <div>
-                    Inspeções de hoje
+                    <?php
+                        if ($date !== false) {
+                            echo "Inspeções de ".$date->format("d/m/Y");
+                        } else {
+                            echo "Inspeções de hoje";
+                        }
+                    ?>
                 </div>
-                <div>
+                <div style="text-align: right;">
                     Linha:
                     <?php
                         echo $infoLinha["id"] . " - " . $infoLinha["nome"] ." (". $infoLinha["categoria"].")";
                     ?>
+                    <br>
+                    <form action="list.php" method="get">
+                        <input type="date" class="fd-input" name="date">
+                        <input class="fd-inputBtn" type="submit" value="Consultar" id="editBtn">
+                    </form>
                 </div>
             </div>
             <table class="u-table">
@@ -112,6 +144,13 @@
 
                 <tbody>
                     <?php
+                        if (count(ALL_INSPECTIONS) == 0 ) {
+                            echo "
+                                <tr>
+                                    <td colspan='8'>Não há inspeções para a data selecionada</td>
+                                </tr>
+                            ";
+                        }
                         foreach(ALL_INSPECTIONS as $inspection) {
                             echo "
                                 <tr>

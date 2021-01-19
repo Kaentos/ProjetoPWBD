@@ -111,19 +111,12 @@
                                     </td>
                                     <td class='u-table-width-50'>
                                         <div class='u-table-all-icons'>
-                                    ";
-                                    $date_diff = date_diff(date_create($inspection["horaInicio"]), date_create());
-                                    if ($date_diff->d > 2 && $date_diff->invert == true) {
-                                        echo "
                                             <a href='edit_inspection.php?id=".$inspection["id"]."'>
                                                 <img class='u-table-icon' src='../assets/img/icons/pencil.png' alt='Editar' srcset=''>
                                             </a>
                                             <a href='remove_inspection.php?id=".$inspection["id"]."'>
                                                 <img class='u-table-icon' src='../assets/img/icons/garbage.png' alt='Apagar' srcset=''>
                                             </a>
-                                        ";
-                                    }
-                            echo "
                                         </div>
                                     </td>
                                 </tr>
