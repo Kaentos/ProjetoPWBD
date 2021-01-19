@@ -24,18 +24,19 @@
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/navbar_footer.css">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/users.css">
     <script src="/ProjetoPWBD/assets/js/users.js"></script>
+    <script src="/ProjetoPWBD/assets/js/messages.js"></script>
     <link rel="icon" href="/ProjetoPWBD/assets/img/icon.png">
     <script>
         window.onload = function () {
             <?php
                 if (isset($_SESSION["message"])) {
-                    echo "showMessage(".json_encode($_SESSION["message"]).")";
+                    echo "showMessageBanner(".json_encode($_SESSION["message"]).")";
                     unset($_SESSION["message"]);
                 }
             ?>
         }
     </script>
-    <title>CI | Cliente - Marcações</title>
+    <title>CI | Admin - Marcações</title>
 </head>
 <body>
     <?php

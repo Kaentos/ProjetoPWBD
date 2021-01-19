@@ -17,16 +17,16 @@
     $result = $stmt -> fetchAll();
     define("VEHICLES", $result);
     $query = "
-        SELECT inspecao.idVeiculo 
+        SELECT i.idVeiculo 
         FROM inspecao AS i
         INNER JOIN veiculo AS v ON i.idVeiculo=v.id
         INNER JOIN veiculo_utilizador AS vu ON v.id=vu.idVeiculo
-        WHERE veiculo_utilizador.idUtilizador = :userid;
+        WHERE vu.idUtilizador = :userid;
     ";
     $stmt = $dbo->prepare($query);
     $stmt->bindValue("userid", LOGIN_DATA["id"]);
     $stmt->execute();
-    $inspections = array_values($stmt->fetchAll());
+    $inspections = array_values($stmt->fetchAll(PDO::FETCH_COLUMN));
 ?>
 
 <!DOCTYPE html>
@@ -37,12 +37,13 @@
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/navbar_footer.css">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/users.css">
     <script src="/ProjetoPWBD/assets/js/users.js"></script>
+    <script src="/ProjetoPWBD/assets/js/messages.js"></script>
     <link rel="icon" href="/ProjetoPWBD/assets/img/icon.png">
     <script>
         window.onload = function () {
             <?php
                 if (isset($_SESSION["message"])) {
-                    echo "showMessage(".json_encode($_SESSION["message"]).")";
+                    echo "showMessageBanner(".json_encode($_SESSION["message"]).")";
                     unset($_SESSION["message"]);
                 }
             ?>

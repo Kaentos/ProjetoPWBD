@@ -16,8 +16,7 @@
         $stmt->bindValue("id", $inspection);
         $stmt->execute();
         if ($stmt->rowCount() == 0) {
-            header("Location: inspections.php");
-            die();
+            sendErrorMessage(true, "Inspeção Inválida", "inspections.php");
         }
         $query = "
             DELETE FROM inspecao WHERE id = :id;
@@ -25,9 +24,7 @@
         $stmt = $dbo->prepare($query);
         $stmt->bindValue("id", $inspection);
         $stmt->execute();
-        header("Location: inspections.php");
-        die();
+        sendErrorMessage(false, "Inspeção Eliminada", "inspections.php");
     }
-    header("Location: inspections.php");
-    die();
+    sendErrorMessage(true, "Inspeção Inválida", "inspections.php");
 ?>

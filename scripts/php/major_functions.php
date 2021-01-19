@@ -20,6 +20,12 @@
         die();
     }
 
+    function sendBadEdit($reason, $fields, $destination) {
+        $_SESSION["badEdit"] = array("reason" => $reason, "fields" => $fields);
+        header("Location: $destination");
+        die();
+    }
+
     /* Get data */
     function getLoginData() {
         if (isset($_COOKIE["login"])) {

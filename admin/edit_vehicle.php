@@ -2,8 +2,7 @@
     include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/scripts/php/major_functions.php");
     checkIfAdminWithGoto();
     if (!isset($_GET["id"])) {
-        header("Location: index.php");
-        die();
+        sendErrorMessage(true, "Veiculo inválido", "/ProjetoPWBD/admin/vehicles.php");
     }
 
     include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/scripts/php/basedados.h");
@@ -18,7 +17,7 @@
     $stmt->bindValue("id", $idtoedit);
     $stmt->execute();
     if ($stmt->rowCount() != 1) {
-        die("Veiculo invalido (não existe)");
+        sendErrorMessage(true, "Veiculo inválido (não existe)", "/ProjetoPWBD/admin/vehicles.php");
     }
     $old_user = $stmt->fetch()["idUtilizador"];
     $query = "SELECT id, nome FROM utilizador";
@@ -32,7 +31,7 @@
     $stmt->bindValue("id", $idtoedit);
     $stmt->execute();
     if ($stmt->rowCount() != 1) {
-        die("Erro a obter detalhes do veiculo");
+        sendErrorMessage(true, "Erro a obter detalhes do veículo", "/ProjetoPWBD/admin/vehicles.php");
     }
     $result = $stmt->fetch();
     define("VEHICLE", $result);

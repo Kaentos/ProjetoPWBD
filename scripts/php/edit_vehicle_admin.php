@@ -4,11 +4,11 @@
     if (isset($_POST["nv_id"]) && isset($_POST["nv_matricula"]) && isset($_POST["nv_year"]) && isset($_POST["nv_brand"]) && isset($_POST["nv_cat"]) && isset($_POST["nv_user"])) {
         $matricula = strtoupper(str_replace("-", "", $_POST["nv_matricula"]));
         if (preg_match(REGEX_PLATE, $matricula) !== 1) {
-            die("Matricula Invalida");
+            sendBadEdit("Matrícula Inválida", ["nv_matricula"], "/ProjetoPWBD/admin/edit_vehicle.php?id=".$_POST["nv_id"]);
         }
         $year = intval($_POST["nv_year"]);
         if ($year < 1900 || $year > getdate()["year"]) {
-            die("Ano Invalido");
+            sendBadEdit("Ano Inválido", ["nv_year"], "/ProjetoPWBD/admin/edit_vehicle.php?id=".$_POST["nv_id"]);
         }
         $vehicle = array(
             "id" => $_POST["nv_id"],
@@ -24,7 +24,7 @@
         $stmt->bindValue("id", $vehicle["id"]);
         $stmt->execute();
         if ($stmt->rowCount() != 1) {
-            die("Veiculo invalido (não existe)");
+            sendErrorMessage(true, "Veiculo inválido (não existe)", "/ProjetoPWBD/admin/vehicles.php");
         }
         $old_user = $stmt->fetch()["idUtilizador"];
         $query = "SELECT matricula FROM veiculo WHERE id = :id";
@@ -39,7 +39,7 @@
             $stmt->bindValue("matricula", $matricula);
             $stmt->execute();
             if ($stmt->rowCount() != 0) {
-                die("Matricula ja esta registada");
+                sendBadEdit("Matrícula já está registada", ["nv_matricula"], "/ProjetoPWBD/admin/edit_vehicle.php?id=".$_POST["nv_id"]);
             }
         }
         $query = "UPDATE veiculo SET matricula = :matricula, ano = :ano, marca = :marca, idCategoria = :categoria WHERE veiculo.id = :id;";
@@ -57,10 +57,8 @@
             $stmt->bindValue("id", $vehicle["id"]);
             $stmt->execute();
         }
-        header("Location: /ProjetoPWBD/admin/vehicles.php");
-        die();
+        sendErrorMessage(true, "Veiculo editado com sucesso", "/ProjetoPWBD/admin/vehicles.php");
     } else {
-        header("Location: /ProjetoPWBD/admin/vehicles.php");
-        die();
+        sendErrorMessage(false, "Valores de entrada inválidos", "/ProjetoPWBD/admin/vehicles.php");
     }
 ?>

@@ -6,11 +6,11 @@
     if (isset($_POST["nv_id"]) && isset($_POST["nv_matricula"]) && isset($_POST["nv_year"]) && isset($_POST["nv_brand"]) && isset($_POST["nv_cat"])) {
         $matricula = strtoupper(str_replace("-", "", $_POST["nv_matricula"]));
         if (preg_match(REGEX_PLATE, $matricula) !== 1) {
-            die("Matricula Invalida");
+            sendBadEdit("Matrícula Inválida", ["nv_matricula"], "/ProjetoPWBD/vehicle/edit.php?id=".$_POST["nv_id"]);
         }
         $year = intval($_POST["nv_year"]);
         if ($year < 1900 || $year > getdate()["year"]) {
-            die("Ano Invalido");
+            sendBadEdit("Ano Inválido", ["nv_year"], "/ProjetoPWBD/vehicle/edit.php?id=".$_POST["nv_id"]);
         }
         $vehicle = array(
             "id" => $_POST["nv_id"],
@@ -26,7 +26,7 @@
         $stmt->bindValue("id", $vehicle["id"]);
         $stmt->execute();
         if ($stmt->rowCount() != 1) {
-            die("Veiculo invalido (não existe ou não pertence ao utilizador)");
+            sendErrorMessage(true, "Veiculo inválido (não existe ou não pertence ao utilizador)", "/ProjetoPWBD/vehicle/");
         }
         $query = "SELECT matricula FROM veiculo WHERE id = :id";
         $stmt = $dbo->prepare($query);
@@ -40,7 +40,7 @@
             $stmt->bindValue("matricula", $matricula);
             $stmt->execute();
             if ($stmt->rowCount() != 0) {
-                die("Matricula ja esta registada");
+                sendBadEdit("Matrícula já está registada", ["nv_matricula"], "/ProjetoPWBD/vehicle/edit.php?id=".$_POST["nv_id"]);
             }
         }
         $query = "UPDATE veiculo SET matricula = :matricula, ano = :ano, marca = :marca, idCategoria = :categoria WHERE veiculo.id = :id;";
@@ -51,10 +51,8 @@
         $stmt->bindValue("marca", $vehicle["brand"]);
         $stmt->bindValue("categoria", $vehicle["cat"]);
         $stmt->execute();
-        header("Location: /ProjetoPWBD/vehicle/index.php");
-        die();
+        sendErrorMessage(false, "Veículo editado com sucesso", "/ProjetoPWBD/vehicle/");
     } else {
-        header("Location: /ProjetoPWBD/vehicle/");
-        die();
+        sendErrorMessage(true, "Valores de entrada inválidos", "/ProjetoPWBD/vehicle/");
     }
 ?>

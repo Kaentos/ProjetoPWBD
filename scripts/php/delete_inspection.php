@@ -19,8 +19,7 @@
         $stmt->bindValue("userid", LOGIN_DATA["id"]);
         $stmt->execute();
         if ($stmt->rowCount() == 0) {
-            header("Location: /ProjetoPWBD/customer/");
-            die();
+            sendErrorMessage(true, "Inspeção inválida (não existe)", "/ProjetoPWBD/customer/");
         }
         $query = "
             DELETE FROM inspecao WHERE id = :id;
@@ -28,9 +27,7 @@
         $stmt = $dbo->prepare($query);
         $stmt->bindValue("id", $inspection);
         $stmt->execute();
-        header("Location: /ProjetoPWBD/customer");
-        die();
+        sendErrorMessage(false, "Inspeção eliminada", "/ProjetoPWBD/customer/");
     }
-    header("Location: /ProjetoPWBD/customer");
-    die();
+    sendErrorMessage(true, "Valores de entrada inválidos", "/ProjetoPWBD/customer/");
 ?>

@@ -1,4 +1,6 @@
 <?php
+    date_default_timezone_set("Europe/Lisbon");
+    
     define("USER_MIN_LENGTH", 4);
     define("PWD_MIN_LENGTH", 4);
     define("EMAIL_MIN_LENGTH", 6);
