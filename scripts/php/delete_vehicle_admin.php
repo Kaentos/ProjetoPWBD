@@ -9,12 +9,10 @@
         $stmt->bindValue("id", $id);
         $stmt->execute();
         if ($stmt->rowCount() != 1) {
-            die("Veiculo invalido (não existe)");
+            sendErrorMessage(true, "Veículo inválido (não existe)", "/ProjetoPWBD/admin/vehicles.php");
         }
-        header("Location: /ProjetoPWBD/admin/vehicles.php");
-        die();
+        sendErrorMessage(false, "Veículo eliminado", "/ProjetoPWBD/admin/vehicles.php");
     } else {
-        header("Location: /ProjetoPWBD/admin/vehicles.php");
-        die();
+        sendErrorMessage(true, "Valores de entrada inválidos", "/ProjetoPWBD/admin/vehicles.php");
     }
 ?>

@@ -24,15 +24,12 @@
         $stmt->bindValue("userid", LOGIN_DATA["id"]);
         $stmt->execute();
         if ($stmt->rowCount() == 0) {
-            header("Location: /ProjetoPWBD/customer/");
-            die();
+            sendErrorMessage(true, "Não há inspeção registada com o ID pedido", "/ProjetoPWBD/customer");
         } else {
             $initialDate = date_create_from_format("Y-m-d H:i:s", $stmt->fetch()["horaInicio"]);
         }
         if ($initialDate == $inspection["startdt"]) {
-            echo "A mesma data foi introduzida<br>";
-            echo "<a href='#' onclick='history.back()'>Voltar atrás</a>";
-            die();
+            sendBadEdit("A mesma data foi introduzida", ["ni_startdate", "ni_starttime"], "/ProjetoPWBD/customer/edit.php?id=".$_POST["ni_inspection"]);
         }
         $query = "
             SELECT v.id, v.matricula, vu.idUtilizador AS idUser, cv.id AS idCategory
@@ -85,12 +82,12 @@
             foreach($interval as $date) {
                 $weekDay = $date -> format("w");
                 $hour = $date -> format("H");
-                if ($weekDay == 0) {
+                if ($weekDay == 0 || $hour == 13) {
                     continue;
                 } elseif ($weekDay == 6 && $hour > 13) {
                     continue;
                 } else {
-                    if ($hour < 9 || $hour > 18 ) {
+                    if ($hour < 9 || $hour >= 18 ) {
                         continue;
                     }
                 }
@@ -119,9 +116,7 @@
             }
         }
         if (!$valido) {
-            echo "Data Invalida<br>";
-            echo "<a href='#' onclick='history.back()'>Voltar atrás</a>";
-            die();
+            sendBadEdit("Data Inválida", ["ni_startdate", "ni_starttime"], "/ProjetoPWBD/customer/edit.php?id=".$_POST["ni_inspection"]);
         }
         $query = "
             UPDATE inspecao SET horaInicio = :horaInicio, horaFim = :horaFim WHERE id = :id;
@@ -132,9 +127,7 @@
         $stmt->bindValue("id", $inspection["id"]);
         $stmt->execute();
 
-        header("Location: /ProjetoPWBD/customer");
-        die();
+        sendErrorMessage(false, "Inspeção editada com sucesso", "/ProjetoPWBD/customer/");
     }
-    header("Location: /ProjetoPWBD/customer");
-    die();
+    sendErrorMessage(true, "Valores de entrada inválidos", "/ProjetoPWBD/customer/");
 ?>

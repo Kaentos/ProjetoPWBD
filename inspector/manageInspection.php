@@ -14,7 +14,7 @@
         $stmt -> bindValue("id", $_GET["id"]);
         $stmt -> execute();
         if ($stmt -> rowCount() != 1) {
-            die("invalido");
+            sendErrorMessage(true, "Inspeção Inválida", "list.php");
         }
 
         $action = $_GET["action"];
@@ -22,7 +22,7 @@
             $infoInspecao = $stmt -> fetch();
             $horaInicio = new DateTime(date("Y-m-d H:i:s", strtotime($infoInspecao["horaInicio"])));
             $horaAtual = new DateTime(date("Y-m-d H:i:s"));
-            $horaAtual -> sub(new DateInterval('PT30M'));
+            $horaAtual -> sub(new DateInterval('PT15M'));
             if ( $horaInicio > $horaAtual ) {
                 showMessage(true, "Ainda não pode começar a inspeção!");
             }

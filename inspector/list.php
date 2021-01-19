@@ -55,7 +55,7 @@
         window.onload = function() {
             <?php
                 if (isset($_SESSION["message"])) {
-                    echo "showMessage(".json_encode($_SESSION["message"]).");";
+                    echo "showMessageBanner(".json_encode($_SESSION["message"]).");";
                     unset($_SESSION["message"]);
                 }
             ?>

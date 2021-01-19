@@ -12,16 +12,14 @@
         $stmt->bindValue("id", $id);
         $stmt->execute();
         if ($stmt->rowCount() != 1) {
-            die("Veiculo invalido (não existe ou não pertence ao utilizador)");
+            sendErrorMessage(true, "Veiculo inválido (não existe ou não pertence ao utilizador)", "/ProjetoPWBD/vehicle/");
         }
         $query = "DELETE FROM veiculo WHERE id = :id";
         $stmt = $dbo->prepare($query);
         $stmt->bindValue("id", $id);
         $stmt->execute();
-        header("Location: /ProjetoPWBD/vehicle/index.php");
-        die();
+        sendErrorMessage(false, "Veiculo eliminado com sucesso", "/ProjetoPWBD/vehicle/");
     } else {
-        header("Location: /ProjetoPWBD/vehicle/");
-        die();
+        sendErrorMessage(true, "Veiculo inválido", "/ProjetoPWBD/vehicle/");
     }
 ?>

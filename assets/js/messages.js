@@ -1,4 +1,4 @@
-function showMessage (data) {
+function showMessageBanner (data) {
     const message = document.getElementById("message");
     const {isError, msg} = data;
     message.classList.add(isError ? "message-error" : "message-success");
@@ -6,13 +6,14 @@ function showMessage (data) {
     message.style.visibility = "visible";
 }
 
-function showBadEdit(reason, fields=null) {
+function showBadEdit(data) {
+    const {reason, fields} = data;
     const warningArea = document.getElementById("badWarning");
     warningArea.style.visibility = "visible";
     warningArea.innerHTML = reason;
     if (fields != null) {
         fields.forEach(field => {
-            borderRed(document.getElementById(field));
+            document.getElementById(field).style.border = "2px solid red";
         });
     }
 }

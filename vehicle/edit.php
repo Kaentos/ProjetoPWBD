@@ -4,8 +4,7 @@
         gotoIndex();
     }
     if (!isset($_GET["id"])) {
-        header("Location: index.php");
-        die();
+        sendErrorMessage(true, "Valor de entrada inválido", "/ProjetoPWBD/vehicle/");
     }
 
     include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/scripts/php/basedados.h");
@@ -21,7 +20,7 @@
     $stmt->bindValue("id", $idtoedit);
     $stmt->execute();
     if ($stmt->rowCount() != 1) {
-        die("Veiculo invalido (não existe ou não pertence ao utilizador)");
+        sendErrorMessage(true, "Veiculo inválido (não existe ou não pertence ao utilizador)", "/ProjetoPWBD/vehicle/");
     }
     $query = "SELECT veiculo.id, veiculo.matricula, veiculo.ano, veiculo.marca, categoriaveiculo.id categoria
         FROM veiculo INNER JOIN categoriaveiculo ON veiculo.idCategoria = categoriaveiculo.id
@@ -30,7 +29,7 @@
     $stmt->bindValue("id", $idtoedit);
     $stmt->execute();
     if ($stmt->rowCount() != 1) {
-        die("Erro a obter detalhes do veiculo");
+        sendErrorMessage(true, "Erro a obter detalhes do veículo", "/ProjetoPWBD/vehicle/");
     }
     $result = $stmt->fetch();
     define("VEHICLE", $result);
@@ -44,6 +43,7 @@
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/login_register.css">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/navbar_footer.css">
     <script src="/ProjetoPWBD/assets/js/edit_user.js"></script>
+    <script src="/ProjetoPWBD/assets/js/messages.js"></script>
     <link rel="icon" href="/ProjetoPWBD/assets/img/icon.png">
     
     <style>

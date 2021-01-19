@@ -4,13 +4,12 @@
         gotoIndex();
     }
     if (!isset($_GET["id"])) {
-        header("Location: ../vehicle");
-        die();
+        sendErrorMessage(true, "Veiculo inválido", "../vehicle");
     }
     include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/scripts/php/basedados.h");
     
     $query = "
-        SELECT i.horaInicio
+        SELECT i.horaInicio, i.idVeiculo
         FROM inspecao AS i
             INNER JOIN veiculo AS v ON i.idVeiculo=v.id
             INNER JOIN Veiculo_Utilizador AS vu ON v.id = vu.idVeiculo
@@ -21,9 +20,9 @@
     $stmt->bindValue("userid", LOGIN_DATA["id"]);
     $stmt->execute();
     if ($stmt->rowCount() == 0) {
-        header("Location: index.php");
-        die();
+        sendErrorMessage(true, "Inspeção Inválida", "index.php");
     }
+    $vehicleid = $stmt->fetch()["idVeiculo"];
 
     $query = "
         SELECT v.id, v.matricula, vu.idUtilizador AS idUser, cv.id AS idCategory
@@ -33,7 +32,7 @@
         WHERE v.id = :id
     ";
     $stmt = $dbo->prepare($query);
-    $stmt->bindValue("id", $_GET["id"]);
+    $stmt->bindValue("id", $vehicleid);
     $stmt->execute();
     $vehicle = $stmt->fetch();
     
@@ -58,23 +57,32 @@
         $stmt -> bindValue("id", $vehicle["idCategory"]);
         $stmt -> execute();
         $lines = $stmt -> fetchAll();
-        
+        if ($vehicle["idCategory"] == 1 || $vehicle["idCategory"] == 2) {
+            $intervalString = "PT30M";
+            $duration = "30 minutos";
+            $step = "1800";
+        } else {
+            $intervalString = "PT1H";
+            $duration = "1 hora";
+            $step = "3600";
+        }
+
         $start = new DateTime(date("Y-m-d H:i:s", strtotime("09:00:00")));
         $end = new DateTime(date("Y-m-d H:i:s", strtotime("18:00:00")));
         $dateStart = date_add($start, new DateInterval("P3D"));
         $dateEnd = date_add($end, new DateInterval("P30D"));
 
-        $interval = new DatePeriod($dateStart, new DateInterval('PT1H'), $dateEnd);
+        $interval = new DatePeriod($dateStart, new DateInterval($intervalString), $dateEnd);
         $datesAvailable = array();
         foreach($interval as $date) {
             $weekDay = $date -> format("w");
             $hour = $date -> format("H");
-            if ($weekDay == 0) {
+            if ($weekDay == 0 || $hour == 13) {
                 continue;
-            } elseif ($weekDay == 6 && $hour > 13) {
+            } elseif ($weekDay == 6 && $hour >= 13) {
                 continue;
             } else {
-                if ($hour < 9 || $hour > 18 ) {
+                if ($hour < 9 || $hour >= 18 ) {
                     continue;
                 }
             }
@@ -94,21 +102,12 @@
         }
         $hourEnd = new DateTime(date("Y-m-d H:i:s", strtotime("18:00:00")));
         $hourEndDate = date_add($hourEnd, new DateInterval("P3D"));
-        if ($vehicle["idCategory"] == 1 || $vehicle["idCategory"] == 2) {
-            $intervalString = "PT30M";
-            $duration = "30 minutos";
-            $step = "1800";
-        } else {
-            $intervalString = "PT1H";
-            $duration = "1 hora";
-            $step = "3600";
-        }
         $hourinterval = new DatePeriod($dateStart, new DateInterval($intervalString), $hourEndDate);
         $validHours = array();
         $i = 0;
         foreach ($hourinterval as $h) {
             $hour = $h -> format("H");
-            if (($hour < 9 || $hour > 18 ) || $hour == 13) {
+            if (($hour < 9 || $hour >= 18 ) || $hour == 13) {
                 continue;
             } elseif ($hour < 13) {
                 array_push($validHours, array($h->format("H:i")));
@@ -129,6 +128,7 @@
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/navbar_footer.css">
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/new_inspection.css">
     <script src="/ProjetoPWBD/assets/js/edit_user.js"></script>
+    <script src="/ProjetoPWBD/assets/js/messages.js"></script>
     <link rel="icon" href="/ProjetoPWBD/assets/img/icon.png">
 
     <style>
@@ -141,7 +141,7 @@
         window.onload = function() {
             <?php
                 if (isset($_SESSION["badEdit"])) {
-                    echo "badEdit(".$_SESSION["badEdit"]["code"].", '".$_SESSION["badEdit"]["reason"]."');";
+                    echo "showBadEdit(".json_encode($_SESSION["badEdit"]).");";
                     unset($_SESSION["badEdit"]);
                 }
             ?>

@@ -30,12 +30,12 @@
     <link rel="stylesheet" href="/ProjetoPWBD/assets/css/users.css">
     <script src="/ProjetoPWBD/assets/js/users.js"></script>
     <link rel="icon" href="/ProjetoPWBD/assets/img/icon.png">
-    <script src="/ProjetoPWBD/assets/js/showmessage.js"></script>
+    <script src="/ProjetoPWBD/assets/js/messages.js"></script>
     <script>
         window.onload = function () {
             <?php
                 if (isset($_SESSION["message"])) {
-                    echo "showMessage(".json_encode($_SESSION["message"]).")";
+                    echo "showMessageBanner(".json_encode($_SESSION["message"]).")";
                     unset($_SESSION["message"]);
                 }
             ?>
