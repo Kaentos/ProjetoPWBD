@@ -1,7 +1,9 @@
+/* BASE DE DADOS */
 DROP DATABASE IF EXISTS CentroInspecoes;
 CREATE DATABASE CentroInspecoes;
 USE CentroInspecoes;
 
+/* TABELAS */
 CREATE TABLE TipoUtilizador (
     id INT PRIMARY KEY AUTO_INCREMENT,
     nome VARCHAR(32) NOT NULL
@@ -72,8 +74,14 @@ CREATE TABLE Inspecao (
     CONSTRAINT TB_Inspecao_LinhaInspecao_FK FOREIGN KEY (idLinha) REFERENCES LinhaInspecao(id) ON DELETE CASCADE
 );
 
+
+/* INSERTS */
 INSERT INTO TipoUtilizador VALUES
-    (1, 'Administrador'), (2, 'Inspector'), (3, 'Cliente'), (0, "Apagado");
+    (0, "Apagado"),
+    (1, 'Administrador'),
+    (2, 'Inspector'),
+    (3, 'Cliente');
+    
 
 INSERT INTO Utilizador (nome, username, email, password, telemovel, telefone, isActive, idTipo) VALUES
     ('Jose Rodrigues', 'admin', 'admin@mail.com', '$2y$12$OgKQmortu0reACW6sMmwz.nbCSPztT/SUWe399O48YKkWQSoV/j5u', 912123168, NULL, TRUE, 1),
@@ -87,12 +95,21 @@ INSERT INTO Utilizador (nome, username, email, password, telemovel, telefone, is
     ('Joaquim Campos', 'cliente4', 'cliente4@mail.com', '$2y$12$gy9e68Z/DXgR5SCNR6kvg.YuIFucPx2kjjejWOClMXqx0afw26sX6', 916565245, NULL, TRUE, 3);
 
 INSERT INTO CategoriaVeiculo VALUES
-    (1, 'Ligeiro de passageiros', 30), (2, 'Motociclo', 30), (3, 'Pesado de mercadorias', 60);
+    (1, 'Ligeiro de passageiros', 30),
+    (2, 'Motociclo', 30),
+    (3, 'Pesado de mercadorias', 60);
 
 INSERT INTO LinhaInspecao (nome, idCategoria) VALUES
-    ('AutoExp', 1), ('AutoFpz', 1), ('Moto', 2), ('Cami', 3);
+    ('Ligeiros 1', 1),
+    ('Ligeiros 2', 1),
+    ('Motociclos 1', 2),
+    ('Pesados mercadorias 1', 3);
 
-INSERT INTO LinhaInspecao_Utilizador VALUES (1, 2), (2,4), (3,5), (4,6);
+INSERT INTO LinhaInspecao_Utilizador VALUES
+    (1, 2),
+    (2,4),
+    (3,5),
+    (4,6);
 
 INSERT INTO Veiculo (matricula, ano, marca, idCategoria) VALUES 
     ('A3B2SD', 2000, 'Honda Civic', 1),

@@ -54,6 +54,10 @@
                     Adicionar novo
                 </a>
             </div>
+            <div style="text-align: right; font-size: 1.2rem; padding: 10px;">
+                Utilizadores por aceitar:
+                <input style="transform:scale(1.5);" onClick="filterUsers(this)" type="checkbox" id="checkboxFilterAccept">
+            </div>
             <table class="u-table">
                 <thead>
                     <tr>
@@ -99,8 +103,12 @@
                 <tbody>
                     <?php
                         foreach(ALL_USERS as $user) {
+                            if ($user["id"] == LOGIN_DATA["id"] || $user["isDeleted"] == true) {
+                                echo "<tr class='userLine'>";
+                            } else {
+                                echo "<tr class='userLine' data-aproved='".($user["isActive"] ? true : false )."'>";
+                            }
                             echo "
-                                <tr>
                                     <td class='u-table-width-50' title='".$user["id"]."'>
                                         ".$user["id"]."
                                     </td>
@@ -140,32 +148,32 @@
                                     if ($user["id"] !== LOGIN_DATA["id"]) {
                                         echo "
                                             <a href='edit_user.php?id=".$user["id"]."'>
-                                                <img class='u-table-icon' src='../assets/img/icons/pencil.png' alt='Editar' srcset=''>
+                                                <img class='u-table-icon' src='/ProjetoPWBD/assets/img/icons/pencil.png' alt='Editar' srcset=''>
                                             </a>
                                         ";
                                         if (!$user["isDeleted"]) {
                                             if ($user["isActive"]) {
                                                 echo "
                                                     <a href='manage_access_user.php?id=".$user["id"]."&action=remove'>
-                                                        <img class='u-table-icon' src='../assets/img/icons/dislike.png' alt='Tirar acesso' srcset=''>
+                                                        <img class='u-table-icon' src='/ProjetoPWBD/assets/img/icons/dislike.png' alt='Tirar acesso' srcset=''>
                                                     </a>
                                                 ";
                                             } else {
                                                 echo "
                                                     <a href='manage_access_user.php?id=".$user["id"]."&action=give'>
-                                                        <img class='u-table-icon' src='../assets/img/icons/like.png' alt='Aprovar' title='Aprovar'>
+                                                        <img class='u-table-icon' src='/ProjetoPWBD/assets/img/icons/like.png' alt='Aprovar' title='Aprovar'>
                                                     </a>
                                                 ";
                                             }
                                             echo "
                                                 <a href='remove_user.php?id=".$user["id"]."'>
-                                                    <img class='u-table-icon' src='../assets/img/icons/garbage.png' alt='Apagar' srcset=''>
+                                                    <img class='u-table-icon' src='/ProjetoPWBD/assets/img/icons/garbage.png' alt='Apagar' srcset=''>
                                                 </a>
                                             ";
                                         } else {
                                             echo "
                                                 <a class='red-icon' href='remove_user.php?id=".$user["id"]."&perma=true'>
-                                                    <img class='u-table-icon' src='../assets/img/icons/garbage.png' alt='Apagar' srcset=''>
+                                                    <img class='u-table-icon' src='/ProjetoPWBD/assets/img/icons/garbage.png' alt='Apagar' srcset=''>
                                                 </a>
                                             ";
                                         }
