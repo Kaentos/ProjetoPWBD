@@ -12,7 +12,8 @@
         INNER JOIN veiculo ON inspecao.idVeiculo=veiculo.id
         INNER JOIN linhainspecao ON inspecao.idLinha=linhainspecao.id
         INNER JOIN veiculo_utilizador ON veiculo.id=veiculo_utilizador.idVeiculo
-        WHERE veiculo_utilizador.idUtilizador = :userid;
+        WHERE veiculo_utilizador.idUtilizador = :userid
+        ORDER BY inspecao.horaInicio DESC;
     ";
     $stmt = $dbo->prepare($query);
     $stmt->bindValue("userid", LOGIN_DATA["id"]);
