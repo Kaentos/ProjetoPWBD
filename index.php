@@ -28,6 +28,7 @@
                 <span>
                     Castelo Branco, Beira Interior Sul, Centro, 6000-767, Portugal
                 </span>
+                <br>
                 <iframe frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://www.openstreetmap.org/export/embed.html?bbox=-7.524926662445069%2C39.81578841182359%2C-7.514884471893311%2C39.821284869131865&amp;layer=mapnik&amp;marker=39.818536695428236%2C-7.5199055671691895">
                 </iframe>
                 <br/>
