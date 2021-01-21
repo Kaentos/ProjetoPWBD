@@ -122,8 +122,10 @@ INSERT INTO Veiculo_Utilizador VALUES
     (11, 8),
     (12, 9);
 
+INSERT INTO Inspecao (horaInicio, horaFim, idVeiculo, idLinha, isCompleted) VALUES 
+    ('2021-01-07 18:00:00', '2021-01-07 18:30:00', 1, 1, 1);
+
 INSERT INTO Inspecao (horaInicio, horaFim, idVeiculo, idLinha) VALUES
-    ('2021-01-07 18:00:00', '2021-01-07 18:30:00', 1, 1),
     ('2021-01-25 14:00:00', '2021-01-25 14:30:00', 2, 1),
     ('2021-01-25 14:00:00', '2021-01-25 14:30:00', 3, 2),
     ('2021-01-25 11:30:00', '2021-01-25 12:00:00', 4, 3),
