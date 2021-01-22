@@ -158,7 +158,7 @@
                                         ".$inspection["marca"]."
                                     </td>
                                     <td class='u-table-width-100' title='".$inspection["nome"]."'>
-                                        <a href='/ProjetoPWBD/customer/viewData.php?id=".$inspection["userID"]."'>
+                                        <a class='viewDataHyper' href='/ProjetoPWBD/customer/viewData.php?id=".$inspection["userID"]."'>
                                             ".$inspection["nome"]."
                                         </a>
                                     </td>
