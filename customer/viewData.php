@@ -9,10 +9,9 @@
     include($_SERVER["DOCUMENT_ROOT"]."/ProjetoPWBD/scripts/php/basedados.h");
     
     $query = "
-        SELECT u.id, u.nome, u.email, u.telemovel, u.telefone 
-        FROM Utilizador AS u
-            INNER JOIN TipoUtilizador AS tp ON u.idTipo = tp.id 
-        WHERE u.id = :id AND tp.id NOT IN (0,1,2);
+        SELECT id, nome, email, telemovel, telefone 
+        FROM Utilizador
+        WHERE id = :id AND idTipo NOT IN (0,1,2);
     ";
     $stmt = $dbo -> prepare($query);
     $stmt -> bindParam("id", $getUserID);
