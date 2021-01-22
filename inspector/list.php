@@ -26,34 +26,25 @@
     $stmt -> execute();
     $infoLinha = $stmt -> fetch();
 
-    $query_nodate = "
-        SELECT i.id, i.horaInicio, i.horaFim, i.isDoing, i.isCompleted, v.matricula, v.marca, u.nome
-        FROM inspecao AS i
-            INNER JOIN veiculo as v ON i.idVeiculo = v.id
-            INNER JOIN veiculo_utilizador AS vu ON v.id = vu.idVeiculo 
-            INNER JOIN utilizador as u ON vu.idUtilizador = u.id
-        WHERE i.idLinha = :idLinha AND DATE(i.horaInicio) = DATE(NOW());
-    ";
-
     $query_date = "
-        SELECT i.id, i.horaInicio, i.horaFim, i.isDoing, i.isCompleted, v.matricula, v.marca, u.nome
+        SELECT i.id, i.horaInicio, i.horaFim, i.isDoing, i.isCompleted, v.matricula, v.marca, u.nome, u.id AS userID
         FROM inspecao AS i
             INNER JOIN veiculo as v ON i.idVeiculo = v.id
             INNER JOIN veiculo_utilizador AS vu ON v.id = vu.idVeiculo 
             INNER JOIN utilizador as u ON vu.idUtilizador = u.id
         WHERE i.idLinha = :idLinha AND DATE(i.horaInicio) = :date;
     ";
+    $stmt = $dbo -> prepare($query_date);
     $date = false;
     if (isset($_GET["date"])) {
         $date = date_create_from_format("Y-m-d", $_GET["date"]);
         if ($date !== false) {
-            $stmt = $dbo -> prepare($query_date);
             $stmt -> bindValue("date", $date->format("Y-m-d"));
-        }else {
-            $stmt = $dbo -> prepare($query_nodate);
+        } else {
+            $stmt -> bindValue("date", date("Y-m-d"));
         }
     } else {
-        $stmt = $dbo -> prepare($query_nodate);
+        $stmt -> bindValue("date", date("Y-m-d"));
     }
     $stmt -> bindValue("idLinha", $idLinha);
     $stmt -> execute();
@@ -167,7 +158,9 @@
                                         ".$inspection["marca"]."
                                     </td>
                                     <td class='u-table-width-100' title='".$inspection["nome"]."'>
-                                        ".$inspection["nome"]."
+                                        <a href='/ProjetoPWBD/customer/viewData.php?id=".$inspection["userID"]."'>
+                                            ".$inspection["nome"]."
+                                        </a>
                                     </td>
                                     <td class='u-table-width-100'>
                             ";
