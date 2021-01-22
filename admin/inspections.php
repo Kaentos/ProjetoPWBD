@@ -9,6 +9,7 @@
         FROM inspecao 
             INNER JOIN veiculo ON inspecao.idVeiculo=veiculo.id
             INNER JOIN linhainspecao ON inspecao.idLinha=linhainspecao.id
+        ORDER BY inspecao.horaInicio DESC
     ";
     $stmt = $dbo->prepare($query);
     $stmt->execute();
